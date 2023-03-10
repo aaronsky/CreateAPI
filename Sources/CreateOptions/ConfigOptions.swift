@@ -669,6 +669,20 @@ public struct ConfigOptions: ParsableConfiguration {
         @Option public var filenameTemplate: String = "%0.swift"
     }
 
+    @Option public var enums: Enums
+
+    // sourcery: document,
+    /// Options specifically related to enums generated from schemas.
+    ///
+    /// > **Note**: these options do not apply to other enums, such as `CodingKey` conformances or
+    /// `ResponseHeaders`.
+    public struct Enums: ParsableConfiguration {
+        /// Protocols to be adopted by each generated enum of strings.
+        @Option public var protocols: Set<String> = ["Codable", "CaseIterable"]
+
+        public init() { }
+    }
+
     @Option public var paths: Paths
 
     public enum PathsStyle: String, Codable {

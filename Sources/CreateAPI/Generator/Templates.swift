@@ -94,9 +94,9 @@ final class Templates {
         }
     }
 
-    func enumOfStrings(name: TypeName, contents: String) -> String {
+    func enumOfStrings(name: TypeName, contents: String, protocols: Protocols) -> String {
         return """
-        \(access)enum \(name): String, Codable, CaseIterable {
+        \(access)enum \(name): String, \(protocols.sorted().joined(separator: ", ")) {
         \(contents.indented)
         }
         """
@@ -639,7 +639,7 @@ final class Templates {
 
     var anyJSON: String {
         """
-        \(access)enum AnyJSON: Equatable, Codable {
+        \(access)enum AnyJSON: Codable, Equatable, Sendable {
             case string(String)
             case number(Double)
             case object([String: AnyJSON])
