@@ -39,7 +39,7 @@ public struct Team: Codable {
             self.isAdmin = isAdmin
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isPull = try values.decode(Bool.self, forKey: "pull")
             self.isTriage = try values.decode(Bool.self, forKey: "triage")
@@ -48,7 +48,7 @@ public struct Team: Codable {
             self.isAdmin = try values.decode(Bool.self, forKey: "admin")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(isPull, forKey: "pull")
             try values.encode(isTriage, forKey: "triage")
@@ -74,7 +74,7 @@ public struct Team: Codable {
         self.parent = parent
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -91,7 +91,7 @@ public struct Team: Codable {
         self.parent = try values.decodeIfPresent(TeamSimple.self, forKey: "parent")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(nodeID, forKey: "node_id")

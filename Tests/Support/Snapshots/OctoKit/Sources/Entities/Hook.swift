@@ -81,7 +81,7 @@ public struct Hook: Codable {
             self.token = token
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.email = try values.decodeIfPresent(String.self, forKey: "email")
             self.password = try values.decodeIfPresent(String.self, forKey: "password")
@@ -95,7 +95,7 @@ public struct Hook: Codable {
             self.token = try values.decodeIfPresent(String.self, forKey: "token")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(email, forKey: "email")
             try values.encodeIfPresent(password, forKey: "password")
@@ -126,7 +126,7 @@ public struct Hook: Codable {
         self.lastResponse = lastResponse
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.type = try values.decode(String.self, forKey: "type")
         self.id = try values.decode(Int.self, forKey: "id")
@@ -143,7 +143,7 @@ public struct Hook: Codable {
         self.lastResponse = try values.decode(HookResponse.self, forKey: "last_response")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(type, forKey: "type")
         try values.encode(id, forKey: "id")

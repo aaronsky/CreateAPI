@@ -95,7 +95,7 @@ extension Paths.Repos.WithOwner {
                         self.status = status
                     }
 
-                    public func encode(to encoder: Encoder) throws {
+                    public func encode(to encoder: any Encoder) throws {
                         var values = encoder.container(keyedBy: StringCodingKey.self)
                         try values.encodeIfPresent(status, forKey: "status")
                     }
@@ -110,7 +110,7 @@ extension Paths.Repos.WithOwner {
                         self.status = status
                     }
 
-                    public func encode(to encoder: Encoder) throws {
+                    public func encode(to encoder: any Encoder) throws {
                         var values = encoder.container(keyedBy: StringCodingKey.self)
                         try values.encodeIfPresent(status, forKey: "status")
                     }
@@ -121,7 +121,7 @@ extension Paths.Repos.WithOwner {
                     self.secretScanning = secretScanning
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(advancedSecurity, forKey: "advanced_security")
                     try values.encodeIfPresent(secretScanning, forKey: "secret_scanning")
@@ -149,7 +149,7 @@ extension Paths.Repos.WithOwner {
                 self.allowForking = allowForking
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(name, forKey: "name")
                 try values.encodeIfPresent(description, forKey: "description")

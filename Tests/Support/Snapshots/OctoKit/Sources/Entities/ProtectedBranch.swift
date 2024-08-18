@@ -41,7 +41,7 @@ public struct ProtectedBranch: Codable {
                 self.teams = teams
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.url = try values.decode(URL.self, forKey: "url")
                 self.usersURL = try values.decode(URL.self, forKey: "users_url")
@@ -50,7 +50,7 @@ public struct ProtectedBranch: Codable {
                 self.teams = try values.decode([Team].self, forKey: "teams")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(url, forKey: "url")
                 try values.encode(usersURL, forKey: "users_url")
@@ -68,7 +68,7 @@ public struct ProtectedBranch: Codable {
             self.dismissalRestrictions = dismissalRestrictions
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.url = try values.decode(URL.self, forKey: "url")
             self.dismissStaleReviews = try values.decodeIfPresent(Bool.self, forKey: "dismiss_stale_reviews")
@@ -77,7 +77,7 @@ public struct ProtectedBranch: Codable {
             self.dismissalRestrictions = try values.decodeIfPresent(DismissalRestrictions.self, forKey: "dismissal_restrictions")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(url, forKey: "url")
             try values.encodeIfPresent(dismissStaleReviews, forKey: "dismiss_stale_reviews")
@@ -98,13 +98,13 @@ public struct ProtectedBranch: Codable {
             self.isEnabled = isEnabled
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.url = try values.decode(URL.self, forKey: "url")
             self.isEnabled = try values.decode(Bool.self, forKey: "enabled")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(url, forKey: "url")
             try values.encode(isEnabled, forKey: "enabled")
@@ -120,13 +120,13 @@ public struct ProtectedBranch: Codable {
             self.isEnabled = isEnabled
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.url = try values.decode(URL.self, forKey: "url")
             self.isEnabled = try values.decode(Bool.self, forKey: "enabled")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(url, forKey: "url")
             try values.encode(isEnabled, forKey: "enabled")
@@ -140,12 +140,12 @@ public struct ProtectedBranch: Codable {
             self.isEnabled = isEnabled
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isEnabled = try values.decode(Bool.self, forKey: "enabled")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(isEnabled, forKey: "enabled")
         }
@@ -158,12 +158,12 @@ public struct ProtectedBranch: Codable {
             self.isEnabled = isEnabled
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isEnabled = try values.decode(Bool.self, forKey: "enabled")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(isEnabled, forKey: "enabled")
         }
@@ -176,12 +176,12 @@ public struct ProtectedBranch: Codable {
             self.isEnabled = isEnabled
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isEnabled = try values.decode(Bool.self, forKey: "enabled")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(isEnabled, forKey: "enabled")
         }
@@ -194,12 +194,12 @@ public struct ProtectedBranch: Codable {
             self.isEnabled = isEnabled
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isEnabled = try values.decodeIfPresent(Bool.self, forKey: "enabled")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(isEnabled, forKey: "enabled")
         }
@@ -218,7 +218,7 @@ public struct ProtectedBranch: Codable {
         self.requiredConversationResolution = requiredConversationResolution
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.requiredStatusChecks = try values.decodeIfPresent(StatusCheckPolicy.self, forKey: "required_status_checks")
@@ -232,7 +232,7 @@ public struct ProtectedBranch: Codable {
         self.requiredConversationResolution = try values.decodeIfPresent(RequiredConversationResolution.self, forKey: "required_conversation_resolution")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encodeIfPresent(requiredStatusChecks, forKey: "required_status_checks")

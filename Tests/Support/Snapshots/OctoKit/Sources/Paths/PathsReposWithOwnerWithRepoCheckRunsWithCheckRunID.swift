@@ -130,7 +130,7 @@ extension Paths.Repos.WithOwner.WithRepo.CheckRuns {
                         self.rawDetails = rawDetails
                     }
 
-                    public func encode(to encoder: Encoder) throws {
+                    public func encode(to encoder: any Encoder) throws {
                         var values = encoder.container(keyedBy: StringCodingKey.self)
                         try values.encode(path, forKey: "path")
                         try values.encode(startLine, forKey: "start_line")
@@ -158,7 +158,7 @@ extension Paths.Repos.WithOwner.WithRepo.CheckRuns {
                         self.caption = caption
                     }
 
-                    public func encode(to encoder: Encoder) throws {
+                    public func encode(to encoder: any Encoder) throws {
                         var values = encoder.container(keyedBy: StringCodingKey.self)
                         try values.encode(alt, forKey: "alt")
                         try values.encode(imageURL, forKey: "image_url")
@@ -174,7 +174,7 @@ extension Paths.Repos.WithOwner.WithRepo.CheckRuns {
                     self.images = images
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(title, forKey: "title")
                     try values.encode(summary, forKey: "summary")
@@ -200,7 +200,7 @@ extension Paths.Repos.WithOwner.WithRepo.CheckRuns {
                     self.identifie = identifie
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(label, forKey: "label")
                     try values.encode(description, forKey: "description")
@@ -221,7 +221,7 @@ extension Paths.Repos.WithOwner.WithRepo.CheckRuns {
                 self.actions = actions
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(name, forKey: "name")
                 try values.encodeIfPresent(detailsURL, forKey: "details_url")

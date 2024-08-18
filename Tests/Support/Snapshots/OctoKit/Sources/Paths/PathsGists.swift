@@ -88,7 +88,7 @@ extension Paths {
                     self.content = content
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(content, forKey: "content")
                 }
@@ -104,7 +104,7 @@ extension Paths {
                     case `false`
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var container = encoder.singleValueContainer()
                     switch self {
                     case .bool(let value): try container.encode(value)
@@ -119,7 +119,7 @@ extension Paths {
                 self.public = `public`
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(description, forKey: "description")
                 try values.encode(files, forKey: "files")

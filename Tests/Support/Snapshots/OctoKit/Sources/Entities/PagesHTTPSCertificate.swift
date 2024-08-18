@@ -38,7 +38,7 @@ public struct PagesHTTPSCertificate: Codable {
         self.expiresAt = expiresAt
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.state = try values.decode(State.self, forKey: "state")
         self.description = try values.decode(String.self, forKey: "description")
@@ -46,7 +46,7 @@ public struct PagesHTTPSCertificate: Codable {
         self.expiresAt = try values.decodeIfPresent(NaiveDate.self, forKey: "expires_at")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(state, forKey: "state")
         try values.encode(description, forKey: "description")

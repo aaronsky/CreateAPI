@@ -56,7 +56,7 @@ extension Paths.Scim.V2.Enterprises.WithEnterprise.Groups {
                     self.value = value
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(value, forKey: "value")
                 }
@@ -68,7 +68,7 @@ extension Paths.Scim.V2.Enterprises.WithEnterprise.Groups {
                 self.members = members
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(schemas, forKey: "schemas")
                 try values.encode(displayName, forKey: "displayName")
@@ -114,7 +114,7 @@ extension Paths.Scim.V2.Enterprises.WithEnterprise.Groups {
                     self.value = value
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(op, forKey: "op")
                     try values.encodeIfPresent(path, forKey: "path")
@@ -127,7 +127,7 @@ extension Paths.Scim.V2.Enterprises.WithEnterprise.Groups {
                 self.operations = operations
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(schemas, forKey: "schemas")
                 try values.encode(operations, forKey: "Operations")

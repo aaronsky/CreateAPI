@@ -61,7 +61,7 @@ extension Paths.Authorizations.Clients {
                 self.fingerprint = fingerprint
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(clientSecret, forKey: "client_secret")
                 try values.encodeIfPresent(scopes, forKey: "scopes")

@@ -21,7 +21,7 @@ public struct ScimError: Codable {
         self.schemas = schemas
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.message = try values.decodeIfPresent(String.self, forKey: "message")
         self.documentationURL = try values.decodeIfPresent(String.self, forKey: "documentation_url")
@@ -31,7 +31,7 @@ public struct ScimError: Codable {
         self.schemas = try values.decodeIfPresent([String].self, forKey: "schemas")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(message, forKey: "message")
         try values.encodeIfPresent(documentationURL, forKey: "documentation_url")

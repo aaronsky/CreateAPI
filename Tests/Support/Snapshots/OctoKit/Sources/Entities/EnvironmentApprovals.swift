@@ -55,7 +55,7 @@ public struct EnvironmentApprovals: Codable {
             self.updatedAt = updatedAt
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.id = try values.decodeIfPresent(Int.self, forKey: "id")
             self.nodeID = try values.decodeIfPresent(String.self, forKey: "node_id")
@@ -66,7 +66,7 @@ public struct EnvironmentApprovals: Codable {
             self.updatedAt = try values.decodeIfPresent(Date.self, forKey: "updated_at")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(id, forKey: "id")
             try values.encodeIfPresent(nodeID, forKey: "node_id")
@@ -93,7 +93,7 @@ public struct EnvironmentApprovals: Codable {
         self.comment = comment
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.environments = try values.decode([Environment].self, forKey: "environments")
         self.state = try values.decode(State.self, forKey: "state")
@@ -101,7 +101,7 @@ public struct EnvironmentApprovals: Codable {
         self.comment = try values.decode(String.self, forKey: "comment")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(environments, forKey: "environments")
         try values.encode(state, forKey: "state")

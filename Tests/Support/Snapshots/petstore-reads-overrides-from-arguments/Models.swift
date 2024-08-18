@@ -44,14 +44,14 @@ struct Pet: Codable {
         self.tag = tag
     }
 
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int64.self, forKey: "id")
         self.name = try values.decode(String.self, forKey: "name")
         self.tag = try values.decodeIfPresent(String.self, forKey: "tag")
     }
 
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(name, forKey: "name")

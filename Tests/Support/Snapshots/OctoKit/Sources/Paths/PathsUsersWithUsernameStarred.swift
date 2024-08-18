@@ -35,7 +35,7 @@ extension Paths.Users.WithUsername {
                 self.repositories = repositories
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let container = try decoder.singleValueContainer()
                 self.starredRepositories = try? container.decode([OctoKit.StarredRepository].self)
                 self.repositories = try? container.decode([OctoKit.Repository].self)

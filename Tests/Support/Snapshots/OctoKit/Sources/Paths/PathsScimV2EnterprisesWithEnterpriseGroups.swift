@@ -73,7 +73,7 @@ extension Paths.Scim.V2.Enterprises.WithEnterprise {
                     self.value = value
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(value, forKey: "value")
                 }
@@ -85,7 +85,7 @@ extension Paths.Scim.V2.Enterprises.WithEnterprise {
                 self.members = members
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(schemas, forKey: "schemas")
                 try values.encode(displayName, forKey: "displayName")

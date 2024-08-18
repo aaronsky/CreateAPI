@@ -57,12 +57,12 @@ public struct PackageVersion: Codable {
                 self.tags = tags
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.tags = try values.decode([String].self, forKey: "tags")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(tags, forKey: "tags")
             }
@@ -78,13 +78,13 @@ public struct PackageVersion: Codable {
                 self.tags = tags
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.tag = try values.decodeIfPresent([String].self, forKey: "tag")
                 self.tags = try values.decode(AnyJSON.self, forKey: "tags")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(tag, forKey: "tag")
                 try values.encode(tags, forKey: "tags")
@@ -97,14 +97,14 @@ public struct PackageVersion: Codable {
             self.docker = docker
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.packageType = try values.decode(PackageType.self, forKey: "package_type")
             self.container = try values.decodeIfPresent(Container.self, forKey: "container")
             self.docker = try values.decodeIfPresent(Docker.self, forKey: "docker")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(packageType, forKey: "package_type")
             try values.encodeIfPresent(container, forKey: "container")
@@ -126,7 +126,7 @@ public struct PackageVersion: Codable {
         self.metadata = metadata
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.name = try values.decode(String.self, forKey: "name")
@@ -141,7 +141,7 @@ public struct PackageVersion: Codable {
         self.metadata = try values.decodeIfPresent(Metadata.self, forKey: "metadata")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(name, forKey: "name")

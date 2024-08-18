@@ -21,7 +21,7 @@ public struct ActionsOrganizationPermissions: Codable {
         self.selectedActionsURL = selectedActionsURL
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.enabledRepositories = try values.decode(EnabledRepositories.self, forKey: "enabled_repositories")
         self.selectedRepositoriesURL = try values.decodeIfPresent(String.self, forKey: "selected_repositories_url")
@@ -29,7 +29,7 @@ public struct ActionsOrganizationPermissions: Codable {
         self.selectedActionsURL = try values.decodeIfPresent(String.self, forKey: "selected_actions_url")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(enabledRepositories, forKey: "enabled_repositories")
         try values.encodeIfPresent(selectedRepositoriesURL, forKey: "selected_repositories_url")

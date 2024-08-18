@@ -67,7 +67,7 @@ extension Paths.Repos.WithOwner.WithRepo.CodeScanning {
                 self.toolName = toolName
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(commitSha, forKey: "commit_sha")
                 try values.encode(ref, forKey: "ref")

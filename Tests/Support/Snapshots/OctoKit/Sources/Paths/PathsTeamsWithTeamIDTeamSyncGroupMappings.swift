@@ -72,7 +72,7 @@ extension Paths.Teams.WithTeamID.TeamSync {
                     self.description = description
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(groupID, forKey: "group_id")
                     try values.encode(groupName, forKey: "group_name")
@@ -88,7 +88,7 @@ extension Paths.Teams.WithTeamID.TeamSync {
                 self.syncedAt = syncedAt
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(groups, forKey: "groups")
                 try values.encodeIfPresent(syncedAt, forKey: "synced_at")

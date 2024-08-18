@@ -22,13 +22,13 @@ public struct InteractionLimit: Codable {
         self.expiry = expiry
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.limit = try values.decode(InteractionGroup.self, forKey: "limit")
         self.expiry = try values.decodeIfPresent(InteractionExpiry.self, forKey: "expiry")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(limit, forKey: "limit")
         try values.encodeIfPresent(expiry, forKey: "expiry")

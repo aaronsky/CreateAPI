@@ -40,7 +40,7 @@ public struct APIOverview: Codable {
             self.sha256Ed25519 = sha256Ed25519
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.sha256Rsa = try values.decodeIfPresent(String.self, forKey: "SHA256_RSA")
             self.sha256Dsa = try values.decodeIfPresent(String.self, forKey: "SHA256_DSA")
@@ -48,7 +48,7 @@ public struct APIOverview: Codable {
             self.sha256Ed25519 = try values.decodeIfPresent(String.self, forKey: "SHA256_ED25519")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(sha256Rsa, forKey: "SHA256_RSA")
             try values.encodeIfPresent(sha256Dsa, forKey: "SHA256_DSA")
@@ -71,7 +71,7 @@ public struct APIOverview: Codable {
         self.dependabot = dependabot
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.isVerifiablePasswordAuthentication = try values.decode(Bool.self, forKey: "verifiable_password_authentication")
         self.sshKeyFingerprints = try values.decodeIfPresent(SshKeyFingerprints.self, forKey: "ssh_key_fingerprints")
@@ -86,7 +86,7 @@ public struct APIOverview: Codable {
         self.dependabot = try values.decodeIfPresent([String].self, forKey: "dependabot")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(isVerifiablePasswordAuthentication, forKey: "verifiable_password_authentication")
         try values.encodeIfPresent(sshKeyFingerprints, forKey: "ssh_key_fingerprints")

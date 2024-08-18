@@ -213,7 +213,7 @@ public struct Repository: Codable {
             self.isMaintain = isMaintain
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isAdmin = try values.decode(Bool.self, forKey: "admin")
             self.isPull = try values.decode(Bool.self, forKey: "pull")
@@ -222,7 +222,7 @@ public struct Repository: Codable {
             self.isMaintain = try values.decodeIfPresent(Bool.self, forKey: "maintain")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(isAdmin, forKey: "admin")
             try values.encode(isPull, forKey: "pull")
@@ -357,7 +357,7 @@ public struct Repository: Codable {
                 self.isSiteAdmin = isSiteAdmin
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.login = try values.decodeIfPresent(String.self, forKey: "login")
                 self.id = try values.decodeIfPresent(Int.self, forKey: "id")
@@ -379,7 +379,7 @@ public struct Repository: Codable {
                 self.isSiteAdmin = try values.decodeIfPresent(Bool.self, forKey: "site_admin")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(login, forKey: "login")
                 try values.encodeIfPresent(id, forKey: "id")
@@ -417,7 +417,7 @@ public struct Repository: Codable {
                 self.isPull = isPull
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.isAdmin = try values.decodeIfPresent(Bool.self, forKey: "admin")
                 self.isMaintain = try values.decodeIfPresent(Bool.self, forKey: "maintain")
@@ -426,7 +426,7 @@ public struct Repository: Codable {
                 self.isPull = try values.decodeIfPresent(Bool.self, forKey: "pull")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(isAdmin, forKey: "admin")
                 try values.encodeIfPresent(isMaintain, forKey: "maintain")
@@ -521,7 +521,7 @@ public struct Repository: Codable {
             self.networkCount = networkCount
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.id = try values.decodeIfPresent(Int.self, forKey: "id")
             self.nodeID = try values.decodeIfPresent(String.self, forKey: "node_id")
@@ -607,7 +607,7 @@ public struct Repository: Codable {
             self.networkCount = try values.decodeIfPresent(Int.self, forKey: "network_count")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(id, forKey: "id")
             try values.encodeIfPresent(nodeID, forKey: "node_id")
@@ -787,7 +787,7 @@ public struct Repository: Codable {
         self.starredAt = starredAt
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -881,7 +881,7 @@ public struct Repository: Codable {
         self.starredAt = try values.decodeIfPresent(String.self, forKey: "starred_at")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(nodeID, forKey: "node_id")

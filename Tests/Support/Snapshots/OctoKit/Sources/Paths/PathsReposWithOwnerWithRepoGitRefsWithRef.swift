@@ -33,7 +33,7 @@ extension Paths.Repos.WithOwner.WithRepo.Git.Refs {
                 self.isForce = isForce
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(sha, forKey: "sha")
                 try values.encodeIfPresent(isForce, forKey: "force")

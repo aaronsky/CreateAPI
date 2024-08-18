@@ -39,7 +39,7 @@ public struct IssueEventForIssue: Codable {
         self.convertedNoteToIssueIssueEvent = convertedNoteToIssueIssueEvent
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.labeledIssueEvent = try? container.decode(LabeledIssueEvent.self)
         self.unlabeledIssueEvent = try? container.decode(UnlabeledIssueEvent.self)
@@ -58,7 +58,7 @@ public struct IssueEventForIssue: Codable {
         self.convertedNoteToIssueIssueEvent = try? container.decode(ConvertedNoteToIssueIssueEvent.self)
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         if let value = labeledIssueEvent { try container.encode(value) }
         if let value = unlabeledIssueEvent { try container.encode(value) }

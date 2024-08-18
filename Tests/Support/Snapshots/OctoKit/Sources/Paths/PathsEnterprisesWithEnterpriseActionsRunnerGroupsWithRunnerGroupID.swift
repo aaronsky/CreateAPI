@@ -57,7 +57,7 @@ extension Paths.Enterprises.WithEnterprise.Actions.RunnerGroups {
                 self.allowsPublicRepositories = allowsPublicRepositories
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(name, forKey: "name")
                 try values.encodeIfPresent(visibility, forKey: "visibility")

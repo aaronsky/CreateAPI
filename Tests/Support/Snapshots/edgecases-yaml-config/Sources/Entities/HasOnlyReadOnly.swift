@@ -13,13 +13,13 @@ public struct HasOnlyReadOnly: Codable {
         self.foo = foo
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.bar = try values.decodeIfPresent(String.self, forKey: "bar")
         self.foo = try values.decodeIfPresent(String.self, forKey: "foo")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(bar, forKey: "bar")
         try values.encodeIfPresent(foo, forKey: "foo")

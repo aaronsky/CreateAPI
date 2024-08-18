@@ -61,14 +61,14 @@ public struct Import: Codable {
             self.humanName = humanName
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.vcs = try values.decodeIfPresent(String.self, forKey: "vcs")
             self.tfvcProject = try values.decodeIfPresent(String.self, forKey: "tfvc_project")
             self.humanName = try values.decodeIfPresent(String.self, forKey: "human_name")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(vcs, forKey: "vcs")
             try values.encodeIfPresent(tfvcProject, forKey: "tfvc_project")
@@ -102,7 +102,7 @@ public struct Import: Codable {
         self.svnRoot = svnRoot
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.vcs = try values.decodeIfPresent(String.self, forKey: "vcs")
         self.useLfs = try values.decodeIfPresent(Bool.self, forKey: "use_lfs")
@@ -129,7 +129,7 @@ public struct Import: Codable {
         self.svnRoot = try values.decodeIfPresent(String.self, forKey: "svn_root")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(vcs, forKey: "vcs")
         try values.encodeIfPresent(useLfs, forKey: "use_lfs")

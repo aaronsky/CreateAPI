@@ -30,7 +30,7 @@ public struct Pet: Codable {
         self.status = status
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decodeIfPresent(Int.self, forKey: "id")
         self.category = try values.decodeIfPresent(Category.self, forKey: "category")
@@ -40,7 +40,7 @@ public struct Pet: Codable {
         self.status = try values.decodeIfPresent(Status.self, forKey: "status")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(id, forKey: "id")
         try values.encodeIfPresent(category, forKey: "category")

@@ -32,12 +32,12 @@ public struct CodeScanningAlertInstance: Codable {
             self.text = text
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.text = try values.decodeIfPresent(String.self, forKey: "text")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(text, forKey: "text")
         }
@@ -56,7 +56,7 @@ public struct CodeScanningAlertInstance: Codable {
         self.classifications = classifications
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.ref = try values.decodeIfPresent(String.self, forKey: "ref")
         self.analysisKey = try values.decodeIfPresent(String.self, forKey: "analysis_key")
@@ -70,7 +70,7 @@ public struct CodeScanningAlertInstance: Codable {
         self.classifications = try values.decodeIfPresent([CodeScanningAlertClassification].self, forKey: "classifications")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(ref, forKey: "ref")
         try values.encodeIfPresent(analysisKey, forKey: "analysis_key")

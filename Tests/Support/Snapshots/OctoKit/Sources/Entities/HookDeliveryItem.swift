@@ -67,7 +67,7 @@ public struct HookDeliveryItem: Codable {
         self.repositoryID = repositoryID
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.guid = try values.decode(String.self, forKey: "guid")
@@ -82,7 +82,7 @@ public struct HookDeliveryItem: Codable {
         self.repositoryID = try values.decodeIfPresent(Int.self, forKey: "repository_id")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(guid, forKey: "guid")

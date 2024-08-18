@@ -47,14 +47,14 @@ public struct CommitSearchResultItem: Codable {
                 self.date = date
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.name = try values.decode(String.self, forKey: "name")
                 self.email = try values.decode(String.self, forKey: "email")
                 self.date = try values.decode(Date.self, forKey: "date")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(name, forKey: "name")
                 try values.encode(email, forKey: "email")
@@ -71,13 +71,13 @@ public struct CommitSearchResultItem: Codable {
                 self.url = url
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.sha = try values.decode(String.self, forKey: "sha")
                 self.url = try values.decode(URL.self, forKey: "url")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(sha, forKey: "sha")
                 try values.encode(url, forKey: "url")
@@ -94,7 +94,7 @@ public struct CommitSearchResultItem: Codable {
             self.verification = verification
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.author = try values.decode(Author.self, forKey: "author")
             self.committer = try values.decodeIfPresent(GitUser.self, forKey: "committer")
@@ -105,7 +105,7 @@ public struct CommitSearchResultItem: Codable {
             self.verification = try values.decodeIfPresent(Verification.self, forKey: "verification")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(author, forKey: "author")
             try values.encodeIfPresent(committer, forKey: "committer")
@@ -128,14 +128,14 @@ public struct CommitSearchResultItem: Codable {
             self.sha = sha
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.url = try values.decodeIfPresent(String.self, forKey: "url")
             self.htmlURL = try values.decodeIfPresent(String.self, forKey: "html_url")
             self.sha = try values.decodeIfPresent(String.self, forKey: "sha")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(url, forKey: "url")
             try values.encodeIfPresent(htmlURL, forKey: "html_url")
@@ -158,7 +158,7 @@ public struct CommitSearchResultItem: Codable {
         self.textMatches = textMatches
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.sha = try values.decode(String.self, forKey: "sha")
@@ -174,7 +174,7 @@ public struct CommitSearchResultItem: Codable {
         self.textMatches = try values.decodeIfPresent([SearchResultTextMatch].self, forKey: "text_matches")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(sha, forKey: "sha")

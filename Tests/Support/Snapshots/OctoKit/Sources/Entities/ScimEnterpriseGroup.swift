@@ -23,14 +23,14 @@ public struct ScimEnterpriseGroup: Codable {
             self.display = display
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.value = try values.decodeIfPresent(String.self, forKey: "value")
             self.ref = try values.decodeIfPresent(String.self, forKey: "$ref")
             self.display = try values.decodeIfPresent(String.self, forKey: "display")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(value, forKey: "value")
             try values.encodeIfPresent(ref, forKey: "$ref")
@@ -51,7 +51,7 @@ public struct ScimEnterpriseGroup: Codable {
             self.location = location
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.resourceType = try values.decodeIfPresent(String.self, forKey: "resourceType")
             self.created = try values.decodeIfPresent(String.self, forKey: "created")
@@ -59,7 +59,7 @@ public struct ScimEnterpriseGroup: Codable {
             self.location = try values.decodeIfPresent(String.self, forKey: "location")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(resourceType, forKey: "resourceType")
             try values.encodeIfPresent(created, forKey: "created")
@@ -77,7 +77,7 @@ public struct ScimEnterpriseGroup: Codable {
         self.meta = meta
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.schemas = try values.decode([String].self, forKey: "schemas")
         self.id = try values.decode(String.self, forKey: "id")
@@ -87,7 +87,7 @@ public struct ScimEnterpriseGroup: Codable {
         self.meta = try values.decodeIfPresent(Meta.self, forKey: "meta")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(schemas, forKey: "schemas")
         try values.encode(id, forKey: "id")

@@ -14,13 +14,13 @@ struct __200Response: Codable {
         self.class = `class`
     }
 
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.name = try values.decodeIfPresent(Int32.self, forKey: "name")
         self.class = try values.decodeIfPresent(String.self, forKey: "class")
     }
 
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(name, forKey: "name")
         try values.encodeIfPresent(`class`, forKey: "class")

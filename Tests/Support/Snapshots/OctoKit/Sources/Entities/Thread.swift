@@ -30,7 +30,7 @@ public struct Thread: Codable {
             self.type = type
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.title = try values.decode(String.self, forKey: "title")
             self.url = try values.decode(String.self, forKey: "url")
@@ -38,7 +38,7 @@ public struct Thread: Codable {
             self.type = try values.decode(String.self, forKey: "type")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(title, forKey: "title")
             try values.encode(url, forKey: "url")
@@ -59,7 +59,7 @@ public struct Thread: Codable {
         self.subscriptionURL = subscriptionURL
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(String.self, forKey: "id")
         self.repository = try values.decode(MinimalRepository.self, forKey: "repository")
@@ -72,7 +72,7 @@ public struct Thread: Codable {
         self.subscriptionURL = try values.decode(String.self, forKey: "subscription_url")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(repository, forKey: "repository")

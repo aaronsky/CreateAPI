@@ -70,7 +70,7 @@ public struct PagesHealthCheck: Codable {
             self.caaError = caaError
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.host = try values.decodeIfPresent(String.self, forKey: "host")
             self.uri = try values.decodeIfPresent(String.self, forKey: "uri")
@@ -102,7 +102,7 @@ public struct PagesHealthCheck: Codable {
             self.caaError = try values.decodeIfPresent(String.self, forKey: "caa_error")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(host, forKey: "host")
             try values.encodeIfPresent(uri, forKey: "uri")
@@ -196,7 +196,7 @@ public struct PagesHealthCheck: Codable {
             self.caaError = caaError
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.host = try values.decodeIfPresent(String.self, forKey: "host")
             self.uri = try values.decodeIfPresent(String.self, forKey: "uri")
@@ -228,7 +228,7 @@ public struct PagesHealthCheck: Codable {
             self.caaError = try values.decodeIfPresent(String.self, forKey: "caa_error")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(host, forKey: "host")
             try values.encodeIfPresent(uri, forKey: "uri")
@@ -266,13 +266,13 @@ public struct PagesHealthCheck: Codable {
         self.altDomain = altDomain
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.domain = try values.decodeIfPresent(Domain.self, forKey: "domain")
         self.altDomain = try values.decodeIfPresent(AltDomain.self, forKey: "alt_domain")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(domain, forKey: "domain")
         try values.encodeIfPresent(altDomain, forKey: "alt_domain")

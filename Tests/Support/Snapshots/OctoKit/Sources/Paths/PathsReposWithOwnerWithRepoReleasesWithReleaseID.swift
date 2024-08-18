@@ -59,7 +59,7 @@ extension Paths.Repos.WithOwner.WithRepo.Releases {
                 self.discussionCategoryName = discussionCategoryName
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(tagName, forKey: "tag_name")
                 try values.encodeIfPresent(targetCommitish, forKey: "target_commitish")

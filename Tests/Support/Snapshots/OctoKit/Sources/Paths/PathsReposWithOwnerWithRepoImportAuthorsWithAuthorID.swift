@@ -35,7 +35,7 @@ extension Paths.Repos.WithOwner.WithRepo.Import.Authors {
                 self.name = name
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(email, forKey: "email")
                 try values.encodeIfPresent(name, forKey: "name")

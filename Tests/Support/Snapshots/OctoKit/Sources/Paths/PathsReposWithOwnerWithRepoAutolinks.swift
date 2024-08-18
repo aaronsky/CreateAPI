@@ -56,7 +56,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                 self.urlTemplate = urlTemplate
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(keyPrefix, forKey: "key_prefix")
                 try values.encode(urlTemplate, forKey: "url_template")

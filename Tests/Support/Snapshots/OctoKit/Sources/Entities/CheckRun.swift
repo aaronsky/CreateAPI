@@ -83,7 +83,7 @@ public struct CheckRun: Codable {
             self.annotationsURL = annotationsURL
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.title = try values.decodeIfPresent(String.self, forKey: "title")
             self.summary = try values.decodeIfPresent(String.self, forKey: "summary")
@@ -92,7 +92,7 @@ public struct CheckRun: Codable {
             self.annotationsURL = try values.decode(URL.self, forKey: "annotations_url")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(title, forKey: "title")
             try values.encodeIfPresent(summary, forKey: "summary")
@@ -109,12 +109,12 @@ public struct CheckRun: Codable {
             self.id = id
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.id = try values.decode(Int.self, forKey: "id")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(id, forKey: "id")
         }
@@ -140,7 +140,7 @@ public struct CheckRun: Codable {
         self.deployment = deployment
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.headSha = try values.decode(String.self, forKey: "head_sha")
@@ -161,7 +161,7 @@ public struct CheckRun: Codable {
         self.deployment = try values.decodeIfPresent(DeploymentSimple.self, forKey: "deployment")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(headSha, forKey: "head_sha")

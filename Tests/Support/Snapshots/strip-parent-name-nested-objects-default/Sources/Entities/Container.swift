@@ -11,7 +11,7 @@ public struct Container: Codable {
         case containerB(ContainerB)
         case containerC(ContainerC)
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
             if let value = try? container.decode(ContainerA.self) {
                 self = .containerA(value)
@@ -27,7 +27,7 @@ public struct Container: Codable {
             }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
             case .containerA(let value): try container.encode(value)
@@ -41,12 +41,12 @@ public struct Container: Codable {
         self.content = content
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.content = try values.decode(Content.self, forKey: "content")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(content, forKey: "content")
     }

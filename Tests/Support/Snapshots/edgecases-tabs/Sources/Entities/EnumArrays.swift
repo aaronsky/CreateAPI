@@ -23,13 +23,13 @@ public struct EnumArrays: Codable {
 		self.arrayEnum = arrayEnum
 	}
 
-	public init(from decoder: Decoder) throws {
+	public init(from decoder: any Decoder) throws {
 		let values = try decoder.container(keyedBy: StringCodingKey.self)
 		self.justSymbol = try values.decodeIfPresent(JustSymbol.self, forKey: "just_symbol")
 		self.arrayEnum = try values.decodeIfPresent([ArrayEnumItem].self, forKey: "array_enum")
 	}
 
-	public func encode(to encoder: Encoder) throws {
+	public func encode(to encoder: any Encoder) throws {
 		var values = encoder.container(keyedBy: StringCodingKey.self)
 		try values.encodeIfPresent(justSymbol, forKey: "just_symbol")
 		try values.encodeIfPresent(arrayEnum, forKey: "array_enum")

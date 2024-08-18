@@ -29,7 +29,7 @@ public struct Order: Codable {
         self.isComplete = isComplete
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decodeIfPresent(Int64.self, forKey: "id")
         self.petId = try values.decodeIfPresent(Int64.self, forKey: "petId")
@@ -39,7 +39,7 @@ public struct Order: Codable {
         self.isComplete = try values.decodeIfPresent(Bool.self, forKey: "complete")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(id, forKey: "id")
         try values.encodeIfPresent(petId, forKey: "petId")

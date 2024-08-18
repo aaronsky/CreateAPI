@@ -3,7 +3,7 @@ import Foundation
 import CreateOptions
 
 extension Generator {
-    func render(_ decl: Declaration) throws -> String {
+    func render(_ decl: any Declaration) throws -> String {
         switch decl {
         case let decl as EnumOfStringsDeclaration: return render(decl)
         case let decl as EntityDeclaration: return try render(decl)

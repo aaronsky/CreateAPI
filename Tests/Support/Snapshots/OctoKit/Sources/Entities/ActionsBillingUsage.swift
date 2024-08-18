@@ -27,14 +27,14 @@ public struct ActionsBillingUsage: Codable {
             self.windows = windows
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.ubuntu = try values.decodeIfPresent(Int.self, forKey: "UBUNTU")
             self.macos = try values.decodeIfPresent(Int.self, forKey: "MACOS")
             self.windows = try values.decodeIfPresent(Int.self, forKey: "WINDOWS")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(ubuntu, forKey: "UBUNTU")
             try values.encodeIfPresent(macos, forKey: "MACOS")
@@ -49,7 +49,7 @@ public struct ActionsBillingUsage: Codable {
         self.minutesUsedBreakdown = minutesUsedBreakdown
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.totalMinutesUsed = try values.decode(Int.self, forKey: "total_minutes_used")
         self.totalPaidMinutesUsed = try values.decode(Int.self, forKey: "total_paid_minutes_used")
@@ -57,7 +57,7 @@ public struct ActionsBillingUsage: Codable {
         self.minutesUsedBreakdown = try values.decode(MinutesUsedBreakdown.self, forKey: "minutes_used_breakdown")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(totalMinutesUsed, forKey: "total_minutes_used")
         try values.encode(totalPaidMinutesUsed, forKey: "total_paid_minutes_used")

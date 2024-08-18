@@ -13,13 +13,13 @@ struct AdditionalPropertiesClass: Codable {
         self.mapOfMapProperty = mapOfMapProperty
     }
 
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.mapProperty = try values.decodeIfPresent([String: String].self, forKey: "map_property")
         self.mapOfMapProperty = try values.decodeIfPresent([String: [String: String]].self, forKey: "map_of_map_property")
     }
 
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(mapProperty, forKey: "map_property")
         try values.encodeIfPresent(mapOfMapProperty, forKey: "map_of_map_property")

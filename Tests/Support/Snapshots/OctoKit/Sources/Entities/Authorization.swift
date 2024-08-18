@@ -36,14 +36,14 @@ public struct Authorization: Codable {
             self.url = url
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.clientID = try values.decode(String.self, forKey: "client_id")
             self.name = try values.decode(String.self, forKey: "name")
             self.url = try values.decode(URL.self, forKey: "url")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(clientID, forKey: "client_id")
             try values.encode(name, forKey: "name")
@@ -69,7 +69,7 @@ public struct Authorization: Codable {
         self.expiresAt = expiresAt
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.url = try values.decode(URL.self, forKey: "url")
@@ -88,7 +88,7 @@ public struct Authorization: Codable {
         self.expiresAt = try values.decodeIfPresent(Date.self, forKey: "expires_at")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(url, forKey: "url")

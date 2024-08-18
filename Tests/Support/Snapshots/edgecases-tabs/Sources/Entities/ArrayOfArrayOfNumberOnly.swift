@@ -11,12 +11,12 @@ public struct ArrayOfArrayOfNumberOnly: Codable {
 		self.arrayArrayNumber = arrayArrayNumber
 	}
 
-	public init(from decoder: Decoder) throws {
+	public init(from decoder: any Decoder) throws {
 		let values = try decoder.container(keyedBy: StringCodingKey.self)
 		self.arrayArrayNumber = try values.decodeIfPresent([[Double]].self, forKey: "ArrayArrayNumber")
 	}
 
-	public func encode(to encoder: Encoder) throws {
+	public func encode(to encoder: any Encoder) throws {
 		var values = encoder.container(keyedBy: StringCodingKey.self)
 		try values.encodeIfPresent(arrayArrayNumber, forKey: "ArrayArrayNumber")
 	}

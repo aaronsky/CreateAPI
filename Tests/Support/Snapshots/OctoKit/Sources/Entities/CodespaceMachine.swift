@@ -52,7 +52,7 @@ public struct CodespaceMachine: Codable {
         self.prebuildAvailability = prebuildAvailability
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.name = try values.decode(String.self, forKey: "name")
         self.displayName = try values.decode(String.self, forKey: "display_name")
@@ -63,7 +63,7 @@ public struct CodespaceMachine: Codable {
         self.prebuildAvailability = try values.decodeIfPresent(PrebuildAvailability.self, forKey: "prebuild_availability")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(name, forKey: "name")
         try values.encode(displayName, forKey: "display_name")

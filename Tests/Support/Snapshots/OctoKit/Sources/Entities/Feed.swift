@@ -65,7 +65,7 @@ public struct Feed: Codable {
             self.currentUserOrganizations = currentUserOrganizations
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.timeline = try values.decode(LinkWithType.self, forKey: "timeline")
             self.user = try values.decode(LinkWithType.self, forKey: "user")
@@ -77,7 +77,7 @@ public struct Feed: Codable {
             self.currentUserOrganizations = try values.decodeIfPresent([LinkWithType].self, forKey: "current_user_organizations")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(timeline, forKey: "timeline")
             try values.encode(user, forKey: "user")
@@ -102,7 +102,7 @@ public struct Feed: Codable {
         self.links = links
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.timelineURL = try values.decode(String.self, forKey: "timeline_url")
         self.userURL = try values.decode(String.self, forKey: "user_url")
@@ -115,7 +115,7 @@ public struct Feed: Codable {
         self.links = try values.decode(Links.self, forKey: "_links")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(timelineURL, forKey: "timeline_url")
         try values.encode(userURL, forKey: "user_url")

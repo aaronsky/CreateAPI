@@ -121,7 +121,7 @@ extension Paths.Scim.V2.Organizations.WithOrg {
                     self.formatted = formatted
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(givenName, forKey: "givenName")
                     try values.encode(familyName, forKey: "familyName")
@@ -140,7 +140,7 @@ extension Paths.Scim.V2.Organizations.WithOrg {
                     self.type = type
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(value, forKey: "value")
                     try values.encodeIfPresent(isPrimary, forKey: "primary")
@@ -159,7 +159,7 @@ extension Paths.Scim.V2.Organizations.WithOrg {
                 self.isActive = isActive
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(userName, forKey: "userName")
                 try values.encodeIfPresent(displayName, forKey: "displayName")

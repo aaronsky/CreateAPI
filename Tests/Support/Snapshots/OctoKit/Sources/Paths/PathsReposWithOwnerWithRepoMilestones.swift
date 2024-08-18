@@ -102,7 +102,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                 self.dueOn = dueOn
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(title, forKey: "title")
                 try values.encodeIfPresent(state, forKey: "state")

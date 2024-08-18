@@ -56,7 +56,7 @@ public struct Environment: Codable {
                 self.waitTimer = waitTimer
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.id = try values.decode(Int.self, forKey: "id")
                 self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -64,7 +64,7 @@ public struct Environment: Codable {
                 self.waitTimer = try values.decodeIfPresent(Int.self, forKey: "wait_timer")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(id, forKey: "id")
                 try values.encode(nodeID, forKey: "node_id")
@@ -100,13 +100,13 @@ public struct Environment: Codable {
                         self.team = team
                     }
 
-                    public init(from decoder: Decoder) throws {
+                    public init(from decoder: any Decoder) throws {
                         let container = try decoder.singleValueContainer()
                         self.simpleUser = try? container.decode(SimpleUser.self)
                         self.team = try? container.decode(Team.self)
                     }
 
-                    public func encode(to encoder: Encoder) throws {
+                    public func encode(to encoder: any Encoder) throws {
                         var container = encoder.singleValueContainer()
                         if let value = simpleUser { try container.encode(value) }
                         if let value = team { try container.encode(value) }
@@ -118,13 +118,13 @@ public struct Environment: Codable {
                     self.reviewer = reviewer
                 }
 
-                public init(from decoder: Decoder) throws {
+                public init(from decoder: any Decoder) throws {
                     let values = try decoder.container(keyedBy: StringCodingKey.self)
                     self.type = try values.decodeIfPresent(DeploymentReviewerType.self, forKey: "type")
                     self.reviewer = try values.decodeIfPresent(Reviewer.self, forKey: "reviewer")
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(type, forKey: "type")
                     try values.encodeIfPresent(reviewer, forKey: "reviewer")
@@ -138,7 +138,7 @@ public struct Environment: Codable {
                 self.reviewers = reviewers
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.id = try values.decode(Int.self, forKey: "id")
                 self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -146,7 +146,7 @@ public struct Environment: Codable {
                 self.reviewers = try values.decodeIfPresent([Reviewer].self, forKey: "reviewers")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(id, forKey: "id")
                 try values.encode(nodeID, forKey: "node_id")
@@ -169,14 +169,14 @@ public struct Environment: Codable {
                 self.type = type
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.id = try values.decode(Int.self, forKey: "id")
                 self.nodeID = try values.decode(String.self, forKey: "node_id")
                 self.type = try values.decode(String.self, forKey: "type")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(id, forKey: "id")
                 try values.encode(nodeID, forKey: "node_id")
@@ -190,14 +190,14 @@ public struct Environment: Codable {
             self.c = c
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
             self.a = try? container.decode(A.self)
             self.b = try? container.decode(B.self)
             self.c = try? container.decode(C.self)
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var container = encoder.singleValueContainer()
             if let value = a { try container.encode(value) }
             if let value = b { try container.encode(value) }
@@ -217,7 +217,7 @@ public struct Environment: Codable {
         self.deploymentBranchPolicy = deploymentBranchPolicy
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -230,7 +230,7 @@ public struct Environment: Codable {
         self.deploymentBranchPolicy = try values.decodeIfPresent(DeploymentBranchPolicy.self, forKey: "deployment_branch_policy")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(nodeID, forKey: "node_id")

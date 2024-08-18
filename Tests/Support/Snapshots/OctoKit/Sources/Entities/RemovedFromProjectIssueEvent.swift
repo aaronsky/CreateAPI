@@ -37,7 +37,7 @@ public struct RemovedFromProjectIssueEvent: Codable {
             self.previousColumnName = previousColumnName
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.id = try values.decode(Int.self, forKey: "id")
             self.url = try values.decode(URL.self, forKey: "url")
@@ -47,7 +47,7 @@ public struct RemovedFromProjectIssueEvent: Codable {
             self.previousColumnName = try values.decodeIfPresent(String.self, forKey: "previous_column_name")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(id, forKey: "id")
             try values.encode(url, forKey: "url")
@@ -71,7 +71,7 @@ public struct RemovedFromProjectIssueEvent: Codable {
         self.projectCard = projectCard
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -85,7 +85,7 @@ public struct RemovedFromProjectIssueEvent: Codable {
         self.projectCard = try values.decodeIfPresent(ProjectCard.self, forKey: "project_card")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(nodeID, forKey: "node_id")

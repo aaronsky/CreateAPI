@@ -29,7 +29,7 @@ public struct AutoMerge: Codable {
         self.commitMessage = commitMessage
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.enabledBy = try values.decode(SimpleUser.self, forKey: "enabled_by")
         self.mergeMethod = try values.decode(MergeMethod.self, forKey: "merge_method")
@@ -37,7 +37,7 @@ public struct AutoMerge: Codable {
         self.commitMessage = try values.decode(String.self, forKey: "commit_message")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(enabledBy, forKey: "enabled_by")
         try values.encode(mergeMethod, forKey: "merge_method")

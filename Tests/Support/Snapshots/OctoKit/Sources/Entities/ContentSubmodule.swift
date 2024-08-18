@@ -31,14 +31,14 @@ public struct ContentSubmodule: Codable {
             self.this = this
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.git = try values.decodeIfPresent(URL.self, forKey: "git")
             self.html = try values.decodeIfPresent(URL.self, forKey: "html")
             self.this = try values.decode(URL.self, forKey: "self")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(git, forKey: "git")
             try values.encodeIfPresent(html, forKey: "html")
@@ -60,7 +60,7 @@ public struct ContentSubmodule: Codable {
         self.links = links
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.type = try values.decode(String.self, forKey: "type")
         self.submoduleGitURL = try values.decode(URL.self, forKey: "submodule_git_url")
@@ -75,7 +75,7 @@ public struct ContentSubmodule: Codable {
         self.links = try values.decode(Links.self, forKey: "_links")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(type, forKey: "type")
         try values.encode(submoduleGitURL, forKey: "submodule_git_url")

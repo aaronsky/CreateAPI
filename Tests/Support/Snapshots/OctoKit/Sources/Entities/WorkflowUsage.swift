@@ -19,12 +19,12 @@ public struct WorkflowUsage: Codable {
                 self.totalMs = totalMs
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalMs = try values.decodeIfPresent(Int.self, forKey: "total_ms")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(totalMs, forKey: "total_ms")
             }
@@ -37,12 +37,12 @@ public struct WorkflowUsage: Codable {
                 self.totalMs = totalMs
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalMs = try values.decodeIfPresent(Int.self, forKey: "total_ms")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(totalMs, forKey: "total_ms")
             }
@@ -55,12 +55,12 @@ public struct WorkflowUsage: Codable {
                 self.totalMs = totalMs
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalMs = try values.decodeIfPresent(Int.self, forKey: "total_ms")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(totalMs, forKey: "total_ms")
             }
@@ -72,14 +72,14 @@ public struct WorkflowUsage: Codable {
             self.windows = windows
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.ubuntu = try values.decodeIfPresent(Ubuntu.self, forKey: "UBUNTU")
             self.macos = try values.decodeIfPresent(Macos.self, forKey: "MACOS")
             self.windows = try values.decodeIfPresent(Windows.self, forKey: "WINDOWS")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(ubuntu, forKey: "UBUNTU")
             try values.encodeIfPresent(macos, forKey: "MACOS")
@@ -91,12 +91,12 @@ public struct WorkflowUsage: Codable {
         self.billable = billable
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.billable = try values.decode(Billable.self, forKey: "billable")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(billable, forKey: "billable")
     }

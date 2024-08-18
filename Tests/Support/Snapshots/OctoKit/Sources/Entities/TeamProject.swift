@@ -37,14 +37,14 @@ public struct TeamProject: Codable {
             self.isAdmin = isAdmin
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isRead = try values.decode(Bool.self, forKey: "read")
             self.isWrite = try values.decode(Bool.self, forKey: "write")
             self.isAdmin = try values.decode(Bool.self, forKey: "admin")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(isRead, forKey: "read")
             try values.encode(isWrite, forKey: "write")
@@ -71,7 +71,7 @@ public struct TeamProject: Codable {
         self.permissions = permissions
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.ownerURL = try values.decode(String.self, forKey: "owner_url")
         self.url = try values.decode(String.self, forKey: "url")
@@ -91,7 +91,7 @@ public struct TeamProject: Codable {
         self.permissions = try values.decode(Permissions.self, forKey: "permissions")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(ownerURL, forKey: "owner_url")
         try values.encode(url, forKey: "url")

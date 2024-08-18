@@ -64,7 +64,7 @@ extension Paths.Applications.WithClientID.Token {
                 self.permissions = permissions
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(accessToken, forKey: "access_token")
                 try values.encodeIfPresent(target, forKey: "target")

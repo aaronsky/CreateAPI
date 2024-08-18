@@ -38,7 +38,7 @@ extension Paths.Repos.WithOwner.WithRepo.Import {
                 self.useLfs = useLfs
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(useLfs, forKey: "use_lfs")
             }

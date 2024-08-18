@@ -157,7 +157,7 @@ public struct MinimalRepository: Codable {
             self.isPull = isPull
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isAdmin = try values.decodeIfPresent(Bool.self, forKey: "admin")
             self.isMaintain = try values.decodeIfPresent(Bool.self, forKey: "maintain")
@@ -166,7 +166,7 @@ public struct MinimalRepository: Codable {
             self.isPull = try values.decodeIfPresent(Bool.self, forKey: "pull")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(isAdmin, forKey: "admin")
             try values.encodeIfPresent(isMaintain, forKey: "maintain")
@@ -191,7 +191,7 @@ public struct MinimalRepository: Codable {
             self.nodeID = nodeID
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.key = try values.decodeIfPresent(String.self, forKey: "key")
             self.name = try values.decodeIfPresent(String.self, forKey: "name")
@@ -200,7 +200,7 @@ public struct MinimalRepository: Codable {
             self.nodeID = try values.decodeIfPresent(String.self, forKey: "node_id")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(key, forKey: "key")
             try values.encodeIfPresent(name, forKey: "name")
@@ -298,7 +298,7 @@ public struct MinimalRepository: Codable {
         self.allowForking = allowForking
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -387,7 +387,7 @@ public struct MinimalRepository: Codable {
         self.allowForking = try values.decodeIfPresent(Bool.self, forKey: "allow_forking")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(nodeID, forKey: "node_id")

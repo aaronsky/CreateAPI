@@ -74,7 +74,7 @@ public struct TeamDiscussion: Codable {
         self.reactions = reactions
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.author = try values.decodeIfPresent(SimpleUser.self, forKey: "author")
         self.body = try values.decode(String.self, forKey: "body")
@@ -96,7 +96,7 @@ public struct TeamDiscussion: Codable {
         self.reactions = try values.decodeIfPresent(ReactionRollup.self, forKey: "reactions")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(author, forKey: "author")
         try values.encode(body, forKey: "body")

@@ -53,7 +53,7 @@ public struct DiffEntry: Codable {
         self.previousFilename = previousFilename
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.sha = try values.decode(String.self, forKey: "sha")
         self.filename = try values.decode(String.self, forKey: "filename")
@@ -68,7 +68,7 @@ public struct DiffEntry: Codable {
         self.previousFilename = try values.decodeIfPresent(String.self, forKey: "previous_filename")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(sha, forKey: "sha")
         try values.encode(filename, forKey: "filename")

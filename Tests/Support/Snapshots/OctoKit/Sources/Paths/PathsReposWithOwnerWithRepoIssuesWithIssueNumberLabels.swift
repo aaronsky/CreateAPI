@@ -55,7 +55,7 @@ extension Paths.Repos.WithOwner.WithRepo.Issues.WithIssueNumber {
                     self.labels = labels
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(labels, forKey: "labels")
                 }
@@ -71,7 +71,7 @@ extension Paths.Repos.WithOwner.WithRepo.Issues.WithIssueNumber {
                         self.name = name
                     }
 
-                    public func encode(to encoder: Encoder) throws {
+                    public func encode(to encoder: any Encoder) throws {
                         var values = encoder.container(keyedBy: StringCodingKey.self)
                         try values.encode(name, forKey: "name")
                     }
@@ -81,7 +81,7 @@ extension Paths.Repos.WithOwner.WithRepo.Issues.WithIssueNumber {
                     self.labels = labels
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(labels, forKey: "labels")
                 }
@@ -94,13 +94,13 @@ extension Paths.Repos.WithOwner.WithRepo.Issues.WithIssueNumber {
                     self.name = name
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(name, forKey: "name")
                 }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
                 case .object1(let value): try container.encode(value)
@@ -136,7 +136,7 @@ extension Paths.Repos.WithOwner.WithRepo.Issues.WithIssueNumber {
                     self.labels = labels
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(labels, forKey: "labels")
                 }
@@ -152,7 +152,7 @@ extension Paths.Repos.WithOwner.WithRepo.Issues.WithIssueNumber {
                         self.name = name
                     }
 
-                    public func encode(to encoder: Encoder) throws {
+                    public func encode(to encoder: any Encoder) throws {
                         var values = encoder.container(keyedBy: StringCodingKey.self)
                         try values.encode(name, forKey: "name")
                     }
@@ -162,7 +162,7 @@ extension Paths.Repos.WithOwner.WithRepo.Issues.WithIssueNumber {
                     self.labels = labels
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(labels, forKey: "labels")
                 }
@@ -175,13 +175,13 @@ extension Paths.Repos.WithOwner.WithRepo.Issues.WithIssueNumber {
                     self.name = name
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(name, forKey: "name")
                 }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
                 case .object1(let value): try container.encode(value)

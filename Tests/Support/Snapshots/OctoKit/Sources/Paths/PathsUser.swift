@@ -30,7 +30,7 @@ extension Paths {
             case privateUser(OctoKit.PrivateUser)
             case publicUser(OctoKit.PublicUser)
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let container = try decoder.singleValueContainer()
                 if let value = try? container.decode(OctoKit.PrivateUser.self) {
                     self = .privateUser(value)
@@ -95,7 +95,7 @@ extension Paths {
                 self.bio = bio
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(name, forKey: "name")
                 try values.encodeIfPresent(email, forKey: "email")

@@ -33,7 +33,7 @@ public struct Status: Codable {
         self.creator = creator
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(String.self, forKey: "url")
         self.avatarURL = try values.decodeIfPresent(String.self, forKey: "avatar_url")
@@ -48,7 +48,7 @@ public struct Status: Codable {
         self.creator = try values.decodeIfPresent(SimpleUser.self, forKey: "creator")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encodeIfPresent(avatarURL, forKey: "avatar_url")

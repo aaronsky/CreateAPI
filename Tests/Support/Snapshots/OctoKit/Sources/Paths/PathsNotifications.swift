@@ -73,7 +73,7 @@ extension Paths {
                 self.message = message
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.message = try values.decodeIfPresent(String.self, forKey: "message")
             }
@@ -90,7 +90,7 @@ extension Paths {
                 self.isRead = isRead
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(lastReadAt, forKey: "last_read_at")
                 try values.encodeIfPresent(isRead, forKey: "read")

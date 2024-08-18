@@ -131,7 +131,7 @@ public struct PullRequest: Codable {
             self.isDefault = isDefault
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.id = try values.decode(Int64.self, forKey: "id")
             self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -142,7 +142,7 @@ public struct PullRequest: Codable {
             self.isDefault = try values.decode(Bool.self, forKey: "default")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(id, forKey: "id")
             try values.encode(nodeID, forKey: "node_id")
@@ -288,7 +288,7 @@ public struct PullRequest: Codable {
                     self.url = url
                 }
 
-                public init(from decoder: Decoder) throws {
+                public init(from decoder: any Decoder) throws {
                     let values = try decoder.container(keyedBy: StringCodingKey.self)
                     self.avatarURL = try values.decode(URL.self, forKey: "avatar_url")
                     self.eventsURL = try values.decode(String.self, forKey: "events_url")
@@ -310,7 +310,7 @@ public struct PullRequest: Codable {
                     self.url = try values.decode(URL.self, forKey: "url")
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(avatarURL, forKey: "avatar_url")
                     try values.encode(eventsURL, forKey: "events_url")
@@ -348,7 +348,7 @@ public struct PullRequest: Codable {
                     self.isPull = isPull
                 }
 
-                public init(from decoder: Decoder) throws {
+                public init(from decoder: any Decoder) throws {
                     let values = try decoder.container(keyedBy: StringCodingKey.self)
                     self.isAdmin = try values.decode(Bool.self, forKey: "admin")
                     self.isMaintain = try values.decodeIfPresent(Bool.self, forKey: "maintain")
@@ -357,7 +357,7 @@ public struct PullRequest: Codable {
                     self.isPull = try values.decode(Bool.self, forKey: "pull")
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(isAdmin, forKey: "admin")
                     try values.encodeIfPresent(isMaintain, forKey: "maintain")
@@ -382,7 +382,7 @@ public struct PullRequest: Codable {
                     self.nodeID = nodeID
                 }
 
-                public init(from decoder: Decoder) throws {
+                public init(from decoder: any Decoder) throws {
                     let values = try decoder.container(keyedBy: StringCodingKey.self)
                     self.key = try values.decode(String.self, forKey: "key")
                     self.name = try values.decode(String.self, forKey: "name")
@@ -391,7 +391,7 @@ public struct PullRequest: Codable {
                     self.nodeID = try values.decode(String.self, forKey: "node_id")
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(key, forKey: "key")
                     try values.encode(name, forKey: "name")
@@ -487,7 +487,7 @@ public struct PullRequest: Codable {
                 self.isTemplate = isTemplate
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.archiveURL = try values.decode(String.self, forKey: "archive_url")
                 self.assigneesURL = try values.decode(String.self, forKey: "assignees_url")
@@ -574,7 +574,7 @@ public struct PullRequest: Codable {
                 self.isTemplate = try values.decodeIfPresent(Bool.self, forKey: "is_template")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(archiveURL, forKey: "archive_url")
                 try values.encode(assigneesURL, forKey: "assignees_url")
@@ -703,7 +703,7 @@ public struct PullRequest: Codable {
                 self.url = url
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.avatarURL = try values.decode(URL.self, forKey: "avatar_url")
                 self.eventsURL = try values.decode(String.self, forKey: "events_url")
@@ -725,7 +725,7 @@ public struct PullRequest: Codable {
                 self.url = try values.decode(URL.self, forKey: "url")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(avatarURL, forKey: "avatar_url")
                 try values.encode(eventsURL, forKey: "events_url")
@@ -756,7 +756,7 @@ public struct PullRequest: Codable {
             self.user = user
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.label = try values.decode(String.self, forKey: "label")
             self.ref = try values.decode(String.self, forKey: "ref")
@@ -765,7 +765,7 @@ public struct PullRequest: Codable {
             self.user = try values.decode(User.self, forKey: "user")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(label, forKey: "label")
             try values.encode(ref, forKey: "ref")
@@ -910,7 +910,7 @@ public struct PullRequest: Codable {
                     self.url = url
                 }
 
-                public init(from decoder: Decoder) throws {
+                public init(from decoder: any Decoder) throws {
                     let values = try decoder.container(keyedBy: StringCodingKey.self)
                     self.avatarURL = try values.decode(URL.self, forKey: "avatar_url")
                     self.eventsURL = try values.decode(String.self, forKey: "events_url")
@@ -932,7 +932,7 @@ public struct PullRequest: Codable {
                     self.url = try values.decode(URL.self, forKey: "url")
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(avatarURL, forKey: "avatar_url")
                     try values.encode(eventsURL, forKey: "events_url")
@@ -970,7 +970,7 @@ public struct PullRequest: Codable {
                     self.isPull = isPull
                 }
 
-                public init(from decoder: Decoder) throws {
+                public init(from decoder: any Decoder) throws {
                     let values = try decoder.container(keyedBy: StringCodingKey.self)
                     self.isAdmin = try values.decode(Bool.self, forKey: "admin")
                     self.isMaintain = try values.decodeIfPresent(Bool.self, forKey: "maintain")
@@ -979,7 +979,7 @@ public struct PullRequest: Codable {
                     self.isPull = try values.decode(Bool.self, forKey: "pull")
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(isAdmin, forKey: "admin")
                     try values.encodeIfPresent(isMaintain, forKey: "maintain")
@@ -1075,7 +1075,7 @@ public struct PullRequest: Codable {
                 self.allowForking = allowForking
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.archiveURL = try values.decode(String.self, forKey: "archive_url")
                 self.assigneesURL = try values.decode(String.self, forKey: "assignees_url")
@@ -1162,7 +1162,7 @@ public struct PullRequest: Codable {
                 self.allowForking = try values.decodeIfPresent(Bool.self, forKey: "allow_forking")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(archiveURL, forKey: "archive_url")
                 try values.encode(assigneesURL, forKey: "assignees_url")
@@ -1291,7 +1291,7 @@ public struct PullRequest: Codable {
                 self.url = url
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.avatarURL = try values.decode(URL.self, forKey: "avatar_url")
                 self.eventsURL = try values.decode(String.self, forKey: "events_url")
@@ -1313,7 +1313,7 @@ public struct PullRequest: Codable {
                 self.url = try values.decode(URL.self, forKey: "url")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(avatarURL, forKey: "avatar_url")
                 try values.encode(eventsURL, forKey: "events_url")
@@ -1344,7 +1344,7 @@ public struct PullRequest: Codable {
             self.user = user
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.label = try values.decode(String.self, forKey: "label")
             self.ref = try values.decode(String.self, forKey: "ref")
@@ -1353,7 +1353,7 @@ public struct PullRequest: Codable {
             self.user = try values.decode(User.self, forKey: "user")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(label, forKey: "label")
             try values.encode(ref, forKey: "ref")
@@ -1408,7 +1408,7 @@ public struct PullRequest: Codable {
             self.this = this
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.comments = try values.decode(Link.self, forKey: "comments")
             self.commits = try values.decode(Link.self, forKey: "commits")
@@ -1420,7 +1420,7 @@ public struct PullRequest: Codable {
             self.this = try values.decode(Link.self, forKey: "self")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(comments, forKey: "comments")
             try values.encode(commits, forKey: "commits")
@@ -1484,7 +1484,7 @@ public struct PullRequest: Codable {
         self.changedFiles = changedFiles
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.id = try values.decode(Int.self, forKey: "id")
@@ -1536,7 +1536,7 @@ public struct PullRequest: Codable {
         self.changedFiles = try values.decode(Int.self, forKey: "changed_files")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(id, forKey: "id")

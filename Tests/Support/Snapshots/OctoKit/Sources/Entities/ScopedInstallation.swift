@@ -47,7 +47,7 @@ public struct ScopedInstallation: Codable {
         self.account = account
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.permissions = try values.decode(AppPermissions.self, forKey: "permissions")
         self.repositorySelection = try values.decode(RepositorySelection.self, forKey: "repository_selection")
@@ -58,7 +58,7 @@ public struct ScopedInstallation: Codable {
         self.account = try values.decode(SimpleUser.self, forKey: "account")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(permissions, forKey: "permissions")
         try values.encode(repositorySelection, forKey: "repository_selection")

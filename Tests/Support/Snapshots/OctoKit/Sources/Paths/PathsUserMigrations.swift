@@ -83,7 +83,7 @@ extension Paths.User {
                 self.repositories = repositories
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(lockRepositories, forKey: "lock_repositories")
                 try values.encodeIfPresent(excludeAttachments, forKey: "exclude_attachments")

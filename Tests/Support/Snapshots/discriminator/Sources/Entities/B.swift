@@ -12,12 +12,12 @@ public struct B: Codable {
         self.kind = kind
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.kind = try values.decode(String.self, forKey: "kind")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(kind, forKey: "kind")
     }

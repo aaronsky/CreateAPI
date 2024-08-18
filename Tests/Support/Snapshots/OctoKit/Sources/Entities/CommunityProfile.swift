@@ -45,7 +45,7 @@ public struct CommunityProfile: Codable {
             self.pullRequestTemplate = pullRequestTemplate
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.codeOfConduct = try values.decodeIfPresent(CodeOfConductSimple.self, forKey: "code_of_conduct")
             self.codeOfConductFile = try values.decodeIfPresent(CommunityHealthFile.self, forKey: "code_of_conduct_file")
@@ -56,7 +56,7 @@ public struct CommunityProfile: Codable {
             self.pullRequestTemplate = try values.decodeIfPresent(CommunityHealthFile.self, forKey: "pull_request_template")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(codeOfConduct, forKey: "code_of_conduct")
             try values.encodeIfPresent(codeOfConductFile, forKey: "code_of_conduct_file")
@@ -77,7 +77,7 @@ public struct CommunityProfile: Codable {
         self.isContentReportsEnabled = isContentReportsEnabled
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.healthPercentage = try values.decode(Int.self, forKey: "health_percentage")
         self.description = try values.decodeIfPresent(String.self, forKey: "description")
@@ -87,7 +87,7 @@ public struct CommunityProfile: Codable {
         self.isContentReportsEnabled = try values.decodeIfPresent(Bool.self, forKey: "content_reports_enabled")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(healthPercentage, forKey: "health_percentage")
         try values.encodeIfPresent(description, forKey: "description")

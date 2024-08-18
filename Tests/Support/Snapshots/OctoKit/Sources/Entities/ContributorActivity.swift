@@ -34,7 +34,7 @@ public struct ContributorActivity: Codable {
             self.c = c
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.w = try values.decodeIfPresent(Int.self, forKey: "w")
             self.a = try values.decodeIfPresent(Int.self, forKey: "a")
@@ -42,7 +42,7 @@ public struct ContributorActivity: Codable {
             self.c = try values.decodeIfPresent(Int.self, forKey: "c")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(w, forKey: "w")
             try values.encodeIfPresent(a, forKey: "a")
@@ -57,14 +57,14 @@ public struct ContributorActivity: Codable {
         self.weeks = weeks
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.author = try values.decodeIfPresent(SimpleUser.self, forKey: "author")
         self.total = try values.decode(Int.self, forKey: "total")
         self.weeks = try values.decode([Week].self, forKey: "weeks")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(author, forKey: "author")
         try values.encode(total, forKey: "total")

@@ -32,13 +32,13 @@ struct ContainerA: Codable {
                 self.renameMe = renameMe
             }
 
-            init(from decoder: Decoder) throws {
+            init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.enum = try values.decode(Enum.self, forKey: "enum")
                 self.renameMe = try values.decode(String.self, forKey: "rename-me")
             }
 
-            func encode(to encoder: Encoder) throws {
+            func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(`enum`, forKey: "enum")
                 try values.encode(renameMe, forKey: "rename-me")
@@ -51,14 +51,14 @@ struct ContainerA: Codable {
             self.child = child
         }
 
-        init(from decoder: Decoder) throws {
+        init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.enum = try values.decode(Enum.self, forKey: "enum")
             self.renameMe = try values.decode(String.self, forKey: "rename-me")
             self.child = try values.decode(Child.self, forKey: "child")
         }
 
-        func encode(to encoder: Encoder) throws {
+        func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(`enum`, forKey: "enum")
             try values.encode(renameMe, forKey: "rename-me")
@@ -71,13 +71,13 @@ struct ContainerA: Codable {
         self.refChild = refChild
     }
 
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.child = try values.decodeIfPresent(Child.self, forKey: "child")
         self.refChild = try values.decode(AnyJSON.self, forKey: "refChild")
     }
 
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(child, forKey: "child")
         try values.encode(refChild, forKey: "refChild")

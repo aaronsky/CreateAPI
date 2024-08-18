@@ -95,7 +95,7 @@ public struct PullRequestSimple: Codable {
             self.isDefault = isDefault
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.id = try values.decode(Int64.self, forKey: "id")
             self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -106,7 +106,7 @@ public struct PullRequestSimple: Codable {
             self.isDefault = try values.decode(Bool.self, forKey: "default")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(id, forKey: "id")
             try values.encode(nodeID, forKey: "node_id")
@@ -137,7 +137,7 @@ public struct PullRequestSimple: Codable {
             self.user = user
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.label = try values.decode(String.self, forKey: "label")
             self.ref = try values.decode(String.self, forKey: "ref")
@@ -146,7 +146,7 @@ public struct PullRequestSimple: Codable {
             self.user = try values.decodeIfPresent(SimpleUser.self, forKey: "user")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(label, forKey: "label")
             try values.encode(ref, forKey: "ref")
@@ -175,7 +175,7 @@ public struct PullRequestSimple: Codable {
             self.user = user
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.label = try values.decode(String.self, forKey: "label")
             self.ref = try values.decode(String.self, forKey: "ref")
@@ -184,7 +184,7 @@ public struct PullRequestSimple: Codable {
             self.user = try values.decodeIfPresent(SimpleUser.self, forKey: "user")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(label, forKey: "label")
             try values.encode(ref, forKey: "ref")
@@ -239,7 +239,7 @@ public struct PullRequestSimple: Codable {
             self.this = this
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.comments = try values.decode(Link.self, forKey: "comments")
             self.commits = try values.decode(Link.self, forKey: "commits")
@@ -251,7 +251,7 @@ public struct PullRequestSimple: Codable {
             self.this = try values.decode(Link.self, forKey: "self")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(comments, forKey: "comments")
             try values.encode(commits, forKey: "commits")
@@ -303,7 +303,7 @@ public struct PullRequestSimple: Codable {
         self.isDraft = isDraft
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.id = try values.decode(Int.self, forKey: "id")
@@ -343,7 +343,7 @@ public struct PullRequestSimple: Codable {
         self.isDraft = try values.decodeIfPresent(Bool.self, forKey: "draft")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(id, forKey: "id")

@@ -39,7 +39,7 @@ extension Paths.User {
                 self.installations = installations
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalCount = try values.decode(Int.self, forKey: "total_count")
                 self.installations = try values.decode([OctoKit.Installation].self, forKey: "installations")

@@ -46,7 +46,7 @@ public struct InstallationToken: Codable {
         self.singleFilePaths = singleFilePaths
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.token = try values.decode(String.self, forKey: "token")
         self.expiresAt = try values.decode(String.self, forKey: "expires_at")
@@ -58,7 +58,7 @@ public struct InstallationToken: Codable {
         self.singleFilePaths = try values.decodeIfPresent([String].self, forKey: "single_file_paths")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(token, forKey: "token")
         try values.encode(expiresAt, forKey: "expires_at")

@@ -65,7 +65,7 @@ extension Paths.Repos.WithOwner.WithRepo.Actions.Runs.WithRunID {
                 self.comment = comment
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(environmentIDs, forKey: "environment_ids")
                 try values.encode(state, forKey: "state")

@@ -52,13 +52,13 @@ public struct Commit: Codable {
                 self.url = url
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.sha = try values.decode(String.self, forKey: "sha")
                 self.url = try values.decode(URL.self, forKey: "url")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(sha, forKey: "sha")
                 try values.encode(url, forKey: "url")
@@ -75,7 +75,7 @@ public struct Commit: Codable {
             self.verification = verification
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.url = try values.decode(URL.self, forKey: "url")
             self.author = try values.decodeIfPresent(GitUser.self, forKey: "author")
@@ -86,7 +86,7 @@ public struct Commit: Codable {
             self.verification = try values.decodeIfPresent(Verification.self, forKey: "verification")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(url, forKey: "url")
             try values.encodeIfPresent(author, forKey: "author")
@@ -112,14 +112,14 @@ public struct Commit: Codable {
             self.htmlURL = htmlURL
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.sha = try values.decode(String.self, forKey: "sha")
             self.url = try values.decode(URL.self, forKey: "url")
             self.htmlURL = try values.decodeIfPresent(URL.self, forKey: "html_url")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(sha, forKey: "sha")
             try values.encode(url, forKey: "url")
@@ -138,14 +138,14 @@ public struct Commit: Codable {
             self.total = total
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.additions = try values.decodeIfPresent(Int.self, forKey: "additions")
             self.deletions = try values.decodeIfPresent(Int.self, forKey: "deletions")
             self.total = try values.decodeIfPresent(Int.self, forKey: "total")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(additions, forKey: "additions")
             try values.encodeIfPresent(deletions, forKey: "deletions")
@@ -167,7 +167,7 @@ public struct Commit: Codable {
         self.files = files
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.sha = try values.decode(String.self, forKey: "sha")
@@ -182,7 +182,7 @@ public struct Commit: Codable {
         self.files = try values.decodeIfPresent([DiffEntry].self, forKey: "files")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(sha, forKey: "sha")

@@ -52,7 +52,7 @@ extension Paths.Search {
                 self.items = items
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalCount = try values.decode(Int.self, forKey: "total_count")
                 self.isIncompleteResults = try values.decode(Bool.self, forKey: "incomplete_results")

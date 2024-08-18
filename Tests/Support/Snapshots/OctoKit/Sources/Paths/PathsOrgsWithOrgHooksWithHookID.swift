@@ -66,7 +66,7 @@ extension Paths.Orgs.WithOrg.Hooks {
                     self.insecureSSL = insecureSSL
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(url, forKey: "url")
                     try values.encodeIfPresent(contentType, forKey: "content_type")
@@ -82,7 +82,7 @@ extension Paths.Orgs.WithOrg.Hooks {
                 self.name = name
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(config, forKey: "config")
                 try values.encodeIfPresent(events, forKey: "events")

@@ -21,7 +21,7 @@ public struct Email: Codable {
         self.visibility = visibility
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.email = try values.decode(String.self, forKey: "email")
         self.isPrimary = try values.decode(Bool.self, forKey: "primary")
@@ -29,7 +29,7 @@ public struct Email: Codable {
         self.visibility = try values.decodeIfPresent(String.self, forKey: "visibility")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(email, forKey: "email")
         try values.encode(isPrimary, forKey: "primary")

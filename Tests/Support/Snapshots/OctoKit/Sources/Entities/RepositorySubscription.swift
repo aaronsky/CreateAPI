@@ -31,7 +31,7 @@ public struct RepositorySubscription: Codable {
         self.repositoryURL = repositoryURL
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.isSubscribed = try values.decode(Bool.self, forKey: "subscribed")
         self.isIgnored = try values.decode(Bool.self, forKey: "ignored")
@@ -41,7 +41,7 @@ public struct RepositorySubscription: Codable {
         self.repositoryURL = try values.decode(URL.self, forKey: "repository_url")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(isSubscribed, forKey: "subscribed")
         try values.encode(isIgnored, forKey: "ignored")

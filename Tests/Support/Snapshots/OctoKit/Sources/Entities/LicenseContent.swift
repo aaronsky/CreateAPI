@@ -31,14 +31,14 @@ public struct LicenseContent: Codable {
             self.this = this
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.git = try values.decodeIfPresent(URL.self, forKey: "git")
             self.html = try values.decodeIfPresent(URL.self, forKey: "html")
             self.this = try values.decode(URL.self, forKey: "self")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(git, forKey: "git")
             try values.encodeIfPresent(html, forKey: "html")
@@ -62,7 +62,7 @@ public struct LicenseContent: Codable {
         self.license = license
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.name = try values.decode(String.self, forKey: "name")
         self.path = try values.decode(String.self, forKey: "path")
@@ -79,7 +79,7 @@ public struct LicenseContent: Codable {
         self.license = try values.decodeIfPresent(LicenseSimple.self, forKey: "license")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(name, forKey: "name")
         try values.encode(path, forKey: "path")

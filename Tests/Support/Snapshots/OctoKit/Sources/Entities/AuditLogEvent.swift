@@ -66,12 +66,12 @@ public struct AuditLogEvent: Codable {
             self.countryName = countryName
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.countryName = try values.decodeIfPresent(String.self, forKey: "country_name")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(countryName, forKey: "country_name")
         }
@@ -120,7 +120,7 @@ public struct AuditLogEvent: Codable {
         self.visibility = visibility
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.timestamp = try values.decodeIfPresent(Int.self, forKey: "@timestamp")
         self.action = try values.decodeIfPresent(String.self, forKey: "action")
@@ -164,7 +164,7 @@ public struct AuditLogEvent: Codable {
         self.visibility = try values.decodeIfPresent(String.self, forKey: "visibility")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(timestamp, forKey: "@timestamp")
         try values.encodeIfPresent(action, forKey: "action")

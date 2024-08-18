@@ -41,7 +41,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                     self.conclusion = conclusion
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(status, forKey: "status")
                     try values.encode(conclusion, forKey: "conclusion")
@@ -55,13 +55,13 @@ extension Paths.Repos.WithOwner.WithRepo {
                     self.status = status
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(status, forKey: "status")
                 }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
                 case .a(let value): try container.encode(value)

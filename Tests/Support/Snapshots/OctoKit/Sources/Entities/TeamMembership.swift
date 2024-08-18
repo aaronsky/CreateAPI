@@ -33,14 +33,14 @@ public struct TeamMembership: Codable {
         self.state = state
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.role = try values.decode(Role.self, forKey: "role")
         self.state = try values.decode(State.self, forKey: "state")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(role, forKey: "role")

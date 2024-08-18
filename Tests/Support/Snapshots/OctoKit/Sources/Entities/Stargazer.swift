@@ -14,13 +14,13 @@ public struct Stargazer: Codable {
         self.user = user
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.starredAt = try values.decode(Date.self, forKey: "starred_at")
         self.user = try values.decodeIfPresent(SimpleUser.self, forKey: "user")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(starredAt, forKey: "starred_at")
         try values.encodeIfPresent(user, forKey: "user")

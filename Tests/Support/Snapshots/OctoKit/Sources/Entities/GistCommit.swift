@@ -26,14 +26,14 @@ public struct GistCommit: Codable {
             self.deletions = deletions
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.total = try values.decodeIfPresent(Int.self, forKey: "total")
             self.additions = try values.decodeIfPresent(Int.self, forKey: "additions")
             self.deletions = try values.decodeIfPresent(Int.self, forKey: "deletions")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(total, forKey: "total")
             try values.encodeIfPresent(additions, forKey: "additions")
@@ -49,7 +49,7 @@ public struct GistCommit: Codable {
         self.committedAt = committedAt
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.version = try values.decode(String.self, forKey: "version")
@@ -58,7 +58,7 @@ public struct GistCommit: Codable {
         self.committedAt = try values.decode(Date.self, forKey: "committed_at")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(version, forKey: "version")

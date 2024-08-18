@@ -43,7 +43,7 @@ struct FormatTest: Codable {
         self.password = password
     }
 
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.integer = try values.decodeIfPresent(Int.self, forKey: "integer")
         self.int32 = try values.decodeIfPresent(Int32.self, forKey: "int32")
@@ -64,7 +64,7 @@ struct FormatTest: Codable {
         self.password = try values.decode(String.self, forKey: "password")
     }
 
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(integer, forKey: "integer")
         try values.encodeIfPresent(int32, forKey: "int32")

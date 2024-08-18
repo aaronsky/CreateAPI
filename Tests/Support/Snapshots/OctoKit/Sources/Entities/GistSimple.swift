@@ -47,7 +47,7 @@ public struct GistSimple: Codable {
             self.updatedAt = updatedAt
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.id = try values.decodeIfPresent(String.self, forKey: "id")
             self.url = try values.decodeIfPresent(URL.self, forKey: "url")
@@ -56,7 +56,7 @@ public struct GistSimple: Codable {
             self.updatedAt = try values.decodeIfPresent(Date.self, forKey: "updated_at")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(id, forKey: "id")
             try values.encodeIfPresent(url, forKey: "url")
@@ -106,7 +106,7 @@ public struct GistSimple: Codable {
                 self.size = size
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.filename = try values.decodeIfPresent(String.self, forKey: "filename")
                 self.type = try values.decodeIfPresent(String.self, forKey: "type")
@@ -115,7 +115,7 @@ public struct GistSimple: Codable {
                 self.size = try values.decodeIfPresent(Int.self, forKey: "size")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(filename, forKey: "filename")
                 try values.encodeIfPresent(type, forKey: "type")
@@ -148,7 +148,7 @@ public struct GistSimple: Codable {
             self.history = history
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.url = try values.decode(URL.self, forKey: "url")
             self.forksURL = try values.decode(URL.self, forKey: "forks_url")
@@ -172,7 +172,7 @@ public struct GistSimple: Codable {
             self.history = try values.decodeIfPresent([AnyJSON].self, forKey: "history")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(url, forKey: "url")
             try values.encode(forksURL, forKey: "forks_url")
@@ -216,7 +216,7 @@ public struct GistSimple: Codable {
             self.content = content
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.filename = try values.decodeIfPresent(String.self, forKey: "filename")
             self.type = try values.decodeIfPresent(String.self, forKey: "type")
@@ -227,7 +227,7 @@ public struct GistSimple: Codable {
             self.content = try values.decodeIfPresent(String.self, forKey: "content")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(filename, forKey: "filename")
             try values.encodeIfPresent(type, forKey: "type")
@@ -263,7 +263,7 @@ public struct GistSimple: Codable {
         self.isTruncated = isTruncated
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.forks = try values.decodeIfPresent([Fork].self, forKey: "forks")
         self.history = try values.decodeIfPresent([GistHistory].self, forKey: "history")
@@ -288,7 +288,7 @@ public struct GistSimple: Codable {
         self.isTruncated = try values.decodeIfPresent(Bool.self, forKey: "truncated")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(forks, forKey: "forks")
         try values.encodeIfPresent(history, forKey: "history")

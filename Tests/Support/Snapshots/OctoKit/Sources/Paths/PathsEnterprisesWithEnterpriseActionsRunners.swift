@@ -35,7 +35,7 @@ extension Paths.Enterprises.WithEnterprise.Actions {
                 self.runners = runners
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalCount = try values.decodeIfPresent(Double.self, forKey: "total_count")
                 self.runners = try values.decodeIfPresent([OctoKit.Runner].self, forKey: "runners")

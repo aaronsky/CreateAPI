@@ -33,7 +33,7 @@ public struct ReviewDismissedIssueEvent: Codable {
             self.dismissalCommitID = dismissalCommitID
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.state = try values.decode(String.self, forKey: "state")
             self.reviewID = try values.decode(Int.self, forKey: "review_id")
@@ -41,7 +41,7 @@ public struct ReviewDismissedIssueEvent: Codable {
             self.dismissalCommitID = try values.decodeIfPresent(String.self, forKey: "dismissal_commit_id")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(state, forKey: "state")
             try values.encode(reviewID, forKey: "review_id")
@@ -63,7 +63,7 @@ public struct ReviewDismissedIssueEvent: Codable {
         self.dismissedReview = dismissedReview
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -77,7 +77,7 @@ public struct ReviewDismissedIssueEvent: Codable {
         self.dismissedReview = try values.decode(DismissedReview.self, forKey: "dismissed_review")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(nodeID, forKey: "node_id")

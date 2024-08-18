@@ -113,7 +113,7 @@ public struct RepoSearchResultItem: Codable {
             self.isPull = isPull
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isAdmin = try values.decode(Bool.self, forKey: "admin")
             self.isMaintain = try values.decodeIfPresent(Bool.self, forKey: "maintain")
@@ -122,7 +122,7 @@ public struct RepoSearchResultItem: Codable {
             self.isPull = try values.decode(Bool.self, forKey: "pull")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(isAdmin, forKey: "admin")
             try values.encodeIfPresent(isMaintain, forKey: "maintain")
@@ -222,7 +222,7 @@ public struct RepoSearchResultItem: Codable {
         self.isTemplate = isTemplate
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -313,7 +313,7 @@ public struct RepoSearchResultItem: Codable {
         self.isTemplate = try values.decodeIfPresent(Bool.self, forKey: "is_template")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(nodeID, forKey: "node_id")

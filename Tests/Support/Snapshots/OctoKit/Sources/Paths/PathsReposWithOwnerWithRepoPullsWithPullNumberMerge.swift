@@ -55,7 +55,7 @@ extension Paths.Repos.WithOwner.WithRepo.Pulls.WithPullNumber {
                 self.mergeMethod = mergeMethod
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(commitTitle, forKey: "commit_title")
                 try values.encodeIfPresent(commitMessage, forKey: "commit_message")

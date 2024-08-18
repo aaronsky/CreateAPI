@@ -45,7 +45,7 @@ public struct Enterprise: Codable {
         self.avatarURL = avatarURL
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.description = try values.decodeIfPresent(String.self, forKey: "description")
         self.htmlURL = try values.decode(URL.self, forKey: "html_url")
@@ -59,7 +59,7 @@ public struct Enterprise: Codable {
         self.avatarURL = try values.decode(URL.self, forKey: "avatar_url")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(description, forKey: "description")
         try values.encode(htmlURL, forKey: "html_url")

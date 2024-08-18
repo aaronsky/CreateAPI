@@ -96,7 +96,7 @@ extension Paths.Scim.V2.Enterprises.WithEnterprise {
                     self.familyName = familyName
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(givenName, forKey: "givenName")
                     try values.encode(familyName, forKey: "familyName")
@@ -117,7 +117,7 @@ extension Paths.Scim.V2.Enterprises.WithEnterprise {
                     self.isPrimary = isPrimary
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(value, forKey: "value")
                     try values.encode(type, forKey: "type")
@@ -132,7 +132,7 @@ extension Paths.Scim.V2.Enterprises.WithEnterprise {
                     self.value = value
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(value, forKey: "value")
                 }
@@ -146,7 +146,7 @@ extension Paths.Scim.V2.Enterprises.WithEnterprise {
                 self.groups = groups
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(schemas, forKey: "schemas")
                 try values.encode(userName, forKey: "userName")

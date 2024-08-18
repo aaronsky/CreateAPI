@@ -73,7 +73,7 @@ public struct CodeOfConduct: Codable {
         self.htmlURL = htmlURL
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.key = try values.decode(String.self, forKey: "key")
         self.name = try values.decode(String.self, forKey: "name")
@@ -82,7 +82,7 @@ public struct CodeOfConduct: Codable {
         self.htmlURL = try values.decodeIfPresent(URL.self, forKey: "html_url")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(key, forKey: "key")
         try values.encode(name, forKey: "name")

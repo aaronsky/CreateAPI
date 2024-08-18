@@ -34,7 +34,7 @@ extension Paths.User {
                 self.interactionLimitResponse = interactionLimitResponse
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let container = try decoder.singleValueContainer()
                 self.interactionLimitResponse = try? container.decode(OctoKit.InteractionLimitResponse.self)
             }

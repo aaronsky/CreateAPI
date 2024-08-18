@@ -13,13 +13,13 @@ public struct ParticipationStats: Codable {
         self.owner = owner
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.all = try values.decode([Int].self, forKey: "all")
         self.owner = try values.decode([Int].self, forKey: "owner")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(all, forKey: "all")
         try values.encode(owner, forKey: "owner")

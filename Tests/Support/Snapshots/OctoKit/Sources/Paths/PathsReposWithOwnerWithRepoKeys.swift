@@ -62,7 +62,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                 self.isReadOnly = isReadOnly
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(title, forKey: "title")
                 try values.encode(key, forKey: "key")

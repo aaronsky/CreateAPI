@@ -35,7 +35,7 @@ extension Paths.Enterprises.WithEnterprise.Actions.RunnerGroups.WithRunnerGroupI
                 self.organizations = organizations
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalCount = try values.decode(Double.self, forKey: "total_count")
                 self.organizations = try values.decode([OctoKit.OrganizationSimple].self, forKey: "organizations")

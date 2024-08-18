@@ -59,7 +59,7 @@ extension Paths.Gists {
                     self.filename = filename
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(content, forKey: "content")
                     try values.encodeIfPresent(filename, forKey: "filename")
@@ -71,7 +71,7 @@ extension Paths.Gists {
                 self.files = files
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(description, forKey: "description")
                 try values.encodeIfPresent(files, forKey: "files")

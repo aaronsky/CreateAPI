@@ -34,7 +34,7 @@ public struct OrganizationInvitation: Codable {
         self.invitationTeamsURL = invitationTeamsURL
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.login = try values.decodeIfPresent(String.self, forKey: "login")
@@ -49,7 +49,7 @@ public struct OrganizationInvitation: Codable {
         self.invitationTeamsURL = try values.decode(String.self, forKey: "invitation_teams_url")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encodeIfPresent(login, forKey: "login")

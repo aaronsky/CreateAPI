@@ -54,7 +54,7 @@ public struct BranchRestrictionPolicy: Codable {
             self.isSiteAdmin = isSiteAdmin
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.login = try values.decodeIfPresent(String.self, forKey: "login")
             self.id = try values.decodeIfPresent(Int.self, forKey: "id")
@@ -76,7 +76,7 @@ public struct BranchRestrictionPolicy: Codable {
             self.isSiteAdmin = try values.decodeIfPresent(Bool.self, forKey: "site_admin")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(login, forKey: "login")
             try values.encodeIfPresent(id, forKey: "id")
@@ -128,7 +128,7 @@ public struct BranchRestrictionPolicy: Codable {
             self.parent = parent
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.id = try values.decodeIfPresent(Int.self, forKey: "id")
             self.nodeID = try values.decodeIfPresent(String.self, forKey: "node_id")
@@ -144,7 +144,7 @@ public struct BranchRestrictionPolicy: Codable {
             self.parent = try values.decodeIfPresent(String.self, forKey: "parent")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(id, forKey: "id")
             try values.encodeIfPresent(nodeID, forKey: "node_id")
@@ -237,7 +237,7 @@ public struct BranchRestrictionPolicy: Codable {
                 self.isSiteAdmin = isSiteAdmin
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.login = try values.decodeIfPresent(String.self, forKey: "login")
                 self.id = try values.decodeIfPresent(Int.self, forKey: "id")
@@ -264,7 +264,7 @@ public struct BranchRestrictionPolicy: Codable {
                 self.isSiteAdmin = try values.decodeIfPresent(Bool.self, forKey: "site_admin")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(login, forKey: "login")
                 try values.encodeIfPresent(id, forKey: "id")
@@ -305,7 +305,7 @@ public struct BranchRestrictionPolicy: Codable {
                 self.singleFile = singleFile
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.metadata = try values.decodeIfPresent(String.self, forKey: "metadata")
                 self.contents = try values.decodeIfPresent(String.self, forKey: "contents")
@@ -313,7 +313,7 @@ public struct BranchRestrictionPolicy: Codable {
                 self.singleFile = try values.decodeIfPresent(String.self, forKey: "single_file")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(metadata, forKey: "metadata")
                 try values.encodeIfPresent(contents, forKey: "contents")
@@ -337,7 +337,7 @@ public struct BranchRestrictionPolicy: Codable {
             self.events = events
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.id = try values.decodeIfPresent(Int.self, forKey: "id")
             self.slug = try values.decodeIfPresent(String.self, forKey: "slug")
@@ -353,7 +353,7 @@ public struct BranchRestrictionPolicy: Codable {
             self.events = try values.decodeIfPresent([String].self, forKey: "events")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(id, forKey: "id")
             try values.encodeIfPresent(slug, forKey: "slug")
@@ -380,7 +380,7 @@ public struct BranchRestrictionPolicy: Codable {
         self.apps = apps
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.usersURL = try values.decode(URL.self, forKey: "users_url")
@@ -391,7 +391,7 @@ public struct BranchRestrictionPolicy: Codable {
         self.apps = try values.decode([App].self, forKey: "apps")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(usersURL, forKey: "users_url")

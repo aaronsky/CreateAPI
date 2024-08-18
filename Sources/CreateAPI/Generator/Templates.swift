@@ -275,7 +275,7 @@ final class Templates {
         let codingKeys = isUsingCodingKeys ? "CodingKeys.self" : "StringCodingKey.self"
         let values = needsValues ? "let values = try decoder.container(keyedBy: \(codingKeys))\n" : ""
         return """
-        \(access)init(from decoder: Decoder) throws {
+        \(access)init(from decoder: any Decoder) throws {
         \((values + contents).indented)
         }
         """
@@ -286,7 +286,7 @@ final class Templates {
             return "self.\($0.name.accessor) = try? container.decode(\($0.type).self)"
         }.joined(separator: "\n")
         return """
-        \(access)init(from decoder: Decoder) throws {
+        \(access)init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
         \(contents.indented)
         }
@@ -315,7 +315,7 @@ final class Templates {
         """
 
         return """
-        \(access)init(from decoder: Decoder) throws {
+        \(access)init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
         \(statements.indented)
         }
@@ -348,7 +348,7 @@ final class Templates {
         """#
 
         return """
-        \(access)init(from decoder: Decoder) throws {
+        \(access)init(from decoder: any Decoder) throws {
 
             struct Discriminator: Decodable {
                 let \(discriminator.propertyName): String
@@ -369,7 +369,7 @@ final class Templates {
         }
 
         return """
-        \(access)func encode(to encoder: Encoder) throws {
+        \(access)func encode(to encoder: any Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
         \(statements.joined(separator: "\n").indented)
@@ -383,7 +383,7 @@ final class Templates {
             "if let value = \($0.name) { try container.encode(value) }"
         }
         return """
-        \(access)func encode(to encoder: Encoder) throws {
+        \(access)func encode(to encoder: any Encoder) throws {
             var container = encoder.singleValueContainer()
         \(statements.joined(separator: "\n").indented)
         }
@@ -400,7 +400,7 @@ final class Templates {
         }.joined(separator: "\n")
 
         return """
-        \(access)func encode(to encoder: Encoder) throws {
+        \(access)func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
         \(contents.indented)
         }
@@ -430,7 +430,7 @@ final class Templates {
 
     // MARK: Typealias
 
-    func `typealias`(name: DeclarationName, type: DeclarationName) -> String {
+    func `typealias`(name: any DeclarationName, type: any DeclarationName) -> String {
         "\(access)typealias \(name) = \(type)"
     }
 
@@ -656,7 +656,7 @@ final class Templates {
                 }
             }
 
-            \(access)func encode(to encoder: Encoder) throws {
+            \(access)func encode(to encoder: any Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
                 case let .array(array): try container.encode(array)
@@ -667,7 +667,7 @@ final class Templates {
                 }
             }
 
-            \(access)init(from decoder: Decoder) throws {
+            \(access)init(from decoder: any Decoder) throws {
                 let container = try decoder.singleValueContainer()
                 if let object = try? container.decode([String: AnyJSON].self) {
                     self = .object(object)

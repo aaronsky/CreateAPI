@@ -26,7 +26,7 @@ public struct User: Codable {
         self.userStatus = userStatus
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decodeIfPresent(Int.self, forKey: "id")
         self.username = try values.decodeIfPresent(String.self, forKey: "username")
@@ -38,7 +38,7 @@ public struct User: Codable {
         self.userStatus = try values.decodeIfPresent(Double.self, forKey: "userStatus")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(id, forKey: "id")
         try values.encodeIfPresent(username, forKey: "username")

@@ -61,7 +61,7 @@ extension Paths.Repos.WithOwner.WithRepo.Contents {
             case contentSymlink(OctoKit.ContentSymlink)
             case contentSubmodule(OctoKit.ContentSubmodule)
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let container = try decoder.singleValueContainer()
                 if let value = try? container.decode([ContentDirectoryItem].self) {
                     self = .contentDirectoryItems(value)
@@ -124,7 +124,7 @@ extension Paths.Repos.WithOwner.WithRepo.Contents {
                     self.date = date
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(name, forKey: "name")
                     try values.encode(email, forKey: "email")
@@ -147,7 +147,7 @@ extension Paths.Repos.WithOwner.WithRepo.Contents {
                     self.date = date
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(name, forKey: "name")
                     try values.encode(email, forKey: "email")
@@ -164,7 +164,7 @@ extension Paths.Repos.WithOwner.WithRepo.Contents {
                 self.author = author
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(message, forKey: "message")
                 try values.encode(content, forKey: "content")
@@ -214,7 +214,7 @@ extension Paths.Repos.WithOwner.WithRepo.Contents {
                     self.email = email
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(name, forKey: "name")
                     try values.encodeIfPresent(email, forKey: "email")
@@ -233,7 +233,7 @@ extension Paths.Repos.WithOwner.WithRepo.Contents {
                     self.email = email
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(name, forKey: "name")
                     try values.encodeIfPresent(email, forKey: "email")
@@ -248,7 +248,7 @@ extension Paths.Repos.WithOwner.WithRepo.Contents {
                 self.author = author
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(message, forKey: "message")
                 try values.encode(sha, forKey: "sha")

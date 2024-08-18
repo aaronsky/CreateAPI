@@ -93,7 +93,7 @@ extension Paths.Repos.WithOwner.WithRepo.Pulls.WithPullNumber {
                     self.startSide = startSide
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(path, forKey: "path")
                     try values.encodeIfPresent(position, forKey: "position")
@@ -112,7 +112,7 @@ extension Paths.Repos.WithOwner.WithRepo.Pulls.WithPullNumber {
                 self.comments = comments
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(commitID, forKey: "commit_id")
                 try values.encodeIfPresent(body, forKey: "body")

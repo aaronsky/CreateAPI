@@ -22,13 +22,13 @@ public struct TimelineCrossReferencedEvent: Codable {
             self.issue = issue
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.type = try values.decodeIfPresent(String.self, forKey: "type")
             self.issue = try values.decodeIfPresent(Issue.self, forKey: "issue")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(type, forKey: "type")
             try values.encodeIfPresent(issue, forKey: "issue")
@@ -43,7 +43,7 @@ public struct TimelineCrossReferencedEvent: Codable {
         self.source = source
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.event = try values.decode(String.self, forKey: "event")
         self.actor = try values.decodeIfPresent(SimpleUser.self, forKey: "actor")
@@ -52,7 +52,7 @@ public struct TimelineCrossReferencedEvent: Codable {
         self.source = try values.decode(Source.self, forKey: "source")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(event, forKey: "event")
         try values.encodeIfPresent(actor, forKey: "actor")

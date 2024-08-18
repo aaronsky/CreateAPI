@@ -120,7 +120,7 @@ extension Paths.User.Codespaces.Secrets {
                 self.selectedRepositoryIDs = selectedRepositoryIDs
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(encryptedValue, forKey: "encrypted_value")
                 try values.encode(keyID, forKey: "key_id")

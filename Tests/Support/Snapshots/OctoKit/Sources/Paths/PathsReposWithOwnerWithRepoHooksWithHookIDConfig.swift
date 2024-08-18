@@ -67,7 +67,7 @@ extension Paths.Repos.WithOwner.WithRepo.Hooks.WithHookID {
                 self.insecureSSL = insecureSSL
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(url, forKey: "url")
                 try values.encodeIfPresent(contentType, forKey: "content_type")

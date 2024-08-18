@@ -117,7 +117,7 @@ public struct Job: Codable {
             self.completedAt = completedAt
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.status = try values.decode(Status.self, forKey: "status")
             self.conclusion = try values.decodeIfPresent(String.self, forKey: "conclusion")
@@ -127,7 +127,7 @@ public struct Job: Codable {
             self.completedAt = try values.decodeIfPresent(Date.self, forKey: "completed_at")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(status, forKey: "status")
             try values.encodeIfPresent(conclusion, forKey: "conclusion")
@@ -161,7 +161,7 @@ public struct Job: Codable {
         self.runnerGroupName = runnerGroupName
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.runID = try values.decode(Int.self, forKey: "run_id")
@@ -185,7 +185,7 @@ public struct Job: Codable {
         self.runnerGroupName = try values.decodeIfPresent(String.self, forKey: "runner_group_name")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(runID, forKey: "run_id")

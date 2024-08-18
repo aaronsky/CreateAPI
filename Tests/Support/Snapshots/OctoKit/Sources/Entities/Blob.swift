@@ -23,7 +23,7 @@ public struct Blob: Codable {
         self.highlightedContent = highlightedContent
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.content = try values.decode(String.self, forKey: "content")
         self.encoding = try values.decode(String.self, forKey: "encoding")
@@ -34,7 +34,7 @@ public struct Blob: Codable {
         self.highlightedContent = try values.decodeIfPresent(String.self, forKey: "highlighted_content")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(content, forKey: "content")
         try values.encode(encoding, forKey: "encoding")

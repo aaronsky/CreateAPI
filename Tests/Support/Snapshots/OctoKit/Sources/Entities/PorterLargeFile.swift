@@ -17,7 +17,7 @@ public struct PorterLargeFile: Codable {
         self.size = size
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.refName = try values.decode(String.self, forKey: "ref_name")
         self.path = try values.decode(String.self, forKey: "path")
@@ -25,7 +25,7 @@ public struct PorterLargeFile: Codable {
         self.size = try values.decode(Int.self, forKey: "size")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(refName, forKey: "ref_name")
         try values.encode(path, forKey: "path")

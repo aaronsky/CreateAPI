@@ -56,7 +56,7 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch.Protection {
                     self.appID = appID
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(context, forKey: "context")
                     try values.encodeIfPresent(appID, forKey: "app_id")
@@ -69,7 +69,7 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch.Protection {
                 self.checks = checks
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(isStrict, forKey: "strict")
                 try values.encodeIfPresent(contexts, forKey: "contexts")

@@ -67,7 +67,7 @@ extension Paths.Repos.WithOwner.WithRepo.Commits.WithCommitSha {
                 self.line = line
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(body, forKey: "body")
                 try values.encodeIfPresent(path, forKey: "path")

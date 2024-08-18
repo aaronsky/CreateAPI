@@ -79,7 +79,7 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch {
                         self.appID = appID
                     }
 
-                    public func encode(to encoder: Encoder) throws {
+                    public func encode(to encoder: any Encoder) throws {
                         var values = encoder.container(keyedBy: StringCodingKey.self)
                         try values.encode(context, forKey: "context")
                         try values.encodeIfPresent(appID, forKey: "app_id")
@@ -92,7 +92,7 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch {
                     self.checks = checks
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(isStrict, forKey: "strict")
                     try values.encode(contexts, forKey: "contexts")
@@ -123,7 +123,7 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch {
                         self.teams = teams
                     }
 
-                    public func encode(to encoder: Encoder) throws {
+                    public func encode(to encoder: any Encoder) throws {
                         var values = encoder.container(keyedBy: StringCodingKey.self)
                         try values.encodeIfPresent(users, forKey: "users")
                         try values.encodeIfPresent(teams, forKey: "teams")
@@ -137,7 +137,7 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch {
                     self.requiredApprovingReviewCount = requiredApprovingReviewCount
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(dismissalRestrictions, forKey: "dismissal_restrictions")
                     try values.encodeIfPresent(dismissStaleReviews, forKey: "dismiss_stale_reviews")
@@ -161,7 +161,7 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch {
                     self.apps = apps
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(users, forKey: "users")
                     try values.encode(teams, forKey: "teams")
@@ -180,7 +180,7 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch {
                 self.isRequiredConversationResolution = isRequiredConversationResolution
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(requiredStatusChecks, forKey: "required_status_checks")
                 try values.encodeIfPresent(enforceAdmins, forKey: "enforce_admins")

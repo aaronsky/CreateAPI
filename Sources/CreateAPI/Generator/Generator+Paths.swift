@@ -18,7 +18,7 @@ extension Generator {
 
     private func _paths() throws -> GeneratorOutput {
         let jobs = makeJobs()
-        var generated = [Result<GeneratedFile, Error>?](repeating: nil, count: jobs.count)
+        var generated = [Result<GeneratedFile, any Error>?](repeating: nil, count: jobs.count)
         let lock = NSLock()
         concurrentPerform(on: jobs, parallel: arguments.isParallel) { index, job in
             do {
@@ -40,14 +40,14 @@ extension Generator {
         )
     }
 
-    private func makeJobs() -> [Job] {
+    private func makeJobs() -> [any Job] {
         switch options.paths.style {
         case .rest: return makeJobsRest()
         case .operations: return makeJobsOperations()
         }
     }
 
-    private func makeEntry(for job: Job) throws -> String {
+    private func makeEntry(for job: any Job) throws -> String {
         switch job {
         case let job as JobGenerateRest: return try makePath(job: job)
         case let job as JobGenerateOperation: return try makePath(job: job)
@@ -370,7 +370,7 @@ extension Generator {
 
         var parameters: [String] = []
         var call: [String] = []
-        var nested: [Declaration] = []
+        var nested: [any Declaration] = []
 
         // Add `path` parameter to the call
         switch style {
@@ -515,9 +515,9 @@ extension Generator {
 
         struct QueryItemType {
             var type: TypeIdentifier
-            var nested: Declaration?
+            var nested: (any Declaration)?
 
-            init(type: TypeIdentifier, nested: Declaration? = nil) {
+            init(type: TypeIdentifier, nested: (any Declaration)? = nil) {
                 self.type = type
                 self.nested = nested
             }
@@ -648,14 +648,14 @@ extension Generator {
 
     private struct BodyType {
         var type: TypeName
-        var nested: Declaration?
+        var nested: (any Declaration)?
         var isOptional = false
 
         init(_ name: String) {
             self.type = TypeName(name)
         }
 
-        init(type: TypeName, nested: Declaration? = nil) {
+        init(type: TypeName, nested: (any Declaration)? = nil) {
             self.type = type
             self.nested = nested
         }
@@ -746,7 +746,7 @@ extension Generator {
 
     // MARK: - Response Headers
 
-    private func makeResponseHeaders(for task: GenerateOperationTask) throws -> Declaration? {
+    private func makeResponseHeaders(for task: GenerateOperationTask) throws -> (any Declaration)? {
         guard options.paths.includeResponseHeaders,
               let response = task.operation.firstSuccessfulResponse,
               let headers = response.responseValue?.headers else {

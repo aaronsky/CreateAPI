@@ -17,7 +17,7 @@ public struct IssueEventDismissedReview: Codable {
         self.dismissalCommitID = dismissalCommitID
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.state = try values.decode(String.self, forKey: "state")
         self.reviewID = try values.decode(Int.self, forKey: "review_id")
@@ -25,7 +25,7 @@ public struct IssueEventDismissedReview: Codable {
         self.dismissalCommitID = try values.decodeIfPresent(String.self, forKey: "dismissal_commit_id")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(state, forKey: "state")
         try values.encode(reviewID, forKey: "review_id")

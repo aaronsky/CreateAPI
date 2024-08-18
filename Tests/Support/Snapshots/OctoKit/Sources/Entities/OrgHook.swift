@@ -42,7 +42,7 @@ public struct OrgHook: Codable {
             self.secret = secret
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.url = try values.decodeIfPresent(String.self, forKey: "url")
             self.insecureSSL = try values.decodeIfPresent(String.self, forKey: "insecure_ssl")
@@ -50,7 +50,7 @@ public struct OrgHook: Codable {
             self.secret = try values.decodeIfPresent(String.self, forKey: "secret")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(url, forKey: "url")
             try values.encodeIfPresent(insecureSSL, forKey: "insecure_ssl")
@@ -73,7 +73,7 @@ public struct OrgHook: Codable {
         self.type = type
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.url = try values.decode(URL.self, forKey: "url")
@@ -88,7 +88,7 @@ public struct OrgHook: Codable {
         self.type = try values.decode(String.self, forKey: "type")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(url, forKey: "url")

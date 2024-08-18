@@ -13,13 +13,13 @@ public struct PullRequestReviewRequest: Codable {
         self.teams = teams
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.users = try values.decode([SimpleUser].self, forKey: "users")
         self.teams = try values.decode([Team].self, forKey: "teams")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(users, forKey: "users")
         try values.encode(teams, forKey: "teams")

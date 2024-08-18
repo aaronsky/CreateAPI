@@ -88,7 +88,7 @@ extension Paths.Scim.V2.Organizations.WithOrg.Users {
                     self.formatted = formatted
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(givenName, forKey: "givenName")
                     try values.encode(familyName, forKey: "familyName")
@@ -107,7 +107,7 @@ extension Paths.Scim.V2.Organizations.WithOrg.Users {
                     self.isPrimary = isPrimary
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(type, forKey: "type")
                     try values.encode(value, forKey: "value")
@@ -126,7 +126,7 @@ extension Paths.Scim.V2.Organizations.WithOrg.Users {
                 self.emails = emails
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(schemas, forKey: "schemas")
                 try values.encodeIfPresent(displayName, forKey: "displayName")
@@ -210,7 +210,7 @@ extension Paths.Scim.V2.Organizations.WithOrg.Users {
                             self.familyName = familyName
                         }
 
-                        public func encode(to encoder: Encoder) throws {
+                        public func encode(to encoder: any Encoder) throws {
                             var values = encoder.container(keyedBy: StringCodingKey.self)
                             try values.encodeIfPresent(isActive, forKey: "active")
                             try values.encodeIfPresent(userName, forKey: "userName")
@@ -229,14 +229,14 @@ extension Paths.Scim.V2.Organizations.WithOrg.Users {
                             self.isPrimary = isPrimary
                         }
 
-                        public func encode(to encoder: Encoder) throws {
+                        public func encode(to encoder: any Encoder) throws {
                             var values = encoder.container(keyedBy: StringCodingKey.self)
                             try values.encodeIfPresent(value, forKey: "value")
                             try values.encodeIfPresent(isPrimary, forKey: "primary")
                         }
                     }
 
-                    public func encode(to encoder: Encoder) throws {
+                    public func encode(to encoder: any Encoder) throws {
                         var container = encoder.singleValueContainer()
                         switch self {
                         case .object(let value): try container.encode(value)
@@ -252,7 +252,7 @@ extension Paths.Scim.V2.Organizations.WithOrg.Users {
                     self.value = value
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(op, forKey: "op")
                     try values.encodeIfPresent(path, forKey: "path")
@@ -265,7 +265,7 @@ extension Paths.Scim.V2.Organizations.WithOrg.Users {
                 self.operations = operations
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(schemas, forKey: "schemas")
                 try values.encode(operations, forKey: "Operations")

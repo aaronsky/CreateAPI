@@ -18,13 +18,13 @@ public struct Step: Codable {
         self.imageURLs = imageURLs
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.description = try values.decode(String.self, forKey: "description")
         self.imageURLs = try values.decode([URL].self, forKey: "image_urls")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(description, forKey: "description")
         try values.encode(imageURLs, forKey: "image_urls")

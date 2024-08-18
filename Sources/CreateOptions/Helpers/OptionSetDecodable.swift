@@ -32,7 +32,7 @@ public struct OptionSetDecodable<Wrapped: DecodableCollection & Decodable> where
 }
 
 extension OptionSetDecodable: Decodable where Wrapped.Element: Decodable {
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
 
         if let value = try? container.decode(Bool.self) {

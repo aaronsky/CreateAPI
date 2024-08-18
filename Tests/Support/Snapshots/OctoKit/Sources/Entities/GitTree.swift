@@ -76,7 +76,7 @@ public struct GitTree: Codable {
             self.url = url
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.path = try values.decodeIfPresent(String.self, forKey: "path")
             self.mode = try values.decodeIfPresent(String.self, forKey: "mode")
@@ -86,7 +86,7 @@ public struct GitTree: Codable {
             self.url = try values.decodeIfPresent(String.self, forKey: "url")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(path, forKey: "path")
             try values.encodeIfPresent(mode, forKey: "mode")
@@ -104,7 +104,7 @@ public struct GitTree: Codable {
         self.tree = tree
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.sha = try values.decode(String.self, forKey: "sha")
         self.url = try values.decode(URL.self, forKey: "url")
@@ -112,7 +112,7 @@ public struct GitTree: Codable {
         self.tree = try values.decode([TreeItem].self, forKey: "tree")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(sha, forKey: "sha")
         try values.encode(url, forKey: "url")

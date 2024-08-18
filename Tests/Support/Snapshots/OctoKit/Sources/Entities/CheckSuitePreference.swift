@@ -22,13 +22,13 @@ public struct CheckSuitePreference: Codable {
                 self.isSetting = isSetting
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.appID = try values.decode(Int.self, forKey: "app_id")
                 self.isSetting = try values.decode(Bool.self, forKey: "setting")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(appID, forKey: "app_id")
                 try values.encode(isSetting, forKey: "setting")
@@ -39,12 +39,12 @@ public struct CheckSuitePreference: Codable {
             self.autoTriggerChecks = autoTriggerChecks
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.autoTriggerChecks = try values.decodeIfPresent([AutoTriggerCheck].self, forKey: "auto_trigger_checks")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(autoTriggerChecks, forKey: "auto_trigger_checks")
         }
@@ -55,13 +55,13 @@ public struct CheckSuitePreference: Codable {
         self.repository = repository
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.preferences = try values.decode(Preferences.self, forKey: "preferences")
         self.repository = try values.decode(MinimalRepository.self, forKey: "repository")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(preferences, forKey: "preferences")
         try values.encode(repository, forKey: "repository")

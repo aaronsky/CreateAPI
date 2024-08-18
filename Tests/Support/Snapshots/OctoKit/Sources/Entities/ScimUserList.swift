@@ -21,7 +21,7 @@ public struct ScimUserList: Codable {
         self.resources = resources
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.schemas = try values.decode([String].self, forKey: "schemas")
         self.totalResults = try values.decode(Int.self, forKey: "totalResults")
@@ -30,7 +30,7 @@ public struct ScimUserList: Codable {
         self.resources = try values.decode([ScimUser].self, forKey: "Resources")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(schemas, forKey: "schemas")
         try values.encode(totalResults, forKey: "totalResults")

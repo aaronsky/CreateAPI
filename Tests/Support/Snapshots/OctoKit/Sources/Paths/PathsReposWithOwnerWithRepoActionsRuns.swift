@@ -35,7 +35,7 @@ extension Paths.Repos.WithOwner.WithRepo.Actions {
                 self.workflowRuns = workflowRuns
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalCount = try values.decode(Int.self, forKey: "total_count")
                 self.workflowRuns = try values.decode([OctoKit.WorkflowRun].self, forKey: "workflow_runs")

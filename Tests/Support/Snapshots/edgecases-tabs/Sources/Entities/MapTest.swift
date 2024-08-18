@@ -18,13 +18,13 @@ public struct MapTest: Codable {
 		self.mapOfEnumString = mapOfEnumString
 	}
 
-	public init(from decoder: Decoder) throws {
+	public init(from decoder: any Decoder) throws {
 		let values = try decoder.container(keyedBy: StringCodingKey.self)
 		self.mapMapOfString = try values.decodeIfPresent([String: [String: String]].self, forKey: "map_map_of_string")
 		self.mapOfEnumString = try values.decodeIfPresent([String: MapOfEnumStringItem].self, forKey: "map_of_enum_string")
 	}
 
-	public func encode(to encoder: Encoder) throws {
+	public func encode(to encoder: any Encoder) throws {
 		var values = encoder.container(keyedBy: StringCodingKey.self)
 		try values.encodeIfPresent(mapMapOfString, forKey: "map_map_of_string")
 		try values.encodeIfPresent(mapOfEnumString, forKey: "map_of_enum_string")

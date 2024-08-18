@@ -36,7 +36,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                 self.commitMessage = commitMessage
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(base, forKey: "base")
                 try values.encode(head, forKey: "head")

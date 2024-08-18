@@ -23,7 +23,7 @@ struct EnumTest: Codable {
         self.outerEnum = outerEnum
     }
 
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.enumString = try values.decodeIfPresent(EnumString.self, forKey: "enum_string")
         self.enumInteger = try values.decodeIfPresent(Int32.self, forKey: "enum_integer")
@@ -31,7 +31,7 @@ struct EnumTest: Codable {
         self.outerEnum = try values.decodeIfPresent(OuterEnum.self, forKey: "outerEnum")
     }
 
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(enumString, forKey: "enum_string")
         try values.encodeIfPresent(enumInteger, forKey: "enum_integer")

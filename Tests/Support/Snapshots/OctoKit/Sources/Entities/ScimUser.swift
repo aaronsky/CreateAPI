@@ -88,14 +88,14 @@ public struct ScimUser: Codable {
             self.formatted = formatted
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.givenName = try values.decodeIfPresent(String.self, forKey: "givenName")
             self.familyName = try values.decodeIfPresent(String.self, forKey: "familyName")
             self.formatted = try values.decodeIfPresent(String.self, forKey: "formatted")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(givenName, forKey: "givenName")
             try values.encodeIfPresent(familyName, forKey: "familyName")
@@ -112,13 +112,13 @@ public struct ScimUser: Codable {
             self.isPrimary = isPrimary
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.value = try values.decode(String.self, forKey: "value")
             self.isPrimary = try values.decodeIfPresent(Bool.self, forKey: "primary")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(value, forKey: "value")
             try values.encodeIfPresent(isPrimary, forKey: "primary")
@@ -142,7 +142,7 @@ public struct ScimUser: Codable {
             self.location = location
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.resourceType = try values.decodeIfPresent(String.self, forKey: "resourceType")
             self.created = try values.decodeIfPresent(Date.self, forKey: "created")
@@ -150,7 +150,7 @@ public struct ScimUser: Codable {
             self.location = try values.decodeIfPresent(URL.self, forKey: "location")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(resourceType, forKey: "resourceType")
             try values.encodeIfPresent(created, forKey: "created")
@@ -175,7 +175,7 @@ public struct ScimUser: Codable {
             case object([String: AnyJSON])
             case anyJSONs([AnyJSON])
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let container = try decoder.singleValueContainer()
                 if let value = try? container.decode(String.self) {
                     self = .string(value)
@@ -191,7 +191,7 @@ public struct ScimUser: Codable {
                 }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
                 case .string(let value): try container.encode(value)
@@ -207,14 +207,14 @@ public struct ScimUser: Codable {
             self.value = value
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.op = try values.decode(Op.self, forKey: "op")
             self.path = try values.decodeIfPresent(String.self, forKey: "path")
             self.value = try values.decodeIfPresent(Value.self, forKey: "value")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(op, forKey: "op")
             try values.encodeIfPresent(path, forKey: "path")
@@ -231,13 +231,13 @@ public struct ScimUser: Codable {
             self.display = display
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.value = try values.decodeIfPresent(String.self, forKey: "value")
             self.display = try values.decodeIfPresent(String.self, forKey: "display")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(value, forKey: "value")
             try values.encodeIfPresent(display, forKey: "display")
@@ -259,7 +259,7 @@ public struct ScimUser: Codable {
         self.groups = groups
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.schemas = try values.decode([String].self, forKey: "schemas")
         self.id = try values.decode(String.self, forKey: "id")
@@ -275,7 +275,7 @@ public struct ScimUser: Codable {
         self.groups = try values.decodeIfPresent([Group].self, forKey: "groups")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(schemas, forKey: "schemas")
         try values.encode(id, forKey: "id")

@@ -23,14 +23,14 @@ public struct InteractionLimitResponse: Codable {
         self.expiresAt = expiresAt
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.limit = try values.decode(InteractionGroup.self, forKey: "limit")
         self.origin = try values.decode(String.self, forKey: "origin")
         self.expiresAt = try values.decode(Date.self, forKey: "expires_at")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(limit, forKey: "limit")
         try values.encode(origin, forKey: "origin")

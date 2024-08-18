@@ -37,14 +37,14 @@ public struct GitTag: Codable {
             self.name = name
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.date = try values.decode(String.self, forKey: "date")
             self.email = try values.decode(String.self, forKey: "email")
             self.name = try values.decode(String.self, forKey: "name")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(date, forKey: "date")
             try values.encode(email, forKey: "email")
@@ -63,14 +63,14 @@ public struct GitTag: Codable {
             self.url = url
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.sha = try values.decode(String.self, forKey: "sha")
             self.type = try values.decode(String.self, forKey: "type")
             self.url = try values.decode(URL.self, forKey: "url")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(sha, forKey: "sha")
             try values.encode(type, forKey: "type")
@@ -89,7 +89,7 @@ public struct GitTag: Codable {
         self.verification = verification
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.nodeID = try values.decode(String.self, forKey: "node_id")
         self.tag = try values.decode(String.self, forKey: "tag")
@@ -101,7 +101,7 @@ public struct GitTag: Codable {
         self.verification = try values.decodeIfPresent(Verification.self, forKey: "verification")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(nodeID, forKey: "node_id")
         try values.encode(tag, forKey: "tag")

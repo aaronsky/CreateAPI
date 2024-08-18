@@ -33,7 +33,7 @@ extension Paths.Orgs.WithOrg.Actions {
                 self.secrets = secrets
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalCount = try values.decode(Int.self, forKey: "total_count")
                 self.secrets = try values.decode([OctoKit.OrganizationActionsSecret].self, forKey: "secrets")

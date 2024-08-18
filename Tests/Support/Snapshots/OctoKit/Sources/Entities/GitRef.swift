@@ -27,14 +27,14 @@ public struct GitRef: Codable {
             self.url = url
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.type = try values.decode(String.self, forKey: "type")
             self.sha = try values.decode(String.self, forKey: "sha")
             self.url = try values.decode(URL.self, forKey: "url")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(type, forKey: "type")
             try values.encode(sha, forKey: "sha")
@@ -49,7 +49,7 @@ public struct GitRef: Codable {
         self.object = object
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.ref = try values.decode(String.self, forKey: "ref")
         self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -57,7 +57,7 @@ public struct GitRef: Codable {
         self.object = try values.decode(Object.self, forKey: "object")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(ref, forKey: "ref")
         try values.encode(nodeID, forKey: "node_id")

@@ -21,13 +21,13 @@ public struct ProtectedBranchRequiredStatusCheck: Codable {
             self.appID = appID
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.context = try values.decode(String.self, forKey: "context")
             self.appID = try values.decodeIfPresent(Int.self, forKey: "app_id")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(context, forKey: "context")
             try values.encodeIfPresent(appID, forKey: "app_id")
@@ -43,7 +43,7 @@ public struct ProtectedBranchRequiredStatusCheck: Codable {
         self.isStrict = isStrict
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decodeIfPresent(String.self, forKey: "url")
         self.enforcementLevel = try values.decodeIfPresent(String.self, forKey: "enforcement_level")
@@ -53,7 +53,7 @@ public struct ProtectedBranchRequiredStatusCheck: Codable {
         self.isStrict = try values.decodeIfPresent(Bool.self, forKey: "strict")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(url, forKey: "url")
         try values.encodeIfPresent(enforcementLevel, forKey: "enforcement_level")

@@ -42,7 +42,7 @@ extension Paths.AppManifests.WithCode {
                 self.pem = pem
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.integration = try OctoKit.Integration(from: decoder)
                 self.clientID = try values.decode(String.self, forKey: "client_id")

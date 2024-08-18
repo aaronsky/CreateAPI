@@ -73,7 +73,7 @@ public struct IssueSearchResultItem: Codable {
             self.description = description
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.id = try values.decodeIfPresent(Int64.self, forKey: "id")
             self.nodeID = try values.decodeIfPresent(String.self, forKey: "node_id")
@@ -84,7 +84,7 @@ public struct IssueSearchResultItem: Codable {
             self.description = try values.decodeIfPresent(String.self, forKey: "description")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(id, forKey: "id")
             try values.encodeIfPresent(nodeID, forKey: "node_id")
@@ -111,7 +111,7 @@ public struct IssueSearchResultItem: Codable {
             self.url = url
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.mergedAt = try values.decodeIfPresent(Date.self, forKey: "merged_at")
             self.diffURL = try values.decodeIfPresent(URL.self, forKey: "diff_url")
@@ -120,7 +120,7 @@ public struct IssueSearchResultItem: Codable {
             self.url = try values.decodeIfPresent(URL.self, forKey: "url")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(mergedAt, forKey: "merged_at")
             try values.encodeIfPresent(diffURL, forKey: "diff_url")
@@ -167,7 +167,7 @@ public struct IssueSearchResultItem: Codable {
         self.reactions = reactions
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.repositoryURL = try values.decode(URL.self, forKey: "repository_url")
@@ -205,7 +205,7 @@ public struct IssueSearchResultItem: Codable {
         self.reactions = try values.decodeIfPresent(ReactionRollup.self, forKey: "reactions")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(repositoryURL, forKey: "repository_url")

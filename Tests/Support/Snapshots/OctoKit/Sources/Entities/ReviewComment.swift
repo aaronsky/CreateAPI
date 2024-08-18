@@ -81,14 +81,14 @@ public struct ReviewComment: Codable {
             self.pullRequest = pullRequest
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.this = try values.decode(Link.self, forKey: "self")
             self.html = try values.decode(Link.self, forKey: "html")
             self.pullRequest = try values.decode(Link.self, forKey: "pull_request")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(this, forKey: "self")
             try values.encode(html, forKey: "html")
@@ -139,7 +139,7 @@ public struct ReviewComment: Codable {
         self.originalStartLine = originalStartLine
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.pullRequestReviewID = try values.decodeIfPresent(Int.self, forKey: "pull_request_review_id")
@@ -171,7 +171,7 @@ public struct ReviewComment: Codable {
         self.originalStartLine = try values.decodeIfPresent(Int.self, forKey: "original_start_line")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encodeIfPresent(pullRequestReviewID, forKey: "pull_request_review_id")

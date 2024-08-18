@@ -38,7 +38,7 @@ public struct CodeSearchResultItem: Codable {
         self.textMatches = textMatches
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.name = try values.decode(String.self, forKey: "name")
         self.path = try values.decode(String.self, forKey: "path")
@@ -55,7 +55,7 @@ public struct CodeSearchResultItem: Codable {
         self.textMatches = try values.decodeIfPresent([SearchResultTextMatch].self, forKey: "text_matches")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(name, forKey: "name")
         try values.encode(path, forKey: "path")

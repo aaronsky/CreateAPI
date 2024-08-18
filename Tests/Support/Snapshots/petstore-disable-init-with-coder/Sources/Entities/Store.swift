@@ -10,7 +10,7 @@ public struct Store: Codable {
         self.pets = pets
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(pets, forKey: "pets")
     }

@@ -75,7 +75,7 @@ extension Paths.Repos.WithOwner.WithRepo.Pulls {
                 self.maintainerCanModify = maintainerCanModify
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(title, forKey: "title")
                 try values.encodeIfPresent(body, forKey: "body")

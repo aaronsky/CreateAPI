@@ -24,7 +24,7 @@ public struct CombinedCommitStatus: Codable {
         self.url = url
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.state = try values.decode(String.self, forKey: "state")
         self.statuses = try values.decode([SimpleCommitStatus].self, forKey: "statuses")
@@ -35,7 +35,7 @@ public struct CombinedCommitStatus: Codable {
         self.url = try values.decode(URL.self, forKey: "url")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(state, forKey: "state")
         try values.encode(statuses, forKey: "statuses")

@@ -1,7 +1,29 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.10
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
+
+let swift6UpcomingFeatures: [SwiftSetting] = [
+    .enableUpcomingFeature("BareSlashRegexLiterals"),
+    .enableUpcomingFeature("ConciseMagicFile"),
+    .enableUpcomingFeature("DeprecateApplicationMain"),
+    .enableUpcomingFeature("DisableOutwardActorInference"),
+    .enableUpcomingFeature("DynamicActorIsolation"),
+    .enableUpcomingFeature("ForwardTrailingClosures"),
+    .enableUpcomingFeature("GlobalActorIsolatedTypesUsability"),
+    .enableUpcomingFeature("GlobalConcurrency"),
+    .enableUpcomingFeature("ImplicitOpenExistentials"),
+    .enableUpcomingFeature("ImportObjcForwardDeclarations"),
+    .enableUpcomingFeature("InferSendableFromCaptures"),
+    .enableUpcomingFeature("IsolatedDefaultValues"),
+    .enableUpcomingFeature("NonfrozenEnumExhaustivity"),
+    .enableUpcomingFeature("RegionBasedIsolation"),
+    .enableUpcomingFeature("StrictConcurrency"),
+]
+let swift7UpcomingFeatures: [SwiftSetting] = [
+    .enableUpcomingFeature("ExistentialAny"),
+    .enableUpcomingFeature("InternalImportsByDefault"),
+]
 
 let package = Package(
     name: "CreateAPI",
@@ -29,23 +51,27 @@ let package = Package(
                 .product(name: "FileWatcher", package: "FileWatcher", condition: .when(platforms: [.macOS])),
                 .target(name: "CreateOptions")
             ],
-            path: "Sources/CreateAPI"
+            path: "Sources/CreateAPI",
+            swiftSettings: swift6UpcomingFeatures + swift7UpcomingFeatures
         ),
         .target(
             name: "CreateOptions",
             dependencies: [
                 .product(name: "Yams", package: "Yams"),
                 .product(name: "ConfigurationParser", package: "swift-configuration-parser")
-            ]
+            ],
+            swiftSettings: swift6UpcomingFeatures + swift7UpcomingFeatures
         ),
         .testTarget(
             name: "create-api-tests",
             dependencies: ["create-api"],
-            path: "Tests/CreateAPITests"
+            path: "Tests/CreateAPITests",
+            swiftSettings: swift6UpcomingFeatures + swift7UpcomingFeatures
         ),
         .testTarget(
             name: "CreateOptionsTests",
-            dependencies: ["CreateOptions"]
+            dependencies: ["CreateOptions"],
+            swiftSettings: swift6UpcomingFeatures + swift7UpcomingFeatures
         )
     ]
 )

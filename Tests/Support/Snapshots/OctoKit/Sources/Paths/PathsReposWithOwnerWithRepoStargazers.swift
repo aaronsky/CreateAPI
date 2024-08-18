@@ -35,7 +35,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                 self.stargazers = stargazers
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let container = try decoder.singleValueContainer()
                 self.simpleUsers = try? container.decode([OctoKit.SimpleUser].self)
                 self.stargazers = try? container.decode([OctoKit.Stargazer].self)

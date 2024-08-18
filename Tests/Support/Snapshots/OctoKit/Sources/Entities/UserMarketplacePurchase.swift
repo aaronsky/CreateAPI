@@ -32,7 +32,7 @@ public struct UserMarketplacePurchase: Codable {
         self.plan = plan
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.billingCycle = try values.decode(String.self, forKey: "billing_cycle")
         self.nextBillingDate = try values.decodeIfPresent(Date.self, forKey: "next_billing_date")
@@ -44,7 +44,7 @@ public struct UserMarketplacePurchase: Codable {
         self.plan = try values.decode(MarketplaceListingPlan.self, forKey: "plan")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(billingCycle, forKey: "billing_cycle")
         try values.encodeIfPresent(nextBillingDate, forKey: "next_billing_date")

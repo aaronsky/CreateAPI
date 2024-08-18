@@ -11,7 +11,7 @@ public struct AnotherContainer: Codable {
         case three(Three)
         case four(Four)
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
 
             struct Discriminator: Decodable {
                 let kind: String
@@ -34,7 +34,7 @@ public struct AnotherContainer: Codable {
             }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
             case .a(let value): try container.encode(value)
@@ -48,12 +48,12 @@ public struct AnotherContainer: Codable {
         self.content = content
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.content = try values.decode(Content.self, forKey: "content")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(content, forKey: "content")
     }

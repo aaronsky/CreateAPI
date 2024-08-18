@@ -42,7 +42,7 @@ public struct SecretScanningAlert: Codable {
         self.secret = secret
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.number = try values.decodeIfPresent(Int.self, forKey: "number")
         self.createdAt = try values.decodeIfPresent(Date.self, forKey: "created_at")
@@ -57,7 +57,7 @@ public struct SecretScanningAlert: Codable {
         self.secret = try values.decodeIfPresent(String.self, forKey: "secret")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(number, forKey: "number")
         try values.encodeIfPresent(createdAt, forKey: "created_at")

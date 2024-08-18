@@ -54,7 +54,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                     self.path = path
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(branch, forKey: "branch")
                     try values.encodeIfPresent(path, forKey: "path")
@@ -65,7 +65,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                 self.source = source
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(source, forKey: "source")
             }
@@ -120,7 +120,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                         self.path = path
                     }
 
-                    public func encode(to encoder: Encoder) throws {
+                    public func encode(to encoder: any Encoder) throws {
                         var values = encoder.container(keyedBy: StringCodingKey.self)
                         try values.encode(branch, forKey: "branch")
                         try values.encode(path, forKey: "path")
@@ -132,7 +132,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                     self.b = b
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var container = encoder.singleValueContainer()
                     if let value = a { try container.encode(value) }
                     if let value = b { try container.encode(value) }
@@ -146,7 +146,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                 self.source = source
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(cname, forKey: "cname")
                 try values.encodeIfPresent(isHTTPSEnforced, forKey: "https_enforced")

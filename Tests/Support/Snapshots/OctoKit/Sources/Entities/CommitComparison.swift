@@ -51,7 +51,7 @@ public struct CommitComparison: Codable {
         self.files = files
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.htmlURL = try values.decode(URL.self, forKey: "html_url")
@@ -68,7 +68,7 @@ public struct CommitComparison: Codable {
         self.files = try values.decodeIfPresent([DiffEntry].self, forKey: "files")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(htmlURL, forKey: "html_url")

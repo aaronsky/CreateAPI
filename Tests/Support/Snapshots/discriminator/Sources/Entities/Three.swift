@@ -12,13 +12,13 @@ public struct Three: Codable {
         self.foo = foo
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.kind = try values.decode(String.self, forKey: "kind")
         self.foo = try values.decode(String.self, forKey: "foo")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(kind, forKey: "kind")
         try values.encode(foo, forKey: "foo")

@@ -42,14 +42,14 @@ public struct ExternalGroups: Codable {
             self.updatedAt = updatedAt
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.groupID = try values.decode(Int.self, forKey: "group_id")
             self.groupName = try values.decode(String.self, forKey: "group_name")
             self.updatedAt = try values.decode(String.self, forKey: "updated_at")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(groupID, forKey: "group_id")
             try values.encode(groupName, forKey: "group_name")
@@ -61,12 +61,12 @@ public struct ExternalGroups: Codable {
         self.groups = groups
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.groups = try values.decodeIfPresent([Group].self, forKey: "groups")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(groups, forKey: "groups")
     }

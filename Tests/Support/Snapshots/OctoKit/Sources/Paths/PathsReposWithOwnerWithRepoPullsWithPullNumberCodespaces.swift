@@ -43,7 +43,7 @@ extension Paths.Repos.WithOwner.WithRepo.Pulls.WithPullNumber {
                 self.idleTimeoutMinutes = idleTimeoutMinutes
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(location, forKey: "location")
                 try values.encodeIfPresent(machine, forKey: "machine")

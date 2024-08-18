@@ -58,7 +58,7 @@ public struct PublicUser: Codable {
             self.privateRepos = privateRepos
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.collaborators = try values.decode(Int.self, forKey: "collaborators")
             self.name = try values.decode(String.self, forKey: "name")
@@ -66,7 +66,7 @@ public struct PublicUser: Codable {
             self.privateRepos = try values.decode(Int.self, forKey: "private_repos")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(collaborators, forKey: "collaborators")
             try values.encode(name, forKey: "name")
@@ -117,7 +117,7 @@ public struct PublicUser: Codable {
         self.collaborators = collaborators
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.login = try values.decode(String.self, forKey: "login")
         self.id = try values.decode(Int.self, forKey: "id")
@@ -160,7 +160,7 @@ public struct PublicUser: Codable {
         self.collaborators = try values.decodeIfPresent(Int.self, forKey: "collaborators")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(login, forKey: "login")
         try values.encode(id, forKey: "id")

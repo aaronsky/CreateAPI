@@ -61,13 +61,13 @@ public struct Installation: Codable {
             self.enterprise = enterprise
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
             self.simpleUser = try? container.decode(SimpleUser.self)
             self.enterprise = try? container.decode(Enterprise.self)
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var container = encoder.singleValueContainer()
             if let value = simpleUser { try container.encode(value) }
             if let value = enterprise { try container.encode(value) }
@@ -103,7 +103,7 @@ public struct Installation: Codable {
         self.contactEmail = contactEmail
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.account = try values.decodeIfPresent(Account.self, forKey: "account")
@@ -127,7 +127,7 @@ public struct Installation: Codable {
         self.contactEmail = try values.decodeIfPresent(String.self, forKey: "contact_email")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encodeIfPresent(account, forKey: "account")

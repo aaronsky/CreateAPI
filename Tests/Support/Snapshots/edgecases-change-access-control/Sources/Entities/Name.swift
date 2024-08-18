@@ -18,7 +18,7 @@ struct Name: Codable {
         self._123Number = _123Number
     }
 
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.name = try values.decode(Int32.self, forKey: "name")
         self.snakeCase = try values.decodeIfPresent(Int32.self, forKey: "snake_case")
@@ -26,7 +26,7 @@ struct Name: Codable {
         self._123Number = try values.decodeIfPresent(Int.self, forKey: "123Number")
     }
 
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(name, forKey: "name")
         try values.encodeIfPresent(snakeCase, forKey: "snake_case")

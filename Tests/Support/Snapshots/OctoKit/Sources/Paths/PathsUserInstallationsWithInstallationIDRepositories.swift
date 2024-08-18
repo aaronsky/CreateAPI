@@ -41,7 +41,7 @@ extension Paths.User.Installations.WithInstallationID {
                 self.repositories = repositories
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalCount = try values.decode(Int.self, forKey: "total_count")
                 self.repositorySelection = try values.decodeIfPresent(String.self, forKey: "repository_selection")

@@ -13,13 +13,13 @@ public struct IssueEventRename: Codable {
         self.to = to
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.from = try values.decode(String.self, forKey: "from")
         self.to = try values.decode(String.self, forKey: "to")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(from, forKey: "from")
         try values.encode(to, forKey: "to")

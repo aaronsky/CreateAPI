@@ -20,7 +20,7 @@ public struct CodeScanningAlertLocation: Codable {
         self.endColumn = endColumn
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.path = try values.decodeIfPresent(String.self, forKey: "path")
         self.startLine = try values.decodeIfPresent(Int.self, forKey: "start_line")
@@ -29,7 +29,7 @@ public struct CodeScanningAlertLocation: Codable {
         self.endColumn = try values.decodeIfPresent(Int.self, forKey: "end_column")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(path, forKey: "path")
         try values.encodeIfPresent(startLine, forKey: "start_line")

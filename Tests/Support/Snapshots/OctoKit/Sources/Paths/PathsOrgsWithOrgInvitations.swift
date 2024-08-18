@@ -76,7 +76,7 @@ extension Paths.Orgs.WithOrg {
                 self.teamIDs = teamIDs
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(inviteeID, forKey: "invitee_id")
                 try values.encodeIfPresent(email, forKey: "email")

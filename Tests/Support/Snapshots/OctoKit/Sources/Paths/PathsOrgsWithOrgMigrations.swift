@@ -98,7 +98,7 @@ extension Paths.Orgs.WithOrg {
                 self.exclude = exclude
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(repositories, forKey: "repositories")
                 try values.encodeIfPresent(lockRepositories, forKey: "lock_repositories")

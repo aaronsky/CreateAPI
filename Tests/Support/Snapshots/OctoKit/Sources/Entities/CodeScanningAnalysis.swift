@@ -57,7 +57,7 @@ public struct CodeScanningAnalysis: Codable {
         self.warning = warning
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.ref = try values.decode(String.self, forKey: "ref")
         self.commitSha = try values.decode(String.self, forKey: "commit_sha")
@@ -76,7 +76,7 @@ public struct CodeScanningAnalysis: Codable {
         self.warning = try values.decode(String.self, forKey: "warning")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(ref, forKey: "ref")
         try values.encode(commitSha, forKey: "commit_sha")

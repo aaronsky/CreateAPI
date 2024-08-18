@@ -24,7 +24,7 @@ extension Generator {
 
     private func _schemas() throws -> GeneratorOutput {
         let jobs = try makeJobs()
-        var declarations = [Result<Declaration, Error>?](repeating: nil, count: jobs.count)
+        var declarations = [Result<any Declaration, any Error>?](repeating: nil, count: jobs.count)
         topLevelTypes = Set(jobs.map(\.name))
         let lock = NSLock()
 
@@ -62,7 +62,7 @@ extension Generator {
         )
     }
 
-    private func preprocess(declarations: [Result<Declaration, Error>]) throws {
+    private func preprocess(declarations: [Result<any Declaration, any Error>]) throws {
         // Create an index of all generated entities.
         for result in declarations {
             let entity = try result.get()
@@ -155,12 +155,12 @@ extension Generator {
 
     // MARK: - Declarations
 
-    private func makeDeclaration(job: Job) throws -> Declaration? {
+    private func makeDeclaration(job: Job) throws -> (any Declaration)? {
         let context = Context(parents: [])
         return try makeDeclaration(name: job.name, schema: job.schema, context: context)
     }
 
-    func makeDeclaration(name: TypeName, schema: JSONSchema, context: Context) throws -> Declaration? {
+    func makeDeclaration(name: TypeName, schema: JSONSchema, context: Context) throws -> (any Declaration)? {
         let declaration = try _makeDeclaration(name: name, schema: schema, context: context)
         if options.inlineTypealiases, let alias = declaration as? TypealiasDeclaration {
             return alias.nested
@@ -169,7 +169,7 @@ extension Generator {
     }
 
     /// Recursively a type declaration: struct, class, enum, typealias, etc.
-    func _makeDeclaration(name: TypeName, schema: JSONSchema, context: Context) throws -> Declaration {
+    func _makeDeclaration(name: TypeName, schema: JSONSchema, context: Context) throws -> any Declaration {
         switch schema.value {
         case .boolean:
             return TypealiasDeclaration(name: name, type: .builtin("Bool"))
@@ -276,7 +276,7 @@ extension Generator {
 
     // MARK: - Object
 
-    private func makeObject(name: TypeName, info: JSONSchema.CoreContext<JSONTypeFormat.ObjectFormat>, details: JSONSchema.ObjectContext, context: Context) throws -> Declaration {
+    private func makeObject(name: TypeName, info: JSONSchema.CoreContext<JSONTypeFormat.ObjectFormat>, details: JSONSchema.ObjectContext, context: Context) throws -> any Declaration {
         if let dictionary = try makeDictionary(key: name.rawValue, info: info, details: details, context: context) {
             return TypealiasDeclaration(name: name, type: dictionary.type, nested: dictionary.nested)
         }
@@ -369,13 +369,13 @@ extension Generator {
 
     private struct AdditionalProperties {
         let type: TypeIdentifier
-        let info: JSONSchemaContext
-        var nested: Declaration?
+        let info: any JSONSchemaContext
+        var nested: (any Declaration)?
     }
 
     // Creates a dictionary, e.g. `[ String: AnyJSON]`, `[String: [String: String]]`,
     // `[String: CustomNestedType]`. Returns `Void` if no properties are allowed.
-    private func makeDictionary(key: String, info: JSONSchemaContext, details: JSONSchema.ObjectContext, context: Context) throws -> AdditionalProperties? {
+    private func makeDictionary(key: String, info: any JSONSchemaContext, details: JSONSchema.ObjectContext, context: Context) throws -> AdditionalProperties? {
         let additionalProperties = details.additionalProperties ?? .a(true)
         switch additionalProperties {
         case .a(let allowed):
@@ -399,7 +399,7 @@ extension Generator {
         }
     }
 
-    private func makeDiscriminator(info: JSONSchemaContext, context: Context) throws -> Discriminator? {
+    private func makeDiscriminator(info: any JSONSchemaContext, context: Context) throws -> Discriminator? {
         try info.discriminator.flatMap { discriminator in
             Discriminator(
                 propertyName: discriminator.propertyName,
@@ -410,7 +410,7 @@ extension Generator {
 
     // MARK: - oneOf/anyOf/allOf
 
-    private func makeEntity(name: TypeName, type: EntityType, info: JSONSchemaContext, context: Context) -> (EntityDeclaration, Context) {
+    private func makeEntity(name: TypeName, type: EntityType, info: any JSONSchemaContext, context: Context) -> (EntityDeclaration, Context) {
         let entity = EntityDeclaration(
             name: name,
             type: type,
@@ -422,7 +422,7 @@ extension Generator {
         return (entity, context)
     }
 
-    private func makeOneOf(name: TypeName, schemas: [JSONSchema], info: JSONSchemaContext, context: Context) throws -> Declaration {
+    private func makeOneOf(name: TypeName, schemas: [JSONSchema], info: any JSONSchemaContext, context: Context) throws -> any Declaration {
         let (entity, context) = makeEntity(name: name, type: .oneOf, info: info, context: context)
 
         entity.properties = try makeProperties(for: schemas, context: context).map {
@@ -454,7 +454,7 @@ extension Generator {
         return entity
     }
 
-    private func makeAnyOf(name: TypeName, schemas: [JSONSchema], info: JSONSchemaContext, context: Context) throws -> Declaration {
+    private func makeAnyOf(name: TypeName, schemas: [JSONSchema], info: any JSONSchemaContext, context: Context) throws -> any Declaration {
         guard !context.isInlinableTypeCheck else { return AnyDeclaration.empty }
 
         let (entity, context) = makeEntity(name: name, type: .anyOf, info: info, context: context)
@@ -469,7 +469,7 @@ extension Generator {
         return entity
     }
 
-    private func makeAllOf(name: TypeName, schemas: [JSONSchema], info: JSONSchemaContext, context: Context) throws -> Declaration {
+    private func makeAllOf(name: TypeName, schemas: [JSONSchema], info: any JSONSchemaContext, context: Context) throws -> any Declaration {
         let (entity, context) = makeEntity(name: name, type: .allOf, info: info, context: context)
 
         let types = makeTypeNames(for: schemas, context: context)
@@ -560,7 +560,7 @@ extension Generator {
 
     // MARK: - Typealiases
 
-    private func makeTypealiasArray(name: TypeName, info: JSONSchema.CoreContext<JSONTypeFormat.ArrayFormat>, details: JSONSchema.ArrayContext, context: Context) throws -> Declaration {
+    private func makeTypealiasArray(name: TypeName, info: JSONSchema.CoreContext<JSONTypeFormat.ArrayFormat>, details: JSONSchema.ArrayContext, context: Context) throws -> any Declaration {
         guard let item = details.items else {
             throw GeneratorError("Missing array item type")
         }
@@ -576,7 +576,7 @@ extension Generator {
 
     // MARK: - Enums
 
-    func makeStringEnum(name: TypeName, info: JSONSchemaContext) throws -> Declaration {
+    func makeStringEnum(name: TypeName, info: any JSONSchemaContext) throws -> any Declaration {
         let values = (info.allowedValues ?? []).map(\.value).compactMap { $0 as? String }
         guard !values.isEmpty else {
             throw GeneratorError("Enum \"\(name)\" has no values")
@@ -609,7 +609,7 @@ extension Generator {
         )
     }
 
-    private func isEnum(_ info: JSONSchemaContext) -> Bool {
+    private func isEnum(_ info: any JSONSchemaContext) -> Bool {
         options.generate.contains(.enums) && info.allowedValues != nil
     }
 
@@ -674,7 +674,7 @@ extension Generator {
         
         let propertyName = makePropertyName(rename(key: propertyIdentifier))
 
-        func property(type: TypeIdentifier, info: JSONSchemaContext?, nested: Declaration? = nil) -> Property {
+        func property(type: TypeIdentifier, info: (any JSONSchemaContext)?, nested: (any Declaration)? = nil) -> Property {
             let nullable = info?.nullable ?? false
             let isOptional = !isRequired || nullable
             var type = type
@@ -689,7 +689,7 @@ extension Generator {
                         return "\(array.compactMap(describeDefaultValue(_:)))"
                     } else if let dictionary = anyValue.value as? [String: AnyCodable] {
                         return "\(dictionary.compactMapValues(describeDefaultValue(_:)))"
-                    } else if let value = anyValue.value as? CustomStringConvertible {
+                    } else if let value = anyValue.value as? (any CustomStringConvertible) {
                         if !type.isString, let formatString: String = info?.formatString, !formatString.isEmpty {
                             return nil
                         }

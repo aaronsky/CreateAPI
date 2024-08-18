@@ -32,12 +32,12 @@ public struct BranchProtection: Codable {
             self.isEnabled = isEnabled
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isEnabled = try values.decodeIfPresent(Bool.self, forKey: "enabled")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(isEnabled, forKey: "enabled")
         }
@@ -50,12 +50,12 @@ public struct BranchProtection: Codable {
             self.isEnabled = isEnabled
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isEnabled = try values.decodeIfPresent(Bool.self, forKey: "enabled")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(isEnabled, forKey: "enabled")
         }
@@ -68,12 +68,12 @@ public struct BranchProtection: Codable {
             self.isEnabled = isEnabled
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isEnabled = try values.decodeIfPresent(Bool.self, forKey: "enabled")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(isEnabled, forKey: "enabled")
         }
@@ -86,12 +86,12 @@ public struct BranchProtection: Codable {
             self.isEnabled = isEnabled
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isEnabled = try values.decodeIfPresent(Bool.self, forKey: "enabled")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(isEnabled, forKey: "enabled")
         }
@@ -108,13 +108,13 @@ public struct BranchProtection: Codable {
             self.isEnabled = isEnabled
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.url = try values.decode(URL.self, forKey: "url")
             self.isEnabled = try values.decode(Bool.self, forKey: "enabled")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(url, forKey: "url")
             try values.encode(isEnabled, forKey: "enabled")
@@ -137,7 +137,7 @@ public struct BranchProtection: Codable {
         self.requiredSignatures = requiredSignatures
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decodeIfPresent(String.self, forKey: "url")
         self.isEnabled = try values.decodeIfPresent(Bool.self, forKey: "enabled")
@@ -154,7 +154,7 @@ public struct BranchProtection: Codable {
         self.requiredSignatures = try values.decodeIfPresent(RequiredSignatures.self, forKey: "required_signatures")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(url, forKey: "url")
         try values.encodeIfPresent(isEnabled, forKey: "enabled")

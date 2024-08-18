@@ -112,7 +112,7 @@ public struct Codespace: Codable {
             self.ref = ref
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.ahead = try values.decodeIfPresent(Int.self, forKey: "ahead")
             self.behind = try values.decodeIfPresent(Int.self, forKey: "behind")
@@ -121,7 +121,7 @@ public struct Codespace: Codable {
             self.ref = try values.decodeIfPresent(String.self, forKey: "ref")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(ahead, forKey: "ahead")
             try values.encodeIfPresent(behind, forKey: "behind")
@@ -149,12 +149,12 @@ public struct Codespace: Codable {
             self.allowedPortPrivacySettings = allowedPortPrivacySettings
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.allowedPortPrivacySettings = try values.decodeIfPresent([String].self, forKey: "allowed_port_privacy_settings")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(allowedPortPrivacySettings, forKey: "allowed_port_privacy_settings")
         }
@@ -186,7 +186,7 @@ public struct Codespace: Codable {
         self.runtimeConstraints = runtimeConstraints
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.name = try values.decode(String.self, forKey: "name")
@@ -213,7 +213,7 @@ public struct Codespace: Codable {
         self.runtimeConstraints = try values.decodeIfPresent(RuntimeConstraints.self, forKey: "runtime_constraints")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(name, forKey: "name")

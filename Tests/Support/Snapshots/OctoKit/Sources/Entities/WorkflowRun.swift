@@ -127,7 +127,7 @@ public struct WorkflowRun: Codable {
         self.headRepositoryID = headRepositoryID
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.name = try values.decodeIfPresent(String.self, forKey: "name")
@@ -162,7 +162,7 @@ public struct WorkflowRun: Codable {
         self.headRepositoryID = try values.decodeIfPresent(Int.self, forKey: "head_repository_id")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encodeIfPresent(name, forKey: "name")

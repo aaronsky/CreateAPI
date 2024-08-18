@@ -35,7 +35,7 @@ extension Paths.Repos.WithOwner.WithRepo.Commits.WithRef {
                 self.checkRuns = checkRuns
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalCount = try values.decode(Int.self, forKey: "total_count")
                 self.checkRuns = try values.decode([OctoKit.CheckRun].self, forKey: "check_runs")

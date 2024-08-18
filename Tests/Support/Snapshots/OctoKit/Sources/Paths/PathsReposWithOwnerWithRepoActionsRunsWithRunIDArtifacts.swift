@@ -33,7 +33,7 @@ extension Paths.Repos.WithOwner.WithRepo.Actions.Runs.WithRunID {
                 self.artifacts = artifacts
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalCount = try values.decode(Int.self, forKey: "total_count")
                 self.artifacts = try values.decode([OctoKit.Artifact].self, forKey: "artifacts")

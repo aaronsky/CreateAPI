@@ -20,13 +20,13 @@ public struct SearchResultTextMatch: Codable {
             self.indices = indices
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.text = try values.decodeIfPresent(String.self, forKey: "text")
             self.indices = try values.decodeIfPresent([Int].self, forKey: "indices")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(text, forKey: "text")
             try values.encodeIfPresent(indices, forKey: "indices")
@@ -41,7 +41,7 @@ public struct SearchResultTextMatch: Codable {
         self.matches = matches
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.objectURL = try values.decodeIfPresent(String.self, forKey: "object_url")
         self.objectType = try values.decodeIfPresent(String.self, forKey: "object_type")
@@ -50,7 +50,7 @@ public struct SearchResultTextMatch: Codable {
         self.matches = try values.decodeIfPresent([Match].self, forKey: "matches")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(objectURL, forKey: "object_url")
         try values.encodeIfPresent(objectType, forKey: "object_type")

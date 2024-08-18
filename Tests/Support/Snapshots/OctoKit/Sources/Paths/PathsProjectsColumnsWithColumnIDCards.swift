@@ -73,7 +73,7 @@ extension Paths.Projects.Columns.WithColumnID {
                     self.note = note
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(note, forKey: "note")
                 }
@@ -94,14 +94,14 @@ extension Paths.Projects.Columns.WithColumnID {
                     self.contentType = contentType
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(contentID, forKey: "content_id")
                     try values.encode(contentType, forKey: "content_type")
                 }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
                 case .a(let value): try container.encode(value)

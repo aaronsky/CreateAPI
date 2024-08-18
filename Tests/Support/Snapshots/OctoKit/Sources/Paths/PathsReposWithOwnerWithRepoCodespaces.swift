@@ -35,7 +35,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                 self.codespaces = codespaces
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalCount = try values.decode(Int.self, forKey: "total_count")
                 self.codespaces = try values.decode([OctoKit.Codespace].self, forKey: "codespaces")
@@ -80,7 +80,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                 self.idleTimeoutMinutes = idleTimeoutMinutes
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(ref, forKey: "ref")
                 try values.encode(location, forKey: "location")

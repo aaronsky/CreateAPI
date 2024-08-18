@@ -37,7 +37,7 @@ extension Paths.Orgs.WithOrg.Actions.RunnerGroups.WithRunnerGroupID {
                 self.runners = runners
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalCount = try values.decode(Double.self, forKey: "total_count")
                 self.runners = try values.decode([OctoKit.Runner].self, forKey: "runners")

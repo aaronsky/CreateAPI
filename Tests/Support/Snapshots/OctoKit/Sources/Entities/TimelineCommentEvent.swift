@@ -63,7 +63,7 @@ public struct TimelineCommentEvent: Codable {
         self.reactions = reactions
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.event = try values.decode(String.self, forKey: "event")
         self.actor = try values.decode(SimpleUser.self, forKey: "actor")
@@ -83,7 +83,7 @@ public struct TimelineCommentEvent: Codable {
         self.reactions = try values.decodeIfPresent(ReactionRollup.self, forKey: "reactions")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(event, forKey: "event")
         try values.encode(actor, forKey: "actor")

@@ -22,7 +22,7 @@ struct Capitalization: Codable {
         self.attName = attName
     }
 
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.smallCamel = try values.decodeIfPresent(String.self, forKey: "smallCamel")
         self.capitalCamel = try values.decodeIfPresent(String.self, forKey: "CapitalCamel")
@@ -32,7 +32,7 @@ struct Capitalization: Codable {
         self.attName = try values.decodeIfPresent(String.self, forKey: "ATT_NAME")
     }
 
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(smallCamel, forKey: "smallCamel")
         try values.encodeIfPresent(capitalCamel, forKey: "CapitalCamel")

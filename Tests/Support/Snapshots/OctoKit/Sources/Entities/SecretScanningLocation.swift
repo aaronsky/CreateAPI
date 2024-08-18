@@ -23,13 +23,13 @@ public struct SecretScanningLocation: Codable {
         self.details = details
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.type = try values.decode(`Type`.self, forKey: "type")
         self.details = try values.decode(SecretScanningLocationCommit.self, forKey: "details")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(type, forKey: "type")
         try values.encode(details, forKey: "details")

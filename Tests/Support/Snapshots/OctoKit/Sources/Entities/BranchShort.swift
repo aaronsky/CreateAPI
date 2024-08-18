@@ -18,13 +18,13 @@ public struct BranchShort: Codable {
             self.url = url
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.sha = try values.decode(String.self, forKey: "sha")
             self.url = try values.decode(String.self, forKey: "url")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(sha, forKey: "sha")
             try values.encode(url, forKey: "url")
@@ -37,14 +37,14 @@ public struct BranchShort: Codable {
         self.isProtected = isProtected
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.name = try values.decode(String.self, forKey: "name")
         self.commit = try values.decode(Commit.self, forKey: "commit")
         self.isProtected = try values.decode(Bool.self, forKey: "protected")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(name, forKey: "name")
         try values.encode(commit, forKey: "commit")

@@ -31,13 +31,13 @@ public struct ContainerB: Codable {
         self.renameMe = renameMe
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.enum = try values.decode(Enum.self, forKey: "enum")
         self.renameMe = try values.decode(String.self, forKey: "rename-me")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(`enum`, forKey: "enum")
         try values.encode(renameMe, forKey: "rename-me")
@@ -50,14 +50,14 @@ public struct ContainerB: Codable {
       self.child = child
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let values = try decoder.container(keyedBy: StringCodingKey.self)
       self.enum = try values.decode(Enum.self, forKey: "enum")
       self.renameMe = try values.decode(String.self, forKey: "rename-me")
       self.child = try values.decode(Child.self, forKey: "child")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var values = encoder.container(keyedBy: StringCodingKey.self)
       try values.encode(`enum`, forKey: "enum")
       try values.encode(renameMe, forKey: "rename-me")
@@ -69,12 +69,12 @@ public struct ContainerB: Codable {
     self.child = child
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let values = try decoder.container(keyedBy: StringCodingKey.self)
     self.child = try values.decode(Child.self, forKey: "child")
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var values = encoder.container(keyedBy: StringCodingKey.self)
     try values.encode(child, forKey: "child")
   }

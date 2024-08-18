@@ -18,14 +18,14 @@ public struct PackagesBillingUsage: Codable {
         self.includedGigabytesBandwidth = includedGigabytesBandwidth
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.totalGigabytesBandwidthUsed = try values.decode(Int.self, forKey: "total_gigabytes_bandwidth_used")
         self.totalPaidGigabytesBandwidthUsed = try values.decode(Int.self, forKey: "total_paid_gigabytes_bandwidth_used")
         self.includedGigabytesBandwidth = try values.decode(Int.self, forKey: "included_gigabytes_bandwidth")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(totalGigabytesBandwidthUsed, forKey: "total_gigabytes_bandwidth_used")
         try values.encode(totalPaidGigabytesBandwidthUsed, forKey: "total_paid_gigabytes_bandwidth_used")

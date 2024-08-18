@@ -118,7 +118,7 @@ extension Paths.Repos.WithOwner.WithRepo.Actions.Secrets {
                 self.keyID = keyID
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(encryptedValue, forKey: "encrypted_value")
                 try values.encodeIfPresent(keyID, forKey: "key_id")

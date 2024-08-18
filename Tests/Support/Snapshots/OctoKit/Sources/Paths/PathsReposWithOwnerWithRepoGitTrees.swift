@@ -77,7 +77,7 @@ extension Paths.Repos.WithOwner.WithRepo.Git {
                     self.content = content
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(path, forKey: "path")
                     try values.encodeIfPresent(mode, forKey: "mode")
@@ -92,7 +92,7 @@ extension Paths.Repos.WithOwner.WithRepo.Git {
                 self.baseTree = baseTree
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(tree, forKey: "tree")
                 try values.encodeIfPresent(baseTree, forKey: "base_tree")

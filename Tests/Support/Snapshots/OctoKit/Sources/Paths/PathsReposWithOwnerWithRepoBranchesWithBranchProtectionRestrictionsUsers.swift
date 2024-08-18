@@ -60,13 +60,13 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch.Protection.Restrict
                     self.users = users
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(users, forKey: "users")
                 }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
                 case .object(let value): try container.encode(value)
@@ -109,13 +109,13 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch.Protection.Restrict
                     self.users = users
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(users, forKey: "users")
                 }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
                 case .object(let value): try container.encode(value)
@@ -158,13 +158,13 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch.Protection.Restrict
                     self.users = users
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(users, forKey: "users")
                 }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
                 case .object(let value): try container.encode(value)

@@ -17,7 +17,7 @@ public struct TimelineCommitCommentedEvent: Codable {
         self.comments = comments
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.event = try values.decodeIfPresent(String.self, forKey: "event")
         self.nodeID = try values.decodeIfPresent(String.self, forKey: "node_id")
@@ -25,7 +25,7 @@ public struct TimelineCommitCommentedEvent: Codable {
         self.comments = try values.decodeIfPresent([CommitComment].self, forKey: "comments")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(event, forKey: "event")
         try values.encodeIfPresent(nodeID, forKey: "node_id")

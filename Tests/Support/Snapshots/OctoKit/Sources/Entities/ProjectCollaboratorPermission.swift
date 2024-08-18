@@ -14,13 +14,13 @@ public struct ProjectCollaboratorPermission: Codable {
         self.user = user
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.permission = try values.decode(String.self, forKey: "permission")
         self.user = try values.decodeIfPresent(SimpleUser.self, forKey: "user")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(permission, forKey: "permission")
         try values.encodeIfPresent(user, forKey: "user")

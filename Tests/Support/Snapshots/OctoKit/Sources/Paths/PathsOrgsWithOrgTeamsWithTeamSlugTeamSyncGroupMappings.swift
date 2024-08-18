@@ -59,7 +59,7 @@ extension Paths.Orgs.WithOrg.Teams.WithTeamSlug.TeamSync {
                     self.groupDescription = groupDescription
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(groupID, forKey: "group_id")
                     try values.encode(groupName, forKey: "group_name")
@@ -71,7 +71,7 @@ extension Paths.Orgs.WithOrg.Teams.WithTeamSlug.TeamSync {
                 self.groups = groups
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(groups, forKey: "groups")
             }

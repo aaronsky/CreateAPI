@@ -31,13 +31,13 @@ public struct ScimUserListEnterprise: Codable {
                 self.familyName = familyName
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.givenName = try values.decodeIfPresent(String.self, forKey: "givenName")
                 self.familyName = try values.decodeIfPresent(String.self, forKey: "familyName")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(givenName, forKey: "givenName")
                 try values.encodeIfPresent(familyName, forKey: "familyName")
@@ -55,14 +55,14 @@ public struct ScimUserListEnterprise: Codable {
                 self.type = type
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.value = try values.decodeIfPresent(String.self, forKey: "value")
                 self.isPrimary = try values.decodeIfPresent(Bool.self, forKey: "primary")
                 self.type = try values.decodeIfPresent(String.self, forKey: "type")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(value, forKey: "value")
                 try values.encodeIfPresent(isPrimary, forKey: "primary")
@@ -77,12 +77,12 @@ public struct ScimUserListEnterprise: Codable {
                 self.value = value
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.value = try values.decodeIfPresent(String.self, forKey: "value")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(value, forKey: "value")
             }
@@ -101,7 +101,7 @@ public struct ScimUserListEnterprise: Codable {
                 self.location = location
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.resourceType = try values.decodeIfPresent(String.self, forKey: "resourceType")
                 self.created = try values.decodeIfPresent(String.self, forKey: "created")
@@ -109,7 +109,7 @@ public struct ScimUserListEnterprise: Codable {
                 self.location = try values.decodeIfPresent(String.self, forKey: "location")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(resourceType, forKey: "resourceType")
                 try values.encodeIfPresent(created, forKey: "created")
@@ -130,7 +130,7 @@ public struct ScimUserListEnterprise: Codable {
             self.meta = meta
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.schemas = try values.decode([String].self, forKey: "schemas")
             self.id = try values.decode(String.self, forKey: "id")
@@ -143,7 +143,7 @@ public struct ScimUserListEnterprise: Codable {
             self.meta = try values.decodeIfPresent(Meta.self, forKey: "meta")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(schemas, forKey: "schemas")
             try values.encode(id, forKey: "id")
@@ -165,7 +165,7 @@ public struct ScimUserListEnterprise: Codable {
         self.resources = resources
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.schemas = try values.decode([String].self, forKey: "schemas")
         self.totalResults = try values.decode(Double.self, forKey: "totalResults")
@@ -174,7 +174,7 @@ public struct ScimUserListEnterprise: Codable {
         self.resources = try values.decode([Resource].self, forKey: "Resources")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(schemas, forKey: "schemas")
         try values.encode(totalResults, forKey: "totalResults")

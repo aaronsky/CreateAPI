@@ -74,7 +74,7 @@ extension Paths.Orgs.WithOrg {
                 self.body = body
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(name, forKey: "name")
                 try values.encodeIfPresent(body, forKey: "body")

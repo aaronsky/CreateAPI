@@ -43,7 +43,7 @@ public struct BaseGist: Codable {
             self.size = size
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.filename = try values.decodeIfPresent(String.self, forKey: "filename")
             self.type = try values.decodeIfPresent(String.self, forKey: "type")
@@ -52,7 +52,7 @@ public struct BaseGist: Codable {
             self.size = try values.decodeIfPresent(Int.self, forKey: "size")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(filename, forKey: "filename")
             try values.encodeIfPresent(type, forKey: "type")
@@ -85,7 +85,7 @@ public struct BaseGist: Codable {
         self.history = history
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.forksURL = try values.decode(URL.self, forKey: "forks_url")
@@ -109,7 +109,7 @@ public struct BaseGist: Codable {
         self.history = try values.decodeIfPresent([AnyJSON].self, forKey: "history")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(forksURL, forKey: "forks_url")

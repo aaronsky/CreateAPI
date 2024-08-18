@@ -10,12 +10,12 @@ public struct Item: Codable {
         self.weight = weight
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.weight = try values.decode(Int.self, forKey: "weight")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(weight, forKey: "weight")
     }

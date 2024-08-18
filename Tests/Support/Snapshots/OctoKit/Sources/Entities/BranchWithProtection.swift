@@ -25,13 +25,13 @@ public struct BranchWithProtection: Codable {
             self.this = this
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.html = try values.decode(String.self, forKey: "html")
             self.this = try values.decode(URL.self, forKey: "self")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(html, forKey: "html")
             try values.encode(this, forKey: "self")
@@ -49,7 +49,7 @@ public struct BranchWithProtection: Codable {
         self.requiredApprovingReviewCount = requiredApprovingReviewCount
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.name = try values.decode(String.self, forKey: "name")
         self.commit = try values.decode(Commit.self, forKey: "commit")
@@ -61,7 +61,7 @@ public struct BranchWithProtection: Codable {
         self.requiredApprovingReviewCount = try values.decodeIfPresent(Int.self, forKey: "required_approving_review_count")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(name, forKey: "name")
         try values.encode(commit, forKey: "commit")

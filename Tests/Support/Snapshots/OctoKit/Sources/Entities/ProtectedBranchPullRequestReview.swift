@@ -34,7 +34,7 @@ public struct ProtectedBranchPullRequestReview: Codable {
             self.teamsURL = teamsURL
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.users = try values.decodeIfPresent([SimpleUser].self, forKey: "users")
             self.teams = try values.decodeIfPresent([Team].self, forKey: "teams")
@@ -43,7 +43,7 @@ public struct ProtectedBranchPullRequestReview: Codable {
             self.teamsURL = try values.decodeIfPresent(String.self, forKey: "teams_url")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(users, forKey: "users")
             try values.encodeIfPresent(teams, forKey: "teams")
@@ -61,7 +61,7 @@ public struct ProtectedBranchPullRequestReview: Codable {
         self.requiredApprovingReviewCount = requiredApprovingReviewCount
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decodeIfPresent(URL.self, forKey: "url")
         self.dismissalRestrictions = try values.decodeIfPresent(DismissalRestrictions.self, forKey: "dismissal_restrictions")
@@ -70,7 +70,7 @@ public struct ProtectedBranchPullRequestReview: Codable {
         self.requiredApprovingReviewCount = try values.decodeIfPresent(Int.self, forKey: "required_approving_review_count")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(url, forKey: "url")
         try values.encodeIfPresent(dismissalRestrictions, forKey: "dismissal_restrictions")

@@ -86,7 +86,7 @@ extension Paths.Repos.WithOwner.WithRepo.Git {
                     self.date = date
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(name, forKey: "name")
                     try values.encode(email, forKey: "email")
@@ -109,7 +109,7 @@ extension Paths.Repos.WithOwner.WithRepo.Git {
                     self.date = date
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(name, forKey: "name")
                     try values.encodeIfPresent(email, forKey: "email")
@@ -126,7 +126,7 @@ extension Paths.Repos.WithOwner.WithRepo.Git {
                 self.signature = signature
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(message, forKey: "message")
                 try values.encode(tree, forKey: "tree")

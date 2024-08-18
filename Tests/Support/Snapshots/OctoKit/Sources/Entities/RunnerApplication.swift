@@ -22,7 +22,7 @@ public struct RunnerApplication: Codable {
         self.sha256Checksum = sha256Checksum
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.os = try values.decode(String.self, forKey: "os")
         self.architecture = try values.decode(String.self, forKey: "architecture")
@@ -32,7 +32,7 @@ public struct RunnerApplication: Codable {
         self.sha256Checksum = try values.decodeIfPresent(String.self, forKey: "sha256_checksum")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(os, forKey: "os")
         try values.encode(architecture, forKey: "architecture")

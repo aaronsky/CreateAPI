@@ -59,7 +59,7 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch.Protection {
                     self.teams = teams
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(users, forKey: "users")
                     try values.encodeIfPresent(teams, forKey: "teams")
@@ -73,7 +73,7 @@ extension Paths.Repos.WithOwner.WithRepo.Branches.WithBranch.Protection {
                 self.requiredApprovingReviewCount = requiredApprovingReviewCount
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(dismissalRestrictions, forKey: "dismissal_restrictions")
                 try values.encodeIfPresent(dismissStaleReviews, forKey: "dismiss_stale_reviews")

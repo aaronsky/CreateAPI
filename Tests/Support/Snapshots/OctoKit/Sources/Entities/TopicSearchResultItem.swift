@@ -39,7 +39,7 @@ public struct TopicSearchResultItem: Codable {
                 self.relationType = relationType
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.id = try values.decodeIfPresent(Int.self, forKey: "id")
                 self.name = try values.decodeIfPresent(String.self, forKey: "name")
@@ -47,7 +47,7 @@ public struct TopicSearchResultItem: Codable {
                 self.relationType = try values.decodeIfPresent(String.self, forKey: "relation_type")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(id, forKey: "id")
                 try values.encodeIfPresent(name, forKey: "name")
@@ -60,12 +60,12 @@ public struct TopicSearchResultItem: Codable {
             self.topicRelation = topicRelation
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.topicRelation = try values.decodeIfPresent(TopicRelation.self, forKey: "topic_relation")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(topicRelation, forKey: "topic_relation")
         }
@@ -87,7 +87,7 @@ public struct TopicSearchResultItem: Codable {
                 self.relationType = relationType
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.id = try values.decodeIfPresent(Int.self, forKey: "id")
                 self.name = try values.decodeIfPresent(String.self, forKey: "name")
@@ -95,7 +95,7 @@ public struct TopicSearchResultItem: Codable {
                 self.relationType = try values.decodeIfPresent(String.self, forKey: "relation_type")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(id, forKey: "id")
                 try values.encodeIfPresent(name, forKey: "name")
@@ -108,12 +108,12 @@ public struct TopicSearchResultItem: Codable {
             self.topicRelation = topicRelation
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.topicRelation = try values.decodeIfPresent(TopicRelation.self, forKey: "topic_relation")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(topicRelation, forKey: "topic_relation")
         }
@@ -138,7 +138,7 @@ public struct TopicSearchResultItem: Codable {
         self.aliases = aliases
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.name = try values.decode(String.self, forKey: "name")
         self.displayName = try values.decodeIfPresent(String.self, forKey: "display_name")
@@ -158,7 +158,7 @@ public struct TopicSearchResultItem: Codable {
         self.aliases = try values.decodeIfPresent([Alias].self, forKey: "aliases")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(name, forKey: "name")
         try values.encodeIfPresent(displayName, forKey: "display_name")

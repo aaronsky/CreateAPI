@@ -25,13 +25,13 @@ public struct StatusCheckPolicy: Codable {
             self.appID = appID
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.context = try values.decode(String.self, forKey: "context")
             self.appID = try values.decodeIfPresent(Int.self, forKey: "app_id")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(context, forKey: "context")
             try values.encodeIfPresent(appID, forKey: "app_id")
@@ -46,7 +46,7 @@ public struct StatusCheckPolicy: Codable {
         self.contextsURL = contextsURL
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.isStrict = try values.decode(Bool.self, forKey: "strict")
@@ -55,7 +55,7 @@ public struct StatusCheckPolicy: Codable {
         self.contextsURL = try values.decode(URL.self, forKey: "contexts_url")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(isStrict, forKey: "strict")

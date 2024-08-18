@@ -60,7 +60,7 @@ public struct Collaborator: Codable {
             self.isAdmin = isAdmin
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isPull = try values.decode(Bool.self, forKey: "pull")
             self.isTriage = try values.decodeIfPresent(Bool.self, forKey: "triage")
@@ -69,7 +69,7 @@ public struct Collaborator: Codable {
             self.isAdmin = try values.decode(Bool.self, forKey: "admin")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(isPull, forKey: "pull")
             try values.encodeIfPresent(isTriage, forKey: "triage")
@@ -104,7 +104,7 @@ public struct Collaborator: Codable {
         self.roleName = roleName
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.login = try values.decode(String.self, forKey: "login")
         self.id = try values.decode(Int.self, forKey: "id")
@@ -130,7 +130,7 @@ public struct Collaborator: Codable {
         self.roleName = try values.decode(String.self, forKey: "role_name")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(login, forKey: "login")
         try values.encode(id, forKey: "id")

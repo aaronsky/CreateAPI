@@ -35,7 +35,7 @@ extension Paths.Enterprises.WithEnterprise.Actions {
                 self.runnerGroups = runnerGroups
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.totalCount = try values.decode(Double.self, forKey: "total_count")
                 self.runnerGroups = try values.decode([OctoKit.RunnerGroupsEnterprise].self, forKey: "runner_groups")
@@ -86,7 +86,7 @@ extension Paths.Enterprises.WithEnterprise.Actions {
                 self.allowsPublicRepositories = allowsPublicRepositories
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(name, forKey: "name")
                 try values.encodeIfPresent(visibility, forKey: "visibility")

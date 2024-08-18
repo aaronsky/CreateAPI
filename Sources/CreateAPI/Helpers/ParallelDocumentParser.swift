@@ -6,7 +6,7 @@ import OpenAPIKit30
 final class ParallelDocumentParser: Decodable {
     let document: OpenAPI.Document
 
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         let version = try container.decode(OpenAPI.Document.Version.self, forKey: .openAPIVersion)
@@ -14,12 +14,12 @@ final class ParallelDocumentParser: Decodable {
 
         let group = DispatchGroup()
 
-        var components: Result<OpenAPI.Components, Error>!
+        var components: Result<OpenAPI.Components, any Error>!
         perform(in: group) {
             components = Result(catching: { try container.decodeIfPresent(OpenAPI.Components.self, forKey: .components) ?? .noComponents })
         }
 
-        var paths: Result<OpenAPI.PathItem.Map, Error>!
+        var paths: Result<OpenAPI.PathItem.Map, any Error>!
         perform(in: group) {
             paths = Result(catching: { try container.decode(OpenAPI.PathItem.Map.self, forKey: .paths) })
         }
@@ -50,7 +50,7 @@ final class ParallelDocumentParser: Decodable {
 }
 
 private final class ResultBox<T> {
-    var value: Result<T, Error>!
+    var value: Result<T, any Error>!
 
     func get() throws -> T {
         try value.get()

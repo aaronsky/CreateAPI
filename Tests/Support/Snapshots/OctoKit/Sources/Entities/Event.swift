@@ -26,14 +26,14 @@ public struct Event: Codable {
             self.url = url
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.id = try values.decode(Int.self, forKey: "id")
             self.name = try values.decode(String.self, forKey: "name")
             self.url = try values.decode(URL.self, forKey: "url")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(id, forKey: "id")
             try values.encode(name, forKey: "name")
@@ -68,7 +68,7 @@ public struct Event: Codable {
                 self.htmlURL = htmlURL
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.pageName = try values.decodeIfPresent(String.self, forKey: "page_name")
                 self.title = try values.decodeIfPresent(String.self, forKey: "title")
@@ -78,7 +78,7 @@ public struct Event: Codable {
                 self.htmlURL = try values.decodeIfPresent(String.self, forKey: "html_url")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(pageName, forKey: "page_name")
                 try values.encodeIfPresent(title, forKey: "title")
@@ -96,7 +96,7 @@ public struct Event: Codable {
             self.pages = pages
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.action = try values.decodeIfPresent(String.self, forKey: "action")
             self.issue = try values.decodeIfPresent(Issue.self, forKey: "issue")
@@ -104,7 +104,7 @@ public struct Event: Codable {
             self.pages = try values.decodeIfPresent([Page].self, forKey: "pages")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(action, forKey: "action")
             try values.encodeIfPresent(issue, forKey: "issue")
@@ -124,7 +124,7 @@ public struct Event: Codable {
         self.createdAt = createdAt
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(String.self, forKey: "id")
         self.type = try values.decodeIfPresent(String.self, forKey: "type")
@@ -136,7 +136,7 @@ public struct Event: Codable {
         self.createdAt = try values.decodeIfPresent(Date.self, forKey: "created_at")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encodeIfPresent(type, forKey: "type")

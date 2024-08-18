@@ -29,13 +29,13 @@ public struct UnlabeledIssueEvent: Codable {
             self.color = color
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.name = try values.decode(String.self, forKey: "name")
             self.color = try values.decode(String.self, forKey: "color")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(name, forKey: "name")
             try values.encode(color, forKey: "color")
@@ -55,7 +55,7 @@ public struct UnlabeledIssueEvent: Codable {
         self.label = label
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -69,7 +69,7 @@ public struct UnlabeledIssueEvent: Codable {
         self.label = try values.decode(Label.self, forKey: "label")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(nodeID, forKey: "node_id")

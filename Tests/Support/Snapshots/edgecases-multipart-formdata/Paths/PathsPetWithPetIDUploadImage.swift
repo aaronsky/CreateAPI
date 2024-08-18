@@ -32,7 +32,7 @@ extension Paths.Pet.WithPetID {
                 self.file = file
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(additionalMetadata, forKey: "additionalMetadata")
                 try values.encodeIfPresent(file, forKey: "file")

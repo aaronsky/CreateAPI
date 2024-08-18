@@ -21,7 +21,7 @@ enum AnyJSON: Codable, Equatable, Sendable {
         }
     }
 
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case let .array(array): try container.encode(array)
@@ -32,7 +32,7 @@ enum AnyJSON: Codable, Equatable, Sendable {
         }
     }
 
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let object = try? container.decode([String: AnyJSON].self) {
             self = .object(object)

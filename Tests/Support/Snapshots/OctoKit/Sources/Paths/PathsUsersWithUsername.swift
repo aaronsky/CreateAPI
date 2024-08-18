@@ -34,7 +34,7 @@ extension Paths.Users {
             case privateUser(OctoKit.PrivateUser)
             case publicUser(OctoKit.PublicUser)
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let container = try decoder.singleValueContainer()
                 if let value = try? container.decode(OctoKit.PrivateUser.self) {
                     self = .privateUser(value)

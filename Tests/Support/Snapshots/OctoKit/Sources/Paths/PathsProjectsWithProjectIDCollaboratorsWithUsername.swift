@@ -43,7 +43,7 @@ extension Paths.Projects.WithProjectID.Collaborators {
                 self.permission = permission
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(permission, forKey: "permission")
             }

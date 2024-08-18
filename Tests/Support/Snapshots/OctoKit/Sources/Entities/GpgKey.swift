@@ -64,13 +64,13 @@ public struct GpgKey: Codable {
             self.isVerified = isVerified
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.email = try values.decodeIfPresent(String.self, forKey: "email")
             self.isVerified = try values.decodeIfPresent(Bool.self, forKey: "verified")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(email, forKey: "email")
             try values.encodeIfPresent(isVerified, forKey: "verified")
@@ -108,7 +108,7 @@ public struct GpgKey: Codable {
             self.rawKey = rawKey
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.id = try values.decodeIfPresent(Int.self, forKey: "id")
             self.primaryKeyID = try values.decodeIfPresent(Int.self, forKey: "primary_key_id")
@@ -125,7 +125,7 @@ public struct GpgKey: Codable {
             self.rawKey = try values.decodeIfPresent(String.self, forKey: "raw_key")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(id, forKey: "id")
             try values.encodeIfPresent(primaryKeyID, forKey: "primary_key_id")
@@ -159,7 +159,7 @@ public struct GpgKey: Codable {
         self.rawKey = rawKey
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.primaryKeyID = try values.decodeIfPresent(Int.self, forKey: "primary_key_id")
@@ -176,7 +176,7 @@ public struct GpgKey: Codable {
         self.rawKey = try values.decodeIfPresent(String.self, forKey: "raw_key")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encodeIfPresent(primaryKeyID, forKey: "primary_key_id")

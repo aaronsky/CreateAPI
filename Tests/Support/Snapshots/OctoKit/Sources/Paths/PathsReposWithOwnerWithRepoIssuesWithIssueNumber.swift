@@ -63,7 +63,7 @@ extension Paths.Repos.WithOwner.WithRepo.Issues {
                 case string(String)
                 case int(Int)
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var container = encoder.singleValueContainer()
                     switch self {
                     case .string(let value): try container.encode(value)
@@ -82,7 +82,7 @@ extension Paths.Repos.WithOwner.WithRepo.Issues {
                 case string(String)
                 case int(Int)
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var container = encoder.singleValueContainer()
                     switch self {
                     case .string(let value): try container.encode(value)
@@ -108,7 +108,7 @@ extension Paths.Repos.WithOwner.WithRepo.Issues {
                         self.color = color
                     }
 
-                    public func encode(to encoder: Encoder) throws {
+                    public func encode(to encoder: any Encoder) throws {
                         var values = encoder.container(keyedBy: StringCodingKey.self)
                         try values.encodeIfPresent(id, forKey: "id")
                         try values.encodeIfPresent(name, forKey: "name")
@@ -117,7 +117,7 @@ extension Paths.Repos.WithOwner.WithRepo.Issues {
                     }
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var container = encoder.singleValueContainer()
                     switch self {
                     case .string(let value): try container.encode(value)
@@ -136,7 +136,7 @@ extension Paths.Repos.WithOwner.WithRepo.Issues {
                 self.assignees = assignees
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(title, forKey: "title")
                 try values.encodeIfPresent(body, forKey: "body")

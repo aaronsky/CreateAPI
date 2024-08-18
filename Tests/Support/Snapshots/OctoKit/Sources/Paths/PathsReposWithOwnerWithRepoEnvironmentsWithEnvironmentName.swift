@@ -64,7 +64,7 @@ extension Paths.Repos.WithOwner.WithRepo.Environments {
                     self.id = id
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(type, forKey: "type")
                     try values.encodeIfPresent(id, forKey: "id")
@@ -77,7 +77,7 @@ extension Paths.Repos.WithOwner.WithRepo.Environments {
                 self.deploymentBranchPolicy = deploymentBranchPolicy
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(waitTimer, forKey: "wait_timer")
                 try values.encodeIfPresent(reviewers, forKey: "reviewers")

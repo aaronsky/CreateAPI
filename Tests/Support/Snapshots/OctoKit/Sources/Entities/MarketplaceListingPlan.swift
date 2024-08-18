@@ -46,7 +46,7 @@ public struct MarketplaceListingPlan: Codable {
         self.bullets = bullets
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.accountsURL = try values.decode(URL.self, forKey: "accounts_url")
@@ -63,7 +63,7 @@ public struct MarketplaceListingPlan: Codable {
         self.bullets = try values.decode([String].self, forKey: "bullets")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(accountsURL, forKey: "accounts_url")

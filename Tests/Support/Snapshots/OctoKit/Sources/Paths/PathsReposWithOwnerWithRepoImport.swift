@@ -98,7 +98,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                 self.tfvcProject = tfvcProject
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(vcsURL, forKey: "vcs_url")
                 try values.encodeIfPresent(vcs, forKey: "vcs")
@@ -135,7 +135,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                 self.tfvcProject = tfvcProject
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(vcsUsername, forKey: "vcs_username")
                 try values.encodeIfPresent(vcsPassword, forKey: "vcs_password")

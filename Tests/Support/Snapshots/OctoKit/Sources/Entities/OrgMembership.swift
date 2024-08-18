@@ -47,12 +47,12 @@ public struct OrgMembership: Codable {
             self.canCreateRepository = canCreateRepository
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.canCreateRepository = try values.decode(Bool.self, forKey: "can_create_repository")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(canCreateRepository, forKey: "can_create_repository")
         }
@@ -68,7 +68,7 @@ public struct OrgMembership: Codable {
         self.permissions = permissions
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.url = try values.decode(URL.self, forKey: "url")
         self.state = try values.decode(State.self, forKey: "state")
@@ -79,7 +79,7 @@ public struct OrgMembership: Codable {
         self.permissions = try values.decodeIfPresent(Permissions.self, forKey: "permissions")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(url, forKey: "url")
         try values.encode(state, forKey: "state")

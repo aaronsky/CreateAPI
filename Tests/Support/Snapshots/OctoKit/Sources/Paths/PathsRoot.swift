@@ -95,7 +95,7 @@ extension Paths {
                 self.userSearchURL = userSearchURL
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.currentUserURL = try values.decode(String.self, forKey: "current_user_url")
                 self.currentUserAuthorizationsHTMLURL = try values.decode(String.self, forKey: "current_user_authorizations_html_url")

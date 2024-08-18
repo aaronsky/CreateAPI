@@ -33,7 +33,7 @@ public struct Collection: Codable {
         self.previewImageURLs = previewImageURLs
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.title = try values.decode(String.self, forKey: "title")
@@ -42,7 +42,7 @@ public struct Collection: Codable {
         self.previewImageURLs = try values.decode([URL].self, forKey: "preview_image_urls")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(title, forKey: "title")

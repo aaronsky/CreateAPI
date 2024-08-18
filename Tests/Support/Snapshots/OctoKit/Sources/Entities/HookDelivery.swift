@@ -70,13 +70,13 @@ public struct HookDelivery: Codable {
             self.payload = payload
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.headers = try values.decodeIfPresent([String: AnyJSON].self, forKey: "headers")
             self.payload = try values.decodeIfPresent([String: AnyJSON].self, forKey: "payload")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(headers, forKey: "headers")
             try values.encodeIfPresent(payload, forKey: "payload")
@@ -94,13 +94,13 @@ public struct HookDelivery: Codable {
             self.payload = payload
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.headers = try values.decodeIfPresent([String: AnyJSON].self, forKey: "headers")
             self.payload = try values.decodeIfPresent(String.self, forKey: "payload")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(headers, forKey: "headers")
             try values.encodeIfPresent(payload, forKey: "payload")
@@ -124,7 +124,7 @@ public struct HookDelivery: Codable {
         self.response = response
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.guid = try values.decode(String.self, forKey: "guid")
@@ -142,7 +142,7 @@ public struct HookDelivery: Codable {
         self.response = try values.decode(Response.self, forKey: "response")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(guid, forKey: "guid")

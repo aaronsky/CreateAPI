@@ -52,7 +52,7 @@ public struct TimelineIssueEvents: Codable {
         self.timelineUnassignedIssueEvent = timelineUnassignedIssueEvent
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.labeledIssueEvent = try? container.decode(LabeledIssueEvent.self)
         self.unlabeledIssueEvent = try? container.decode(UnlabeledIssueEvent.self)
@@ -77,7 +77,7 @@ public struct TimelineIssueEvents: Codable {
         self.timelineUnassignedIssueEvent = try? container.decode(TimelineUnassignedIssueEvent.self)
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         if let value = labeledIssueEvent { try container.encode(value) }
         if let value = unlabeledIssueEvent { try container.encode(value) }

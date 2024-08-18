@@ -25,14 +25,14 @@ public struct CodeScanningSarifsStatus: Codable {
         self.errors = errors
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.processingStatus = try values.decodeIfPresent(ProcessingStatus.self, forKey: "processing_status")
         self.analysesURL = try values.decodeIfPresent(URL.self, forKey: "analyses_url")
         self.errors = try values.decodeIfPresent([String].self, forKey: "errors")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(processingStatus, forKey: "processing_status")
         try values.encodeIfPresent(analysesURL, forKey: "analyses_url")

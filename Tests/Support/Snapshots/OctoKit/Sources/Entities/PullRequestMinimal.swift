@@ -27,14 +27,14 @@ public struct PullRequestMinimal: Codable {
                 self.name = name
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.id = try values.decode(Int.self, forKey: "id")
                 self.url = try values.decode(String.self, forKey: "url")
                 self.name = try values.decode(String.self, forKey: "name")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(id, forKey: "id")
                 try values.encode(url, forKey: "url")
@@ -48,14 +48,14 @@ public struct PullRequestMinimal: Codable {
             self.repo = repo
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.ref = try values.decode(String.self, forKey: "ref")
             self.sha = try values.decode(String.self, forKey: "sha")
             self.repo = try values.decode(Repo.self, forKey: "repo")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(ref, forKey: "ref")
             try values.encode(sha, forKey: "sha")
@@ -79,14 +79,14 @@ public struct PullRequestMinimal: Codable {
                 self.name = name
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.id = try values.decode(Int.self, forKey: "id")
                 self.url = try values.decode(String.self, forKey: "url")
                 self.name = try values.decode(String.self, forKey: "name")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(id, forKey: "id")
                 try values.encode(url, forKey: "url")
@@ -100,14 +100,14 @@ public struct PullRequestMinimal: Codable {
             self.repo = repo
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.ref = try values.decode(String.self, forKey: "ref")
             self.sha = try values.decode(String.self, forKey: "sha")
             self.repo = try values.decode(Repo.self, forKey: "repo")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(ref, forKey: "ref")
             try values.encode(sha, forKey: "sha")
@@ -123,7 +123,7 @@ public struct PullRequestMinimal: Codable {
         self.base = base
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.number = try values.decode(Int.self, forKey: "number")
@@ -132,7 +132,7 @@ public struct PullRequestMinimal: Codable {
         self.base = try values.decode(Base.self, forKey: "base")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(number, forKey: "number")

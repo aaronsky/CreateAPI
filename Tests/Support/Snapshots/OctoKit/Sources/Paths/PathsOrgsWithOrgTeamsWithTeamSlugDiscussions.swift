@@ -85,7 +85,7 @@ extension Paths.Orgs.WithOrg.Teams.WithTeamSlug {
                 self.isPrivate = isPrivate
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(title, forKey: "title")
                 try values.encode(body, forKey: "body")

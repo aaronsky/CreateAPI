@@ -48,7 +48,7 @@ extension Paths.Enterprises.WithEnterprise.Actions {
                 self.allowedActions = allowedActions
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(enabledOrganizations, forKey: "enabled_organizations")
                 try values.encodeIfPresent(allowedActions, forKey: "allowed_actions")

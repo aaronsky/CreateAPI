@@ -8,7 +8,7 @@ public enum WebhookConfigInsecureSSL: Codable, Hashable {
     case string(String)
     case double(Double)
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(String.self) {
             self = .string(value)
@@ -22,7 +22,7 @@ public enum WebhookConfigInsecureSSL: Codable, Hashable {
         }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .string(let value): try container.encode(value)

@@ -14,13 +14,13 @@ public struct AdvancedSecurityActiveCommitters: Codable {
         self.repositories = repositories
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.totalAdvancedSecurityCommitters = try values.decodeIfPresent(Int.self, forKey: "total_advanced_security_committers")
         self.repositories = try values.decode([AdvancedSecurityActiveCommittersRepository].self, forKey: "repositories")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(totalAdvancedSecurityCommitters, forKey: "total_advanced_security_committers")
         try values.encode(repositories, forKey: "repositories")

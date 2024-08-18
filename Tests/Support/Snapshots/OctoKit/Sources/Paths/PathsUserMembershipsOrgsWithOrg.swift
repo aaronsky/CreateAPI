@@ -42,7 +42,7 @@ extension Paths.User.Memberships.Orgs {
                 self.state = state
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(state, forKey: "state")
             }

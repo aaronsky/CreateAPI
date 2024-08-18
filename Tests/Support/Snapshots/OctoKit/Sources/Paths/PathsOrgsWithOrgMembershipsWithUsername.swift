@@ -59,7 +59,7 @@ extension Paths.Orgs.WithOrg.Memberships {
                 self.role = role
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(role, forKey: "role")
             }

@@ -46,14 +46,14 @@ public struct TimelineCommittedEvent: Codable {
             self.name = name
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.date = try values.decode(Date.self, forKey: "date")
             self.email = try values.decode(String.self, forKey: "email")
             self.name = try values.decode(String.self, forKey: "name")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(date, forKey: "date")
             try values.encode(email, forKey: "email")
@@ -82,14 +82,14 @@ public struct TimelineCommittedEvent: Codable {
             self.name = name
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.date = try values.decode(Date.self, forKey: "date")
             self.email = try values.decode(String.self, forKey: "email")
             self.name = try values.decode(String.self, forKey: "name")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(date, forKey: "date")
             try values.encode(email, forKey: "email")
@@ -109,13 +109,13 @@ public struct TimelineCommittedEvent: Codable {
             self.url = url
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.sha = try values.decode(String.self, forKey: "sha")
             self.url = try values.decode(URL.self, forKey: "url")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(sha, forKey: "sha")
             try values.encode(url, forKey: "url")
@@ -136,14 +136,14 @@ public struct TimelineCommittedEvent: Codable {
             self.htmlURL = htmlURL
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.sha = try values.decode(String.self, forKey: "sha")
             self.url = try values.decode(URL.self, forKey: "url")
             self.htmlURL = try values.decode(URL.self, forKey: "html_url")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(sha, forKey: "sha")
             try values.encode(url, forKey: "url")
@@ -164,7 +164,7 @@ public struct TimelineCommittedEvent: Codable {
             self.payload = payload
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isVerified = try values.decode(Bool.self, forKey: "verified")
             self.reason = try values.decode(String.self, forKey: "reason")
@@ -172,7 +172,7 @@ public struct TimelineCommittedEvent: Codable {
             self.payload = try values.decodeIfPresent(String.self, forKey: "payload")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(isVerified, forKey: "verified")
             try values.encode(reason, forKey: "reason")
@@ -195,7 +195,7 @@ public struct TimelineCommittedEvent: Codable {
         self.htmlURL = htmlURL
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.event = try values.decodeIfPresent(String.self, forKey: "event")
         self.sha = try values.decode(String.self, forKey: "sha")
@@ -210,7 +210,7 @@ public struct TimelineCommittedEvent: Codable {
         self.htmlURL = try values.decode(URL.self, forKey: "html_url")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(event, forKey: "event")
         try values.encode(sha, forKey: "sha")

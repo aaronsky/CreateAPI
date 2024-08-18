@@ -151,7 +151,7 @@ struct Property {
     var defaultValue: String?
     var metadata: DeclarationMetadata?
     // A nested declaration required used as a property type
-    var nested: Declaration?
+    var nested: (any Declaration)?
     // If the schema is inlined by `allOf`. This is currently used only for the generation of decoders.
     var isInlined: Bool?
 }
@@ -199,7 +199,7 @@ final class EntityDeclaration: Declaration {
     var isRenderedAsStruct = false
     weak var parent: EntityDeclaration?
 
-    var nested: [Declaration] {
+    var nested: [any Declaration] {
         properties.compactMap { $0.nested }
     }
 
@@ -236,7 +236,7 @@ enum EntityType {
 struct TypealiasDeclaration: Declaration {
     let name: TypeName
     var type: TypeIdentifier
-    var nested: Declaration?
+    var nested: (any Declaration)?
 }
 
 struct Discriminator {
@@ -256,7 +256,7 @@ struct DeclarationMetadata {
     var example: AnyCodable?
     var isDeprecated: Bool
 
-    init(_ schema: JSONSchemaContext?) {
+    init(_ schema: (any JSONSchemaContext)?) {
         self.title = schema?.title
         self.description = schema?.description
         self.example = schema?.example

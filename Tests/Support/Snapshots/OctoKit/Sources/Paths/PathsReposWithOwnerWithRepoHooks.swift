@@ -86,7 +86,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                     self.digest = digest
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encodeIfPresent(url, forKey: "url")
                     try values.encodeIfPresent(contentType, forKey: "content_type")
@@ -104,7 +104,7 @@ extension Paths.Repos.WithOwner.WithRepo {
                 self.isActive = isActive
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(name, forKey: "name")
                 try values.encodeIfPresent(config, forKey: "config")

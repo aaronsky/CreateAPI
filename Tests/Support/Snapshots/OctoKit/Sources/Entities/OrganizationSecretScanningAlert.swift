@@ -45,7 +45,7 @@ public struct OrganizationSecretScanningAlert: Codable {
         self.repository = repository
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.number = try values.decodeIfPresent(Int.self, forKey: "number")
         self.createdAt = try values.decodeIfPresent(Date.self, forKey: "created_at")
@@ -61,7 +61,7 @@ public struct OrganizationSecretScanningAlert: Codable {
         self.repository = try values.decodeIfPresent(MinimalRepository.self, forKey: "repository")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(number, forKey: "number")
         try values.encodeIfPresent(createdAt, forKey: "created_at")

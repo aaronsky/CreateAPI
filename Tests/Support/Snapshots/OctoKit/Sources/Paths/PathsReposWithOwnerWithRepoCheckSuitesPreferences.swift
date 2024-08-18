@@ -39,7 +39,7 @@ extension Paths.Repos.WithOwner.WithRepo.CheckSuites {
                     self.isSetting = isSetting
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(appID, forKey: "app_id")
                     try values.encode(isSetting, forKey: "setting")
@@ -50,7 +50,7 @@ extension Paths.Repos.WithOwner.WithRepo.CheckSuites {
                 self.autoTriggerChecks = autoTriggerChecks
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(autoTriggerChecks, forKey: "auto_trigger_checks")
             }

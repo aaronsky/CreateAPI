@@ -216,7 +216,7 @@ public struct TeamRepository: Codable {
             self.isMaintain = isMaintain
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isAdmin = try values.decode(Bool.self, forKey: "admin")
             self.isPull = try values.decode(Bool.self, forKey: "pull")
@@ -225,7 +225,7 @@ public struct TeamRepository: Codable {
             self.isMaintain = try values.decodeIfPresent(Bool.self, forKey: "maintain")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(isAdmin, forKey: "admin")
             try values.encode(isPull, forKey: "pull")
@@ -327,7 +327,7 @@ public struct TeamRepository: Codable {
         self.masterBranch = masterBranch
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -420,7 +420,7 @@ public struct TeamRepository: Codable {
         self.masterBranch = try values.decodeIfPresent(String.self, forKey: "master_branch")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(nodeID, forKey: "node_id")

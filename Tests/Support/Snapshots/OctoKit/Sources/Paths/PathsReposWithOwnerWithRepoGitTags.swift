@@ -91,7 +91,7 @@ extension Paths.Repos.WithOwner.WithRepo.Git {
                     self.date = date
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                     var values = encoder.container(keyedBy: StringCodingKey.self)
                     try values.encode(name, forKey: "name")
                     try values.encode(email, forKey: "email")
@@ -107,7 +107,7 @@ extension Paths.Repos.WithOwner.WithRepo.Git {
                 self.tagger = tagger
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(tag, forKey: "tag")
                 try values.encode(message, forKey: "message")

@@ -51,7 +51,7 @@ public struct Contributor: Codable {
         self.name = name
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.login = try values.decodeIfPresent(String.self, forKey: "login")
         self.id = try values.decodeIfPresent(Int.self, forKey: "id")
@@ -76,7 +76,7 @@ public struct Contributor: Codable {
         self.name = try values.decodeIfPresent(String.self, forKey: "name")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encodeIfPresent(login, forKey: "login")
         try values.encodeIfPresent(id, forKey: "id")

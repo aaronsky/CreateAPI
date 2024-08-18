@@ -204,7 +204,7 @@ public struct FullRepository: Codable {
             self.isPull = isPull
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.isAdmin = try values.decode(Bool.self, forKey: "admin")
             self.isMaintain = try values.decodeIfPresent(Bool.self, forKey: "maintain")
@@ -213,7 +213,7 @@ public struct FullRepository: Codable {
             self.isPull = try values.decode(Bool.self, forKey: "pull")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encode(isAdmin, forKey: "admin")
             try values.encodeIfPresent(isMaintain, forKey: "maintain")
@@ -239,12 +239,12 @@ public struct FullRepository: Codable {
                 self.status = status
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.status = try values.decodeIfPresent(Status.self, forKey: "status")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(status, forKey: "status")
             }
@@ -262,12 +262,12 @@ public struct FullRepository: Codable {
                 self.status = status
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let values = try decoder.container(keyedBy: StringCodingKey.self)
                 self.status = try values.decodeIfPresent(Status.self, forKey: "status")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encodeIfPresent(status, forKey: "status")
             }
@@ -278,13 +278,13 @@ public struct FullRepository: Codable {
             self.secretScanning = secretScanning
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.advancedSecurity = try values.decodeIfPresent(AdvancedSecurity.self, forKey: "advanced_security")
             self.secretScanning = try values.decodeIfPresent(SecretScanning.self, forKey: "secret_scanning")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(advancedSecurity, forKey: "advanced_security")
             try values.encodeIfPresent(secretScanning, forKey: "secret_scanning")
@@ -388,7 +388,7 @@ public struct FullRepository: Codable {
         self.securityAndAnalysis = securityAndAnalysis
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: StringCodingKey.self)
         self.id = try values.decode(Int.self, forKey: "id")
         self.nodeID = try values.decode(String.self, forKey: "node_id")
@@ -486,7 +486,7 @@ public struct FullRepository: Codable {
         self.securityAndAnalysis = try values.decodeIfPresent(SecurityAndAnalysis.self, forKey: "security_and_analysis")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var values = encoder.container(keyedBy: StringCodingKey.self)
         try values.encode(id, forKey: "id")
         try values.encode(nodeID, forKey: "node_id")

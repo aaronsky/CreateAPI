@@ -37,7 +37,7 @@ extension Paths.Projects.Columns.Cards.WithCardID {
                 self.columnID = columnID
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var values = encoder.container(keyedBy: StringCodingKey.self)
                 try values.encode(position, forKey: "position")
                 try values.encodeIfPresent(columnID, forKey: "column_id")
