@@ -32,7 +32,7 @@ extension Paths {
 
             public enum EnumQueryString: String, CaseIterable, Codable {
                 case abc = "_abc"
-                case minusefg = "-efg"
+                case minusEfg = "-efg"
                 case xyz = "(xyz)"
             }
 

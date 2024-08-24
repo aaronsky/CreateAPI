@@ -17,27 +17,27 @@ public struct ActionsBillingUsage: Codable {
         /// Total minutes used on Ubuntu runner machines.
         public var ubuntu: Int?
         /// Total minutes used on macOS runner machines.
-        public var macos: Int?
+        public var macOS: Int?
         /// Total minutes used on Windows runner machines.
         public var windows: Int?
 
-        public init(ubuntu: Int? = nil, macos: Int? = nil, windows: Int? = nil) {
+        public init(ubuntu: Int? = nil, macOS: Int? = nil, windows: Int? = nil) {
             self.ubuntu = ubuntu
-            self.macos = macos
+            self.macOS = macOS
             self.windows = windows
         }
 
         public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.ubuntu = try values.decodeIfPresent(Int.self, forKey: "UBUNTU")
-            self.macos = try values.decodeIfPresent(Int.self, forKey: "MACOS")
+            self.macOS = try values.decodeIfPresent(Int.self, forKey: "MACOS")
             self.windows = try values.decodeIfPresent(Int.self, forKey: "WINDOWS")
         }
 
         public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(ubuntu, forKey: "UBUNTU")
-            try values.encodeIfPresent(macos, forKey: "MACOS")
+            try values.encodeIfPresent(macOS, forKey: "MACOS")
             try values.encodeIfPresent(windows, forKey: "WINDOWS")
         }
     }

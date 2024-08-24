@@ -2,7 +2,7 @@ import CreateOptions
 import Foundation
 import OpenAPIKit30
 
-extension String {
+extension StringProtocol {
     func capitalizingFirstLetter() -> String {
         prefix(1).uppercased() + dropFirst()
     }
@@ -10,7 +10,9 @@ extension String {
     func lowercasedFirstLetter() -> String {
         prefix(1).lowercased() + dropFirst()
     }
+}
 
+extension String {
     func indent(using options: GenerateOptions) -> String {
         let indetation: String
         switch options.indentation {

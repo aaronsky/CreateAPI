@@ -3,20 +3,26 @@ import Foundation
 import CreateOptions
 
 extension Generator {
-    func render(_ decl: any Declaration) throws -> String {
+    func render(_ decl: any Declaration, options: GenerateOptions) throws -> String {
         switch decl {
-        case let decl as EnumOfStringsDeclaration: return render(decl)
-        case let decl as EntityDeclaration: return try render(decl)
-        case let decl as TypealiasDeclaration: return try render(decl)
-        case let decl as AnyDeclaration: return decl.rawValue
+        case let decl as EnumOfStringsDeclaration: render(decl, options: options)
+        case let decl as EntityDeclaration: try render(decl, options: options)
+        case let decl as TypealiasDeclaration: try render(decl)
+        case let decl as AnyDeclaration: decl.rawValue
         default: fatalError()
         }
     }
 
-    private func render(_ decl: EnumOfStringsDeclaration) -> String {
+    private func render(_ decl: EnumOfStringsDeclaration, options: GenerateOptions) -> String {
         let comments = templates.comments(for: decl.metadata, name: decl.name.rawValue)
         let cases = decl.cases.map {
-            templates.case(name: $0.name, value: $0.key)
+            templates.case(
+                name: $0.name.process(
+                    isProperty: true,
+                    options: options
+                ),
+                value: $0.key
+            )
         }.joined(separator: "\n")
         return comments + templates.enumOfStrings(
             name: decl.name,
@@ -25,7 +31,7 @@ extension Generator {
         )
     }
 
-    private func render(_ decl: EntityDeclaration) throws -> String {
+    private func render(_ decl: EntityDeclaration, options: GenerateOptions) throws -> String {
         var properties = decl.properties
         addNamespacesForConflictsWithNestedTypes(properties: &properties, decl: decl)
         addNamespacesForConflictsWithBuiltinTypes(properties: &properties, decl: decl)
@@ -37,7 +43,7 @@ extension Generator {
         switch decl.type {
         case .object, .allOf, .anyOf:
             contents.append(templates.properties(properties, isReadonly: isReadOnly))
-            contents += try decl.nested.map(render)
+            contents += try decl.nested.map { try render($0, options: options) }
             if options.entities.includeInitializer {
                 contents.append(
                     templates.initializer(
@@ -48,7 +54,7 @@ extension Generator {
             }
         case .oneOf:
             contents.append(properties.map(templates.case).joined(separator: "\n"))
-            contents += try decl.nested.map(render)
+            contents += try decl.nested.map { try render($0, options: options) }
         }
 
         if decl.isForm {
@@ -74,7 +80,7 @@ extension Generator {
                     if decl.protocols.isEncodable, !properties.isEmpty, options.entities.alwaysIncludeEncodableImplementation {
                         contents.append(templates.encode(properties: properties))
                     }
-                } else if let keys = templates.codingKeys(for: properties) {
+                } else if let keys = templates.codingKeys(for: properties, options: options) {
                     contents.append(keys)
                 }
             case .anyOf:
@@ -144,7 +150,7 @@ extension Generator {
 
     private func render(_ value: TypealiasDeclaration) throws -> String {
         [templates.typealias(name: value.name, type: value.type.name),
-         try value.nested.map(render)]
+         try value.nested.map { try render($0, options: options) }]
             .compactMap { $0 }
             .joined(separator: "\n\n")
     }

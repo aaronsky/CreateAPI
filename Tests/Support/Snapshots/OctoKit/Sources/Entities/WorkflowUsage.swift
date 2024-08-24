@@ -9,7 +9,7 @@ public struct WorkflowUsage: Codable {
 
     public struct Billable: Codable {
         public var ubuntu: Ubuntu?
-        public var macos: Macos?
+        public var macOS: MacOS?
         public var windows: Windows?
 
         public struct Ubuntu: Codable {
@@ -30,7 +30,7 @@ public struct WorkflowUsage: Codable {
             }
         }
 
-        public struct Macos: Codable {
+        public struct MacOS: Codable {
             public var totalMs: Int?
 
             public init(totalMs: Int? = nil) {
@@ -66,23 +66,23 @@ public struct WorkflowUsage: Codable {
             }
         }
 
-        public init(ubuntu: Ubuntu? = nil, macos: Macos? = nil, windows: Windows? = nil) {
+        public init(ubuntu: Ubuntu? = nil, macOS: MacOS? = nil, windows: Windows? = nil) {
             self.ubuntu = ubuntu
-            self.macos = macos
+            self.macOS = macOS
             self.windows = windows
         }
 
         public init(from decoder: any Decoder) throws {
             let values = try decoder.container(keyedBy: StringCodingKey.self)
             self.ubuntu = try values.decodeIfPresent(Ubuntu.self, forKey: "UBUNTU")
-            self.macos = try values.decodeIfPresent(Macos.self, forKey: "MACOS")
+            self.macOS = try values.decodeIfPresent(MacOS.self, forKey: "MACOS")
             self.windows = try values.decodeIfPresent(Windows.self, forKey: "WINDOWS")
         }
 
         public func encode(to encoder: any Encoder) throws {
             var values = encoder.container(keyedBy: StringCodingKey.self)
             try values.encodeIfPresent(ubuntu, forKey: "UBUNTU")
-            try values.encodeIfPresent(macos, forKey: "MACOS")
+            try values.encodeIfPresent(macOS, forKey: "MACOS")
             try values.encodeIfPresent(windows, forKey: "WINDOWS")
         }
     }

@@ -6,6 +6,6 @@ import NaiveDate
 
 public enum EnumClass: String, CaseIterable, Codable {
   case abc = "_abc"
-  case minusefg = "-efg"
+  case minusEfg = "-efg"
   case xyz = "(xyz)"
 }

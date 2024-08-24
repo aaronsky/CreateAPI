@@ -98,7 +98,7 @@ struct Generate: ParsableCommand {
         let generator = Generator(spec: spec, options: options, arguments: arguments)
         // IMPORTANT: Paths needs to be generated before schemes.
         let paths = options.generate.contains(.paths) ? try generator.paths() : nil
-        let schemas = options.generate.contains(.entities) ? try generator.schemas() : nil
+        let schemas = options.generate.contains(.entities) ? try generator.schemas(options: options) : nil
         let package = generator.package(named: options.generate.contains(.package) ? options.module.rawValue : nil)
 
         let outputURL = URL(filePath: output)

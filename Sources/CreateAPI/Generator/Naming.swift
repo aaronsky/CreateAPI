@@ -110,10 +110,10 @@ extension String {
             return "\(dropLast())LessThan"
         }
         if first == "+" {
-            return "plus\(dropFirst())"
+            return "plus\(dropFirst().capitalizingFirstLetter())"
         }
         if first == "-" {
-            return "minus\(dropFirst())"
+            return "minus\(dropFirst().capitalizingFirstLetter())"
         }
         return self
     }
@@ -143,9 +143,23 @@ extension String {
             .filter { !$0.isEmpty }
             .enumerated()
             .map { index, string in
-                if isProperty && index == 0 {
+                let stringLowercased = string.lowercased()
+                if stringLowercased == "ios" {
+                    return "iOS"
+                } else if stringLowercased == "macos" {
+                    return isProperty ? "macOS" : "MacOS"
+                } else if stringLowercased == "tvos" {
+                    return "tvOS"
+                } else if stringLowercased == "watchos" {
+                    return isProperty ? "watchOS" : "WatchOS"
+                } else if stringLowercased == "xros" {
+                    return "xrOS"
+                } else if stringLowercased == "visionos" {
+                    return isProperty ? "visionOS" : "VisionOS"
+                } else if isProperty && index == 0 {
                     return string.lowercasedFirstLetter()
                 }
+                
                 return string.capitalizingFirstLetter()
             }
             .joined(separator: "")
@@ -173,8 +187,10 @@ extension String {
                 }
             }
         }
+
+        // Handle special-cases where the preceding might be harmful
         if output == "self" {
-            output = "this" // Otherwise it'll mess-up initializers
+            return "this" // Otherwise it'll mess-up initializers
         }
 
         output = isProperty ? output.escapedPropertyName : output.escapedTypeName

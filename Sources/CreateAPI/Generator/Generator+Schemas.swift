@@ -1,6 +1,7 @@
 import OpenAPIKit30
 import Foundation
 import GrammaticalNumber
+import CreateOptions
 
 // TODO: Add Read-Only and Write-Only Properties support
 // TODO: stirng with format "binary"?
@@ -16,13 +17,13 @@ import GrammaticalNumber
 // TODO: Remove StringCodingKeys when they are not needed
 
 extension Generator {
-    func schemas() throws -> GeneratorOutput {
+    func schemas(options: GenerateOptions) throws -> GeneratorOutput {
         let benchmark = Benchmark(name: "Generating entities")
         defer { benchmark.stop() }
-        return try _schemas()
+        return try _schemas(options: options)
     }
 
-    private func _schemas() throws -> GeneratorOutput {
+    private func _schemas(options: GenerateOptions) throws -> GeneratorOutput {
         let jobs = try makeJobs()
         var declarations = [Result<any Declaration, any Error>?](repeating: nil, count: jobs.count)
         topLevelTypes = Set(jobs.map(\.name))
@@ -52,7 +53,7 @@ extension Generator {
         // Render entities as a final phase
         let files: [GeneratedFile] = try zip(jobs, declarations).map { job, result in
             guard let entity = try result?.get() else { return nil }
-            return GeneratedFile(name: job.name.rawValue, contents: try render(entity))
+            return GeneratedFile(name: job.name.rawValue, contents: try render(entity, options: options))
         }.compactMap { $0 }
 
         return GeneratorOutput(
@@ -598,7 +599,12 @@ extension Generator {
         }
         var deduplicator = NameDeduplicator()
         let cases: [EnumOfStringsDeclaration.Case] = zip(values, caseNames).map { value, name in
-            let caseName = deduplicator.add(name: name.rawValue)
+            let caseName = deduplicator.add(
+                name: name.rawValue.process(
+                    isProperty: true,
+                    options: options
+                )
+            )
             return EnumOfStringsDeclaration.Case(name: caseName, key: value)
         }
         return EnumOfStringsDeclaration(

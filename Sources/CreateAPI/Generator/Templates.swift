@@ -59,11 +59,19 @@ final class Templates {
         """
     }
 
-    func codingKeys(for properties: [Property]) -> String? {
+    func codingKeys(for properties: [Property], options: GenerateOptions) -> String? {
         guard properties.contains(where: { $0.name.rawValue != $0.key }) else {
             return nil
         }
-        let cases: [String] = properties.map { self.case(name: $0.name.rawValue, value: $0.key) }
+        let cases: [String] = properties.map {
+            self.case(
+                name: $0.name.rawValue.process(
+                    isProperty: true,
+                    options: options
+                ),
+                value: $0.key
+            )
+        }
         return """
         private enum CodingKeys: String, CodingKey {
         \(cases.joined(separator: "\n").indented)
