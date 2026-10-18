@@ -1,5 +1,5 @@
-import ConfigurationParser
-import Foundation
+public import ConfigurationParser
+public import Foundation
 import Yams
 
 @dynamicMemberLookup

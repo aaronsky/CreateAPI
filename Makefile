@@ -1,4 +1,4 @@
-SWIFT_BUILD_FLAGS = --disable-sandbox -c release --arch x86_64 --arch arm64
+SWIFT_BUILD_FLAGS = --disable-sandbox -c release --arch arm64
 BINARIES_PATH = /usr/local/bin
 EXECUTABLE_PATH = $(shell swift build $(SWIFT_BUILD_FLAGS) --show-bin-path)/create-api
 

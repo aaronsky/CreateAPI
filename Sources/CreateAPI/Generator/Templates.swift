@@ -696,6 +696,36 @@ final class Templates {
         }
         """
     }
+
+    var stringCodingKey: String {
+        """
+        \(access)struct StringCodingKey: CodingKey, ExpressibleByStringLiteral {
+            private let string: String
+            private var int: Int?
+
+            \(access)var stringValue: String { return string }
+
+            \(access)init(string: String) {
+                self.string = string
+            }
+
+            \(access)init?(stringValue: String) {
+                self.string = stringValue
+            }
+
+            \(access)var intValue: Int? { return int }
+
+            \(access)init?(intValue: Int) {
+                self.string = String(describing: intValue)
+                self.int = intValue
+            }
+
+            \(access)init(stringLiteral value: String) {
+                self.string = value
+            }
+        }
+        """
+    }
 }
 
 extension String {
@@ -715,31 +745,3 @@ extension String {
         self.trimmingCharacters(in: .whitespacesAndNewlines).components(separatedBy: .newlines)
     }
 }
-
-let stringCodingKey = """
-struct StringCodingKey: CodingKey, ExpressibleByStringLiteral {
-    private let string: String
-    private var int: Int?
-
-    var stringValue: String { return string }
-
-    init(string: String) {
-        self.string = string
-    }
-
-    init?(stringValue: String) {
-        self.string = stringValue
-    }
-
-    var intValue: Int? { return int }
-
-    init?(intValue: Int) {
-        self.string = String(describing: intValue)
-        self.int = intValue
-    }
-
-    init(stringLiteral value: String) {
-        self.string = value
-    }
-}
-"""

@@ -1,4 +1,4 @@
-import ConfigurationParser
+public import ConfigurationParser
 import Foundation
 
 // swiftlint:disable redundant_optional_initialization

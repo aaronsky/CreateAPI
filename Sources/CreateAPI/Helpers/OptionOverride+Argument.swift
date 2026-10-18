@@ -1,5 +1,5 @@
-import protocol ArgumentParser.ExpressibleByArgument
-import struct ConfigurationParser.OptionOverride
+public import protocol ArgumentParser.ExpressibleByArgument
+public import struct ConfigurationParser.OptionOverride
 
 extension OptionOverride: ExpressibleByArgument {
     public init?(argument: String) {

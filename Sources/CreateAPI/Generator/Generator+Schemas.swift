@@ -116,7 +116,7 @@ extension Generator {
         if isAnyJSONUsed {
             extensions.append(GeneratedFile(name: "AnyJSON", contents: templates.anyJSON))
         }
-        extensions.append(GeneratedFile(name: "StringCodingKey", contents: stringCodingKey))
+        extensions.append(GeneratedFile(name: "StringCodingKey", contents: templates.stringCodingKey))
 
         return extensions
     }
